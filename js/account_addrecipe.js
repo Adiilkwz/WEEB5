@@ -1,4 +1,3 @@
-// js/form-validation.js
 // Centralized validation for Account (Edit Profile) and Add Recipe forms
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -53,7 +52,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Account (Edit Profile) form detection & validation
   const accountForm = document.querySelector('#edit form') ||
-                      // fallback: first form that has name/email/bio fields
                       Array.from(document.forms).find(f => f.querySelector('#name') && f.querySelector('#email') && f.querySelector('#bio'));
 
   if (accountForm) {
@@ -76,7 +74,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Recipe form detection & validation
-  // We detect by presence of title + ingredients + steps fields.
   const recipeForm = Array.from(document.forms).find(f => f.querySelector('#title') && f.querySelector('#ingredients') && f.querySelector('#steps'));
 
   if (recipeForm) {
@@ -86,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const category = form.querySelector('#category');
       const ingredients = form.querySelector('#ingredients');
       const steps = form.querySelector('#steps');
-      const image = form.querySelector('#image'); // optional
+      const image = form.querySelector('#image');
 
       if (!title || !title.value.trim()) errors.push({ field: title || form, message: 'Recipe title is required.' });
       if (!category || !category.value.trim()) errors.push({ field: category || form, message: 'Please select a category.' });
@@ -94,7 +91,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!steps || !steps.value.trim()) errors.push({ field: steps || form, message: 'Instructions cannot be empty.' });
 
       if (image && image.value.trim()) {
-        // file input value may be "C:\fakepath\file.jpg" — test extension
         if (!imageRegex.test(image.value.trim())) {
           errors.push({ field: image, message: 'Only JPG, PNG or GIF images are allowed.' });
         }
@@ -103,10 +99,9 @@ document.addEventListener('DOMContentLoaded', () => {
       return errors;
     });
   }
-
+  
   // If no form was found, nothing to do — optional debug:
   if (!accountForm && !recipeForm) {
-    // console.info('form-validation.js: no target forms found on this page.');
   }
 });
 
@@ -121,10 +116,104 @@ document.addEventListener("DOMContentLoaded", () => {
       // Toggle active state
       answer.classList.toggle("show");
 
-      // Optional: Close others when opening a new one
+      // Close others when opening a new one
       questions.forEach((other) => {
         if (other !== q) other.nextElementSibling.classList.remove("show");
       });
     });
   });
+});
+
+// ===== Task 3: Popup Subscription Form =====
+document.addEventListener("DOMContentLoaded", () => {
+  const openBtn = document.getElementById("openPopup");
+  const closeBtn = document.getElementById("closePopup");
+  const overlay = document.getElementById("popupOverlay");
+
+  if (openBtn && closeBtn && overlay) {
+    // Open popup
+    openBtn.addEventListener("click", () => {
+      overlay.style.display = "flex";
+    });
+
+    // Close popup (button)
+    closeBtn.addEventListener("click", () => {
+      overlay.style.display = "none";
+    });
+
+    // Close popup (click outside)
+    overlay.addEventListener("click", (e) => {
+      if (e.target === overlay) {
+        overlay.style.display = "none";
+      }
+    });
+
+    // Optional: simple validation
+    const popupForm = document.getElementById("popupForm");
+    popupForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const name = document.getElementById("popupName").value.trim();
+      const email = document.getElementById("popupEmail").value.trim();
+
+      if (name === "" || email === "" || !email.includes("@")) {
+        alert("Please enter a valid name and email.");
+        return;
+      }
+
+      alert("Thank you for subscribing!");
+      popupForm.reset();
+      overlay.style.display = "none";
+    });
+  }
+});
+
+// ===== Task 4: Change Background Color =====
+document.addEventListener("DOMContentLoaded", () => {
+  const changeBgBtn = document.getElementById("changeBgBtn");
+  const body = document.body;
+
+  // Predefined color palette (matches your theme)
+  const colors = [
+    "#FFF8E1", // light mustard
+    "#F0EAD6", // cream
+    "#D8A300", // mustard
+    "#5C4033", // dark brown
+    "#FCEACB", // peachy light
+  ];
+
+  let currentIndex = 0;
+
+  changeBgBtn.addEventListener("click", () => {
+    // Cycle through colors
+    currentIndex = (currentIndex + 1) % colors.length;
+    body.style.backgroundColor = colors[currentIndex];
+    body.style.transition = "background-color 0.6s ease";
+  });
+});
+
+// ===== Task 5: Display Current Date and Time =====
+document.addEventListener("DOMContentLoaded", () => {
+  const dateTimeDisplay = document.getElementById("dateTimeDisplay");
+
+  function updateDateTime() {
+    const now = new Date();
+
+    const options = {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "numeric",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: true,
+    };
+
+    // Format date & time like “October 11, 2025, 10:45 AM”
+    const formattedDate = now.toLocaleString("en-US", options);
+    dateTimeDisplay.textContent = formattedDate;
+  }
+
+  // Initial call + update every second
+  updateDateTime();
+  setInterval(updateDateTime, 1000);
 });

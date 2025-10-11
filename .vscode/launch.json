@@ -10,13 +10,6 @@
             "type": "msedge",
             "url": "file:///C://Users//ASUS//Desktop//WEEB5//account.html",
             "webRoot": "${workspaceFolder}"
-        },
-        {
-            "name": "Launch Chrome",
-            "request": "launch",
-            "type": "chrome",
-            "url": "http://localhost:8080",
-            "webRoot": "${workspaceFolder}"
         }
     ]
 }
