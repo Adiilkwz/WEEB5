@@ -1,0 +1,221 @@
+/* =========================================================
+   Nyam-Nyam — Account / Add Recipe Page Stylesheet
+   ========================================================= */
+
+/* ===== Root Variables ===== */
+:root {
+  --mustard: #D8A300;
+  --dark-brown: #5C4033;
+  --white: #FFFFFF;
+  --light-mustard: rgba(255, 248, 225, 0.95);
+}
+
+/* ===== General Styles ===== */
+body {
+  font-family: "Times New Roman", Times, serif;
+  background: url("../images/cover.jpg") no-repeat center center fixed;
+  background-size: cover;
+  color: var(--dark-brown);
+  margin: 0;
+  padding: 0;
+}
+
+/* ===== Logo & Avatar ===== */
+.logo {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 3px solid var(--mustard);
+  object-fit: cover;
+}
+
+/* ===== Custom Bootstrap Colors ===== */
+.bg-dark-brown { background-color: var(--dark-brown) !important; }
+.text-dark-brown { color: var(--dark-brown) !important; }
+.bg-light-mustard { background-color: var(--light-mustard) !important; }
+.text-mustard { color: var(--mustard) !important; }
+
+/* ===== Buttons ===== */
+.btn-mustard {
+  background-color: var(--mustard);
+  color: var(--dark-brown);
+  border: none;
+  transition: 0.3s ease;
+}
+
+.btn-mustard:hover {
+  background-color: var(--dark-brown);
+  color: var(--mustard);
+}
+
+.btn-outline-dark-brown {
+  border: 2px solid var(--dark-brown);
+  color: var(--dark-brown);
+  transition: 0.3s ease;
+}
+
+.btn-outline-dark-brown:hover {
+  background-color: var(--dark-brown);
+  color: var(--mustard);
+}
+
+/* ===== Section Container ===== */
+.section {
+  background: var(--light-mustard);
+  border: 1px solid rgba(92, 64, 51, 0.5);
+  border-radius: 8px;
+  padding: 20px;
+}
+
+/* ===== Sidebar ===== */
+.sidebar {
+  background: var(--light-mustard);
+  border: 1px solid rgba(92, 64, 51, 0.5);
+  border-radius: 8px;
+}
+
+.sidebar h3 {
+  color: var(--dark-brown);
+  margin-bottom: 10px;
+}
+
+.sidebar a {
+  color: var(--dark-brown);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.sidebar a:hover {
+  color: var(--mustard);
+}
+
+/* ===== Section Titles ===== */
+.section-title {
+  position: relative;
+  padding-bottom: 8px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.section-title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 50px;
+  height: 4px;
+  background: var(--mustard);
+  border-radius: 2px;
+}
+
+/* ===== Footer ===== */
+footer {
+  font-size: 0.9rem;
+  text-align: center;
+  color: var(--white);
+}
+
+/* =========================================================
+   Responsive Design
+   ========================================================= */
+
+/* ===== Small Devices (≤ 767px) ===== */
+@media (max-width: 767px) {
+
+  /* Typography */
+  h1, h2, h3 {
+    font-size: 1.3rem;
+  }
+
+  p, label, input, textarea, select, button {
+    font-size: 0.9rem;
+  }
+
+  /* Stack layout vertically */
+  .row {
+    flex-direction: column !important;
+  }
+
+  /* Sidebar full width */
+  aside.col-lg-3 {
+    width: 100% !important;
+    max-width: 100%;
+    margin-bottom: 20px;
+  }
+
+  /* Main content full width */
+  main.col-lg-9 {
+    width: 100% !important;
+    max-width: 100%;
+  }
+
+  /* Sidebar styling */
+  .sidebar,
+  .p-3.bg-light-mustard.rounded {
+    padding: 15px !important;
+    text-align: center;
+  }
+
+  .sidebar h3 {
+    font-size: 1.1rem;
+  }
+
+  /* Form adjustments */
+  form {
+    padding: 15px !important;
+  }
+
+  form label {
+    font-size: 0.95rem;
+  }
+
+  form input,
+  form textarea,
+  form select {
+    font-size: 0.9rem;
+  }
+
+  /* Button layout */
+  .btn-group {
+    flex-direction: column !important;
+    gap: 10px;
+  }
+
+  .btn-group .btn {
+    width: 100%;
+  }
+
+  /* Reduce navbar padding */
+  .navbar {
+    padding: 10px 15px !important;
+  }
+
+  /* Smaller logo */
+  .logo {
+    width: 45px;
+    height: 45px;
+  }
+
+  /* Section spacing */
+  .section {
+    margin-top: 0;
+  }
+}
+
+/* ===== Tablets (768px–991px) ===== */
+@media (min-width: 768px) and (max-width: 991px) {
+  aside.col-lg-3 {
+    margin-bottom: 20px;
+  }
+
+  .btn-group .btn {
+    width: 48%;
+  }
+}

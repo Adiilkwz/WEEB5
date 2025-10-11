@@ -1,0 +1,178 @@
+/* =========================
+   Color Variables
+   ========================= */
+:root {
+  --mustard: #D8A300;
+  --dark-brown: #5C4033;
+  --white: #FFFFFF;
+  --light-mustard: rgba(255, 248, 225, 0.95);
+}
+
+/* =========================
+   General Styles
+   ========================= */
+body {
+  font-family: "Times New Roman", Times, serif;
+  background: url("../images/cover.jpg") no-repeat center center fixed;
+  background-size: cover;
+  color: var(--dark-brown);
+}
+
+/* Logo */
+.logo {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Custom Bootstrap Colors */
+.bg-dark-brown { background-color: var(--dark-brown) !important; }
+.text-dark-brown { color: var(--dark-brown) !important; }
+.bg-light-mustard { background-color: var(--light-mustard) !important; }
+.text-mustard { color: var(--mustard) !important; }
+
+/* Buttons */
+.btn-mustard {
+  background-color: var(--mustard);
+  color: var(--dark-brown);
+  border: none;
+  transition: 0.3s;
+}
+.btn-mustard:hover {
+  background-color: var(--dark-brown);
+  color: var(--mustard);
+}
+.btn-outline-dark-brown {
+  border: 2px solid var(--dark-brown);
+  color: var(--dark-brown);
+  transition: 0.3s;
+}
+.btn-outline-dark-brown:hover {
+  background-color: var(--dark-brown);
+  color: var(--mustard);
+}
+
+/* =========================
+   Sidebar
+   ========================= */
+.sidebar {
+  background: var(--light-mustard);
+  border: 1px solid rgba(92, 64, 51, 0.5);
+  border-radius: 8px;
+  padding: 20px;
+}
+.sidebar h4, .sidebar h3 {
+  color: var(--dark-brown);
+  margin-bottom: 10px;
+}
+.sidebar a {
+  color: var(--dark-brown);
+  text-decoration: none;
+}
+.sidebar a:hover {
+  color: var(--mustard);
+}
+
+/* =========================
+   Section Styling
+   ========================= */
+.section-title {
+  position: relative;
+  padding-bottom: 8px;
+  font-weight: bold;
+  text-align: center;
+  color: var(--dark-brown);
+}
+.section-title::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+  width: 50px;
+  height: 4px;
+  background: var(--mustard);
+  border-radius: 2px;
+}
+
+/* =========================
+   Form Styling
+   ========================= */
+form label {
+  font-weight: bold;
+  margin-top: 10px;
+}
+form input[type="text"],
+form input[type="email"],
+form input[type="password"],
+form textarea,
+form select {
+  background: #fffbea;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 10px;
+}
+form input:focus,
+form textarea:focus,
+form select:focus {
+  border-color: var(--mustard);
+  box-shadow: 0 0 4px rgba(216, 163, 0, 0.4);
+  outline: none;
+}
+
+/* =========================
+   Card Section (Why Join)
+   ========================= */
+.card {
+  background: var(--light-mustard);
+  border: 2px solid var(--dark-brown);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+}
+
+/* =========================
+   Footer
+   ========================= */
+footer {
+  font-size: 0.9rem;
+}
+
+/* =========================
+   Responsive Design
+   ========================= */
+
+/* Mobile (≤ 767px): Sidebar stacks */
+@media (max-width: 767px) {
+  .row {
+    flex-direction: column !important;
+  }
+  aside.col-lg-3 {
+    width: 100% !important;
+    margin-bottom: 20px;
+  }
+  .navbar {
+    padding: 10px 15px !important;
+  }
+  .logo {
+    width: 45px;
+    height: 45px;
+  }
+  .btn-group {
+    flex-direction: column !important;
+    gap: 10px;
+  }
+}
+
+/* Tablet (768px – 991px): balanced layout */
+@media (min-width: 768px) and (max-width: 991px) {
+  aside.col-lg-3 {
+    margin-bottom: 20px;
+  }
+  .btn-group .btn {
+    width: 48%;
+  }
+}
