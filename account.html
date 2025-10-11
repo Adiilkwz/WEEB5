@@ -56,9 +56,9 @@
             <main class="col-lg-9">
 
                 <!-- ===== Task 1: Responsive Typography ===== -->
-                <section id="info" class="mb-5">
+                <section id="info" class="section mb-5">
                     <h2 class="section-title mb-3">User Information</h2>
-                    <div class="d-flex flex-column flex-md-row align-items-center bg-light-mustard p-3 rounded">
+                    <div class="d-flex flex-column flex-md-row align-items-center p-3 rounded">
                         <img src="images/profile.jpg" alt="Profile Photo" class="avatar me-md-4 mb-3 mb-md-0">
                         <div>
                             <p><strong>Name:</strong> Bekarys Issabay</p>
@@ -69,7 +69,7 @@
                 </section>
 
                 <!-- ===== Task 8: Bootstrap Cards ===== -->
-                <section id="favorites" class="mb-5">
+                <section id="favorites" class="section mb-5">
                     <h2 class="section-title mb-3">My Favorite Recipes</h2>
                     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
                         <div class="col">
@@ -106,13 +106,22 @@
                 </section>
 
                 <!-- ===== Task 7: Bootstrap Carousel ===== -->
-                <section id="gallery" class="mb-5">
+                <section id="gallery" class="section mb-5">
                     <h2 class="section-title mb-3">My Recipes Gallery</h2>
                     <div id="recipeCarousel" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#recipeCarousel" data-bs-slide-to="0" class="active"></button>
+                            <button type="button" data-bs-target="#recipeCarousel" data-bs-slide-to="1"></button>
+                            <button type="button" data-bs-target="#recipeCarousel" data-bs-slide-to="2"></button>
+                            <button type="button" data-bs-target="#recipeCarousel" data-bs-slide-to="3"></button>
+                            <button type="button" data-bs-target="#recipeCarousel" data-bs-slide-to="4"></button>
+                            <button type="button" data-bs-target="#recipeCarousel" data-bs-slide-to="5"></button>
+                            <button type="button" data-bs-target="#recipeCarousel" data-bs-slide-to="6"></button>
+                            <button type="button" data-bs-target="#recipeCarousel" data-bs-slide-to="7"></button>
+                            <button type="button" data-bs-target="#recipeCarousel" data-bs-slide-to="8"></button>
+                        </div>
                         <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src="images/dish1.jpg" class="d-block w-100" alt="Dish 1">
-                            </div>
+                            <div class="carousel-item active"><img src="images/dish1.jpg" class="d-block w-100" alt="Dish 1"></div>
                             <div class="carousel-item"><img src="images/dish2.jpg" class="d-block w-100" alt="Dish 2"></div>
                             <div class="carousel-item"><img src="images/dish3.jpg" class="d-block w-100" alt="Dish 3"></div>
                             <div class="carousel-item"><img src="images/dish4.jpg" class="d-block w-100" alt="Dish 4"></div>
@@ -132,9 +141,9 @@
                 </section>
 
                 <!-- ===== Task 9: Bootstrap Form ===== -->
-                <section id="edit" class="mb-5">
+                <section id="edit" class="section mb-5">
                     <h2 class="section-title mb-3">Edit Profile</h2>
-                    <form class="bg-light-mustard p-4 rounded">
+                    <form class="p-4 rounded">
                         <div class="mb-3">
                             <label for="name" class="form-label fw-bold">Name</label>
                             <input type="text" id="name" class="form-control" placeholder="Enter your name">
@@ -156,6 +165,34 @@
                         </div>
                     </form>
                 </section>
+                
+                <!-- ===== Task 2: FAQ Accordion ===== -->
+                <section id="faq" class="section mb-5">
+                <h2 class="section-title mb-3">Frequently Asked Questions</h2>
+                <div class="faq-container p-4 rounded">
+                    <div class="faq-item">
+                    <h5 class="faq-question">What is Nyam-Nyam?</h5>
+                    <div class="faq-answer">
+                        <p>Nyam-Nyam is a community-driven recipe sharing platform where users can post, explore, and favorite recipes from around the world.</p>
+                    </div>
+                    </div>
+
+                    <div class="faq-item">
+                    <h5 class="faq-question">How do I add my own recipe?</h5>
+                    <div class="faq-answer">
+                        <p>You can add your recipe by navigating to the “Add Recipe” page and filling in the required details including ingredients, steps, and an image.</p>
+                    </div>
+                    </div>
+
+                    <div class="faq-item">
+                    <h5 class="faq-question">Can I edit my profile information?</h5>
+                    <div class="faq-answer">
+                        <p>Yes! Go to the “Profile” page and use the Edit Profile form to update your name, email, or bio information.</p>
+                    </div>
+                    </div>
+                </div>
+                </section>
+
 
             </main>
         </div>
@@ -168,5 +205,8 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JS Validation -->
+    <script src="js/form-validation.js"></script>
 </body>
 </html>

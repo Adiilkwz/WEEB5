@@ -34,6 +34,7 @@ body {
 .text-dark-brown { color: var(--dark-brown) !important; }
 .bg-light-mustard { background-color: var(--light-mustard) !important; }
 .text-mustard { color: var(--mustard) !important; }
+.text-light-mustard { color: var(--light-mustard) !important; }
 
 /* Buttons */
 .btn-mustard {
@@ -96,6 +97,24 @@ body {
   height: 4px;
   background: var(--mustard);
   border-radius: 2px;
+}
+.card {
+  border: 1px solid rgba(92, 64, 51, 0.3);
+  border-radius: 8px;
+  background-color: #fffbea;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+.card-img-top {
+  height: 220px;
+  object-fit: cover;
+  border-radius: 8px 8px 0 0;
+}
+.card-body {
+  background-color: var(--light-mustard);
 }
 
 /* Footer */
@@ -196,3 +215,37 @@ footer {
   }
 }
 
+/* ===== Task 2: FAQ Accordion Styles ===== */
+.faq-container {
+  margin: 0 auto;
+}
+
+.faq-item {
+  border-bottom: 1px solid rgba(92, 64, 51, 0.3);
+  padding: 15px 0;
+}
+
+.faq-question {
+  cursor: pointer;
+  position: relative;
+  font-weight: bold;
+  color: var(--dark-brown);
+  transition: color 0.3s ease;
+}
+
+.faq-question:hover {
+  color: var(--mustard);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, opacity 0.4s ease;
+  opacity: 0;
+}
+
+.faq-answer.show {
+  max-height: 200px;
+  opacity: 1;
+  margin-top: 10px;
+}
