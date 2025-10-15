@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Account (Edit Profile) form detection & validation
-  const accountForm = document.querySelector('#edit form') ||
+  const accountForm = document.querySelector('#edit form') 
                       Array.from(document.forms).find(f => f.querySelector('#name') && f.querySelector('#email') && f.querySelector('#bio'));
 
   if (accountForm) {
@@ -61,13 +61,12 @@ document.addEventListener('DOMContentLoaded', () => {
       const email = form.querySelector('#email');
       const bio = form.querySelector('#bio');
 
-      if (!name || !name.value.trim()) errors.push({ field: name || (form.querySelector('input')||form), message: 'Name is required.' });
-      if (!email || !email.value.trim()) {
-        errors.push({ field: email || form, message: 'Email is required.' });
+      if (!name || !name.value.trim()) errors.push({ field: name  (form.querySelector('input')||form), message: 'Name is required.' });
+      if (!email || !email.value.trim()) {errors.push({ field: email, form, message: 'Email is required.' });
       } else if (!emailRegex.test(email.value.trim())) {
         errors.push({ field: email, message: 'Please enter a valid email address.' });
       }
-      if (!bio || !bio.value.trim()) errors.push({ field: bio || form, message: 'Bio cannot be empty.' });
+      if (!bio || !bio.value.trim()) errors.push({ field: bio, form, message: 'Bio cannot be empty.' });
 
       return errors;
     });
@@ -85,10 +84,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const steps = form.querySelector('#steps');
       const image = form.querySelector('#image');
 
-      if (!title || !title.value.trim()) errors.push({ field: title || form, message: 'Recipe title is required.' });
-      if (!category || !category.value.trim()) errors.push({ field: category || form, message: 'Please select a category.' });
-      if (!ingredients || !ingredients.value.trim()) errors.push({ field: ingredients || form, message: 'Ingredients cannot be empty.' });
-      if (!steps || !steps.value.trim()) errors.push({ field: steps || form, message: 'Instructions cannot be empty.' });
+      if (!title || !title.value.trim()) errors.push({ field: title,  form, message: 'Recipe title is required.' });
+      if (!category || !category.value.trim()) errors.push({ field: category, form, message: 'Please select a category.' });
+      if (!ingredients || !ingredients.value.trim()) errors.push({ field: ingredients, form, message: 'Ingredients cannot be empty.' });
+      if (!steps || !steps.value.trim()) errors.push({ field: steps,  form, message: 'Instructions cannot be empty.' });
 
       if (image && image.value.trim()) {
         if (!imageRegex.test(image.value.trim())) {
@@ -183,7 +182,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let currentIndex = 0;
 
-  changeBgBtn.addEventListener("click", () => {
+    changeBgBtn.addEventListener("click", () => {
     // Cycle through colors
     currentIndex = (currentIndex + 1) % colors.length;
     body.style.backgroundColor = colors[currentIndex];
