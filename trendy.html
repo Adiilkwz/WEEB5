@@ -32,6 +32,9 @@
         <li class="nav-item"><a class="nav-link" href="addrecipe.html">Add Recipe</a></li>
         <li class="nav-item"><a class="nav-link" href="account.html">Profile</a></li>
         <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
+        <li class="nav-item"><button id="openPopup" class="btn btn-mustard ms-2">Subscribe</li>
+        <li class="nav-item"><button id="changeBgBtn" class="btn btn-mustard ms-2">Change Background</button></li>
+        <li class="nav-item d-flex align-items-center ms-3"><span id="dateTimeDisplay" class="text-white small"></span></li>
       </ul>
     </div>
   </nav>
@@ -136,6 +139,55 @@
     </div>
   </div>
 
+  <!-- ===== Task 2: FAQ Accordion ===== -->
+        <section id="faq" class="section mb-5">
+        <h2 class="section-title mb-3">Frequently Asked Questions</h2>
+        <div class="faq-container p-3 rounded">
+          <div class="faq-item">
+          <h5 class="faq-question">What makes a recipe trendy on Nyam-Nyam?</h5>
+          <div class="faq-answer">
+            <p>A recipe becomes trendy when it gains popularity among users — through likes, comments, and frequent shares on the platform.</p>
+          </div>
+          </div>
+
+          <div class="faq-item">
+          <h5 class="faq-question">How often do trending recipes change?</h5>
+          <div class="faq-answer">
+           <p>The trending recipes section updates weekly based on the most popular dishes and user activity.</p>
+          </div>
+          </div>
+
+          <div class="faq-item">
+          <h5 class="faq-question">Can I submit my own recipe to the trending list?</h5>
+          <div class="faq-answer">
+            <p>Yes! By uploading a creative recipe that receives enough likes and engagement, it may appear in the trending section automatically.</p>
+          </div>
+          </div>
+        </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+     <!-- Popup Form Container -->
+  <div id="popupOverlay" class="popup-overlay">
+  <div class="popup-content bg-light-mustard p-4 rounded">
+      <button id="closePopup" class="close-btn">&times;</button>
+      <h4 class="mb-3 text-center text-dark-brown">Subscribe to Nyam-Nyam</h4>
+      <form id="popupForm">
+      <div class="mb-3">
+        <label for="popupName" class="form-label fw-bold">Name:</label>
+        <input type="text" id="popupName" class="form-control" placeholder="Enter your name">
+      </div>
+      <div class="mb-3">
+        <label for="popupEmail" class="form-label fw-bold">Email:</label>
+        <input type="email" id="popupEmail" class="form-control" placeholder="Enter your email">
+      </div>
+      <button type="submit" class="btn btn-mustard w-100">Subscribe</button>
+      </form>
+  </div>
+  </div>
+
   <!-- ===== Footer ===== -->
   <footer class="text-center text-white py-3 mt-4 bg-dark-brown">
     <p class="m-0">&copy; 2025 Nyam-Nyam. Adil, Yerassyl, Yesbol, Bekarys. All rights reserved.</p>
@@ -143,5 +195,9 @@
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+      
+  <!-- JS Validation -->
+    <script src="js/trendy_friends.js"></script>
+
 </body>
 </html> 
