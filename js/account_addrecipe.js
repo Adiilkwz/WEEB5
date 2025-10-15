@@ -205,7 +205,7 @@ document.addEventListener("DOMContentLoaded", () => {
       hour: "numeric",
       minute: "2-digit",
       second: "2-digit",
-      hour12: true,
+      hour12: false,
     };
 
     // Format date & time like “October 11, 2025, 10:45 AM”
