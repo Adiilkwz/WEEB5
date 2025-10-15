@@ -1,5 +1,5 @@
 /* =========================================================
-   Nyam-Nyam — Account / Add Recipe Page Stylesheet
+   Nyam-Nyam — Home Page Stylesheet (Updated)
    ========================================================= */
 
 /* ===== Root Variables ===== */
@@ -13,26 +13,17 @@
 /* ===== General Styles ===== */
 body {
   font-family: "Times New Roman", Times, serif;
-  background: url("../images/cover.jpg") no-repeat center center fixed;
   background-size: cover;
   color: var(--dark-brown);
   margin: 0;
   padding: 0;
 }
 
-/* ===== Logo & Avatar ===== */
+/* ===== Logo ===== */
 .logo {
   width: 55px;
   height: 55px;
   border-radius: 50%;
-  object-fit: cover;
-}
-
-.avatar {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  border: 3px solid var(--mustard);
   object-fit: cover;
 }
 
@@ -66,14 +57,6 @@ body {
   color: var(--mustard);
 }
 
-/* ===== Section Container ===== */
-.section {
-  background: var(--light-mustard);
-  border: 1px solid rgba(92, 64, 51, 0.5);
-  border-radius: 8px;
-  padding: 20px;
-}
-
 /* ===== Sidebar ===== */
 .sidebar {
   background: var(--light-mustard);
@@ -96,12 +79,18 @@ body {
   color: var(--mustard);
 }
 
-/* ===== Section Titles ===== */
+/* ===== Section Styles ===== */
+.section {
+  background: var(--light-mustard);
+  border: 1px solid rgba(92, 64, 51, 0.5);
+  border-radius: 8px;
+  padding: 20px;
+}
+
 .section-title {
   position: relative;
   padding-bottom: 8px;
   font-weight: bold;
-  margin-bottom: 15px;
 }
 
 .section-title::after {
@@ -115,11 +104,123 @@ body {
   border-radius: 2px;
 }
 
+/* ===== Cards (Featured Recipes) ===== */
+.card {
+  border: 1px solid rgba(92, 64, 51, 0.3);
+  border-radius: 8px;
+  background-color: #fffbea;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card-img-top {
+  height: 220px;
+  object-fit: cover;
+  border-radius: 8px 8px 0 0;
+}
+
+.card-body {
+  background-color: var(--light-mustard);
+}
+
 /* ===== Footer ===== */
 footer {
   font-size: 0.9rem;
-  text-align: center;
   color: var(--white);
+  text-align: center;
+}
+
+/* =========================================================
+   FAQ Section
+   ========================================================= */
+.faq-container {
+  margin: 0 auto;
+}
+
+.faq-item {
+  border-bottom: 1px solid rgba(92, 64, 51, 0.3);
+  padding: 15px 0;
+}
+
+.faq-question {
+  cursor: pointer;
+  font-weight: bold;
+  color: var(--dark-brown);
+  transition: color 0.3s ease;
+}
+
+.faq-question:hover {
+  color: var(--mustard);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, opacity 0.4s ease;
+  opacity: 0;
+}
+
+.faq-answer.show {
+  max-height: 200px;
+  opacity: 1;
+  margin-top: 10px;
+}
+
+/* =========================================================
+   Popup Subscribe Form
+   ========================================================= */
+.popup-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup-content {
+  width: 90%;
+  max-width: 400px;
+  background: var(--light-mustard);
+  border: 2px solid var(--dark-brown);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  position: relative;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.close-btn {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  font-size: 1.5rem;
+  color: var(--dark-brown);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  color: var(--mustard);
+}
+
+/* Animation for popup */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Change Background Button */
+#changeBgBtn {
+  transition: background-color 0.3s, color 0.3s;
 }
 
 /* =========================================================
@@ -129,7 +230,6 @@ footer {
 /* ===== Small Devices (≤ 767px) ===== */
 @media (max-width: 767px) {
 
-  /* Typography */
   h1, h2, h3 {
     font-size: 1.3rem;
   }
@@ -138,25 +238,21 @@ footer {
     font-size: 0.9rem;
   }
 
-  /* Stack layout vertically */
   .row {
     flex-direction: column !important;
   }
 
-  /* Sidebar full width */
   aside.col-lg-3 {
     width: 100% !important;
     max-width: 100%;
     margin-bottom: 20px;
   }
 
-  /* Main content full width */
   main.col-lg-9 {
     width: 100% !important;
     max-width: 100%;
   }
 
-  /* Sidebar styling */
   .sidebar,
   .p-3.bg-light-mustard.rounded {
     padding: 15px !important;
@@ -167,22 +263,19 @@ footer {
     font-size: 1.1rem;
   }
 
-  /* Form adjustments */
-  form {
-    padding: 15px !important;
+  .section {
+    margin-top: 0;
   }
 
-  form label {
-    font-size: 0.95rem;
+  .navbar {
+    padding: 10px 15px !important;
   }
 
-  form input,
-  form textarea,
-  form select {
-    font-size: 0.9rem;
+  .logo {
+    width: 45px;
+    height: 45px;
   }
 
-  /* Button layout */
   .btn-group {
     flex-direction: column !important;
     gap: 10px;
@@ -190,22 +283,6 @@ footer {
 
   .btn-group .btn {
     width: 100%;
-  }
-
-  /* Reduce navbar padding */
-  .navbar {
-    padding: 10px 15px !important;
-  }
-
-  /* Smaller logo */
-  .logo {
-    width: 45px;
-    height: 45px;
-  }
-
-  /* Section spacing */
-  .section {
-    margin-top: 0;
   }
 }
 
