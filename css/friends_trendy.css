@@ -8,7 +8,6 @@
 /* ===== Общие стили ===== */
 body {
   font-family: "Times New Roman", Times, serif;
-  background: url("../images/cover.jpg") no-repeat center center fixed;
   background-size: cover;
   color: var(--dark-brown);
   min-height: 100vh;
@@ -91,7 +90,7 @@ body {
   border-radius: 2px;
 }
 
-/* ===== Карточки (для друзей и рецептов) ===== */
+/* ===== Card ===== */
 .card {
   border: 1px solid rgba(92, 64, 51, 0.3);
   border-radius: 8px;
@@ -187,4 +186,86 @@ footer {
   .card-img-top {
     height: 200px;
   }
+}
+/* ===== Task 2: FAQ Accordion Styles ===== */
+.faq-container {
+  margin: 0 auto;
+}
+
+.faq-item {
+  border-bottom: 1px solid rgba(92, 64, 51, 0.3);
+  padding: 15px 0;
+}
+
+.faq-question {
+  cursor: pointer;
+  position: relative;
+  font-weight: bold;
+  color: var(--dark-brown);
+  transition: color 0.3s ease;
+}
+
+.faq-question:hover {
+  color: var(--mustard);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, opacity 0.4s ease;
+  opacity: 0;
+}
+
+.faq-answer.show {
+  max-height: 200px;
+  opacity: 1;
+  margin-top: 10px;
+}
+/* ===== Task 3: Popup Subscription Form ===== */
+.popup-overlay {
+  display: none; /* hidden by default */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup-content {
+  width: 90%;
+  max-width: 400px;
+  background: var(--light-mustard);
+  border: 2px solid var(--dark-brown);
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  position: relative;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.close-btn {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  font-size: 1.5rem;
+  color: var(--dark-brown);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  color: var(--mustard);
+}
+
+/* Smooth fade-in effect */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+#changeBgBtn {
+  transition: background-color 0.3s, color 0.3s;
 }
