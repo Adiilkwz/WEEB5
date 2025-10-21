@@ -208,7 +208,6 @@ document.addEventListener("DOMContentLoaded", () => {
       hour12: false,
     };
 
-    // Format date & time like “October 11, 2025, 10:45 AM”
     const formattedDate = now.toLocaleString("en-US", options);
     dateTimeDisplay.textContent = formattedDate;
   }
@@ -216,4 +215,167 @@ document.addEventListener("DOMContentLoaded", () => {
   // Initial call + update every second
   updateDateTime();
   setInterval(updateDateTime, 1000);
+});
+
+// ===== Task 2: Switch Statement – Greeting Based on Time of Day =====
+document.addEventListener("DOMContentLoaded", () => {
+  const navbar = document.querySelector(".navbar .navbar-nav");
+  if (!navbar) return;
+
+  // Create a new span for greeting
+  const greeting = document.createElement("li");
+  greeting.className = "nav-item ms-3 text-mustard fw-bold";
+
+  // Get current hour
+  const hour = new Date().getHours();
+  let message = "";
+
+  // Determine greeting using switch statement
+  switch (true) {
+    case hour < 12:
+      message = "Good Morning 🌞";
+      break;
+    case hour < 18:
+      message = "Good Afternoon ☀️";
+      break;
+    case hour < 5:
+      message = "Good Night 🌜";
+    default:
+      message = "Good Evening 🌙";
+  }
+
+  greeting.textContent = message;
+  navbar.appendChild(greeting);
+});
+
+
+// 🔽 NEW PART for Task 1 requirement: Manipulating Attributes (Read More Toggle)
+document.addEventListener("DOMContentLoaded", () => {
+  const readMoreBtn = document.getElementById("readMoreBtn");
+  const moreText = document.getElementById("moreText");
+
+  if (readMoreBtn && moreText) {
+    readMoreBtn.addEventListener("click", () => {
+      const isHidden = moreText.style.display === "none";
+      // toggle visibility
+      moreText.style.display = isHidden ? "block" : "none";
+      // dynamically change button text
+      readMoreBtn.textContent = isHidden ? "Read Less" : "Read More";
+    });
+  }
+});
+
+// ===== Keyboard Event Handling (Task 2) =====
+const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
+let navIndex = 0;
+
+document.addEventListener("keydown", (e) => {
+  if (!navLinks.length) return;
+
+  if (e.key === "ArrowRight") {
+    navIndex = (navIndex + 1) % navLinks.length;
+    navLinks[navIndex].focus();
+  } else if (e.key === "ArrowLeft") {
+    navIndex = (navIndex - 1 + navLinks.length) % navLinks.length;
+    navLinks[navIndex].focus();
+  }
+});
+
+// ===== Responding to Events with Callbacks (Async Contact Form using fetch) =====
+const contactForm = document.getElementById("contactForm");
+const contactStatus = document.getElementById("contactStatus");
+
+if (contactForm && contactStatus) {
+  contactForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(contactForm);
+    contactStatus.textContent = "Sending message...";
+
+    // Use fetch to POST form data
+    sendFormData(formData, () => {
+      contactStatus.textContent = "✅ Message sent successfully!";
+      contactForm.reset();
+    });
+  });
+}
+
+// Function using fetch and a callback
+function sendFormData(data, callback) {
+  fetch("https://jsonplaceholder.typicode.com/posts", {
+    method: "POST",
+    body: data,
+  })
+    .then((response) => {
+      if (!response.ok) throw new Error("Network error");
+      return response.json();
+    })
+    .then(() => callback()) // Callback after successful fetch
+    .catch((error) => {
+      console.error("Error:", error);
+      contactStatus.textContent = "❌ Failed to send message.";
+    });
+}
+
+// ===== Task 3: Play Sounds on Successful Form Submission =====
+function playSuccessSound() {
+  const sound = new Audio("./sounds/success.mp3");
+  sound.play().catch(err => console.log("Sound playback error:", err));
+}
+
+// Helper to attach sound to a form submission
+function attachFormSound(formId, onSubmit) {
+  const form = document.getElementById(formId);
+  if (!form) return;
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    // Optional custom handler logic for each form
+    if (onSubmit) onSubmit(e, form);
+
+    // Play success sound
+    playSuccessSound();
+  });
+}
+
+// ===== Attach to all forms =====
+attachFormSound("popupForm", () => {
+  console.log("Subscribed successfully!");
+  alert("Thank you for subscribing!");
+});
+
+attachFormSound("contactForm", () => {
+  console.log("Contact form sent!");
+});
+
+// ===== Task 3: Animations =====
+document.addEventListener("DOMContentLoaded", () => {
+  // --- 1️⃣ Fade in navbar greeting ---
+  const greeting = document.querySelector(".navbar .nav-item.text-mustard");
+  if (greeting) {
+    greeting.classList.add("fade-in");
+    setTimeout(() => greeting.classList.add("show"), 100);
+  }
+
+  // --- 2️⃣ Pulse effect on successful form submission ---
+  const allForms = ["subscribeForm", "recipeForm", "editProfileForm", "contactForm"];
+  allForms.forEach(id => {
+    const form = document.getElementById(id);
+    if (!form) return;
+
+    form.addEventListener("submit", () => {
+      form.classList.add("pulse-success");
+      setTimeout(() => form.classList.remove("pulse-success"), 800);
+    });
+  });
+
+  // --- 3️⃣ Bounce animation on button click ---
+  const buttons = document.querySelectorAll("button, .btn");
+  buttons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      btn.classList.add("bounce");
+      setTimeout(() => btn.classList.remove("bounce"), 300);
+    });
+  });
 });
