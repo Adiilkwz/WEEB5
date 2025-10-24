@@ -50,6 +50,8 @@
           <ol class="list-unstyled">
             <li><a href="#login" class="text-dark-brown text-decoration-none">Login</a></li>
             <li><a href="#quickrecipes" class="text-dark-brown text-decoration-none">Quick Recipes</a></li>
+            <!-- ✅ Add your Play Sound button here -->
+    <button id="soundBtn" class="btn btn-mustard w-100 mt-3">Play Sound 🔊</button>
           </ol>
         </div>
       </aside>
@@ -157,6 +159,40 @@
       </form>
   </div>
   </div>
+
+  <!-- ===== Task: Manipulating Attributes – Read More Button ===== -->
+<section id="aboutNyam" class="section text-center my-5">
+  <h2 class="section-title mb-3">About Nyam-Nyam</h2>
+  <p id="shortText" class="text-dark-brown">
+    Nyam-Nyam is a food sharing community where users can explore delicious recipes and meet other food lovers.
+  </p>
+
+  <p id="moreText" class="text-dark-brown" style="display: none;">
+    We aim to connect people who love to cook and discover new dishes. On Nyam-Nyam, you can create your own recipes, follow friends, like and comment on their posts, and explore trending dishes from around the world.
+  </p>
+
+  <button id="readMoreBtn" class="btn btn-mustard mt-2">Read More</button>
+</section>
+
+<button type="button" id="resetContact" class="btn btn-secondary w-20 mt-2">Reset Form</button>
+
+  
+   <!-- ===== Task 3: Contact Form (Callback Example) ===== -->
+<section id="contact" class="section mb-5">
+  <h2 class="text-center mb-4">Contact Us</h2>
+  <form id="contactForm" class="bg-light-mustard p-3 rounded shadow-sm">
+    <div class="mb-3">
+      <label for="contactName" class="form-label fw-bold">Name:</label>
+      <input type="text" id="contactName" class="form-control" placeholder="Enter your name" required>
+    </div>
+    <div class="mb-3">
+      <label for="contactMessage" class="form-label fw-bold">Message:</label>
+      <textarea id="contactMessage" class="form-control" rows="3" placeholder="Your message..." required></textarea>
+    </div>
+    <button type="submit" class="btn btn-mustard w-100">Send Message</button>
+    <p id="contactFeedback" class="mt-3 text-center fw-bold"></p>
+  </form>
+</section> 
 
   <!-- Footer -->
   <footer class="bg-dark-brown text-center text-white py-3 mt-4">
