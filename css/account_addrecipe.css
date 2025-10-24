@@ -296,3 +296,35 @@ footer {
 #changeBgBtn {
   transition: background-color 0.3s, color 0.3s;
 }
+
+/* ===== Animations ===== */
+
+/* Fade In */
+.fade-in {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.fade-in.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Pulse for success forms */
+@keyframes pulseSuccess {
+  0%   { background-color: #fff; }
+  50%  { background-color: #d4edda; } /* light green */
+  100% { background-color: #fff; }
+}
+.pulse-success {
+  animation: pulseSuccess 0.8s ease;
+}
+
+/* Bounce for buttons */
+@keyframes bounceClick {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.1); }
+}
+.bounce {
+  animation: bounceClick 0.3s ease;
+}

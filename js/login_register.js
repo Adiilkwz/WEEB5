@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Account (Edit Profile) form detection & validation
-  const accountForm = document.querySelector('#edit form') ||
+  const accountForm = document.querySelector('#edit form') 
                       Array.from(document.forms).find(f => f.querySelector('#name') && f.querySelector('#email') && f.querySelector('#bio'));
 
   if (accountForm) {
@@ -61,13 +61,12 @@ document.addEventListener('DOMContentLoaded', () => {
       const email = form.querySelector('#email');
       const bio = form.querySelector('#bio');
 
-      if (!name || !name.value.trim()) errors.push({ field: name || (form.querySelector('input')||form), message: 'Name is required.' });
-      if (!email || !email.value.trim()) {
-        errors.push({ field: email || form, message: 'Email is required.' });
+      if (!name || !name.value.trim()) errors.push({ field: name  (form.querySelector('input')||form), message: 'Name is required.' });
+      if (!email || !email.value.trim()) {errors.push({ field: email, form, message: 'Email is required.' });
       } else if (!emailRegex.test(email.value.trim())) {
         errors.push({ field: email, message: 'Please enter a valid email address.' });
       }
-      if (!bio || !bio.value.trim()) errors.push({ field: bio || form, message: 'Bio cannot be empty.' });
+      if (!bio || !bio.value.trim()) errors.push({ field: bio, form, message: 'Bio cannot be empty.' });
 
       return errors;
     });
@@ -85,10 +84,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const steps = form.querySelector('#steps');
       const image = form.querySelector('#image');
 
-      if (!title || !title.value.trim()) errors.push({ field: title || form, message: 'Recipe title is required.' });
-      if (!category || !category.value.trim()) errors.push({ field: category || form, message: 'Please select a category.' });
-      if (!ingredients || !ingredients.value.trim()) errors.push({ field: ingredients || form, message: 'Ingredients cannot be empty.' });
-      if (!steps || !steps.value.trim()) errors.push({ field: steps || form, message: 'Instructions cannot be empty.' });
+      if (!title || !title.value.trim()) errors.push({ field: title,  form, message: 'Recipe title is required.' });
+      if (!category || !category.value.trim()) errors.push({ field: category, form, message: 'Please select a category.' });
+      if (!ingredients || !ingredients.value.trim()) errors.push({ field: ingredients, form, message: 'Ingredients cannot be empty.' });
+      if (!steps || !steps.value.trim()) errors.push({ field: steps,  form, message: 'Instructions cannot be empty.' });
 
       if (image && image.value.trim()) {
         if (!imageRegex.test(image.value.trim())) {
@@ -183,7 +182,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let currentIndex = 0;
 
-  changeBgBtn.addEventListener("click", () => {
+    changeBgBtn.addEventListener("click", () => {
     // Cycle through colors
     currentIndex = (currentIndex + 1) % colors.length;
     body.style.backgroundColor = colors[currentIndex];
@@ -208,6 +207,7 @@ document.addEventListener("DOMContentLoaded", () => {
       hour12: false,
     };
 
+    // Format date & time like “October 11, 2025, 10:45 AM”
     const formattedDate = now.toLocaleString("en-US", options);
     dateTimeDisplay.textContent = formattedDate;
   }
@@ -248,24 +248,24 @@ document.addEventListener("DOMContentLoaded", () => {
   navbar.appendChild(greeting);
 });
 
-
-// 🔽 NEW PART for Task 1 requirement: Manipulating Attributes (Read More Toggle)
+// ===== Task: Manipulating Attributes – Read More Button =====
 document.addEventListener("DOMContentLoaded", () => {
-  const readMoreBtn = document.getElementById("readMoreBtn");
+  const btn = document.getElementById("readMoreBtn");
   const moreText = document.getElementById("moreText");
 
-  if (readMoreBtn && moreText) {
-    readMoreBtn.addEventListener("click", () => {
-      const isHidden = moreText.style.display === "none";
-      // toggle visibility
-      moreText.style.display = isHidden ? "block" : "none";
-      // dynamically change button text
-      readMoreBtn.textContent = isHidden ? "Read Less" : "Read More";
+  if (btn && moreText) {
+    btn.addEventListener("click", () => {
+      if (moreText.style.display === "none") {
+        moreText.style.display = "block";
+        btn.textContent = "Read Less";
+      } else {
+        moreText.style.display = "none";
+        btn.textContent = "Read More";
+      }
     });
   }
 });
-
-// ===== Keyboard Event Handling (Task 2) =====
+ // ===== Keyboard Event Handling (Task 2) =====
 const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
 let navIndex = 0;
 
@@ -279,103 +279,92 @@ document.addEventListener("keydown", (e) => {
     navIndex = (navIndex - 1 + navLinks.length) % navLinks.length;
     navLinks[navIndex].focus();
   }
-});
+}); 
+ 
+ // ===== Responding to Events with Callbacks (Task 3) =====
+document.addEventListener("DOMContentLoaded", () => {
+  const contactForm = document.getElementById("contactForm");
+  const feedback = document.getElementById("contactFeedback");
 
-// ===== Responding to Events with Callbacks (Async Contact Form using fetch) =====
-const contactForm = document.getElementById("contactForm");
-const contactStatus = document.getElementById("contactStatus");
+  function handleResponse(success) {
+    // callback function
+    feedback.textContent = success
+      ? "✅ Message sent successfully!"
+      : "❌ Failed to send message. Try again.";
+    feedback.style.color = success ? "green" : "red";
+  }
 
-if (contactForm && contactStatus) {
   contactForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    const formData = new FormData(contactForm);
-    contactStatus.textContent = "Sending message...";
+    const data = {
+      name: document.getElementById("contactName").value,
+      message: document.getElementById("contactMessage").value,
+    };
 
-    // Use fetch to POST form data
-    sendFormData(formData, () => {
-      contactStatus.textContent = "✅ Message sent successfully!";
-      contactForm.reset();
-    });
-  });
-}
-
-// Function using fetch and a callback
-function sendFormData(data, callback) {
-  fetch("https://jsonplaceholder.typicode.com/posts", {
-    method: "POST",
-    body: data,
-  })
-    .then((response) => {
-      if (!response.ok) throw new Error("Network error");
-      return response.json();
+    // Simulate async sending using fetch (fake API or timeout)
+    fetch("https://jsonplaceholder.typicode.com/posts", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: { "Content-Type": "application/json" },
     })
-    .then(() => callback()) // Callback after successful fetch
-    .catch((error) => {
-      console.error("Error:", error);
-      contactStatus.textContent = "❌ Failed to send message.";
-    });
-}
-
-// ===== Task 3: Play Sounds on Successful Form Submission =====
-function playSuccessSound() {
-  const sound = new Audio("./sounds/success.mp3");
-  sound.play().catch(err => console.log("Sound playback error:", err));
-}
-
-// Helper to attach sound to a form submission
-function attachFormSound(formId, onSubmit) {
-  const form = document.getElementById(formId);
-  if (!form) return;
-
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-
-    // Optional custom handler logic for each form
-    if (onSubmit) onSubmit(e, form);
-
-    // Play success sound
-    playSuccessSound();
+      .then((res) => res.ok ? handleResponse(true) : handleResponse(false))
+      .catch(() => handleResponse(false)); // callback used here
   });
-}
-
-// ===== Attach to all forms =====
-attachFormSound("popupForm", () => {
-  console.log("Subscribed successfully!");
-  alert("Thank you for subscribing!");
 });
+// ===== Task: Play Sounds =====
+// Goal: Play a short notification sound when button is clicked
 
-attachFormSound("contactForm", () => {
-  console.log("Contact form sent!");
-});
-
-// ===== Task 3: Animations =====
 document.addEventListener("DOMContentLoaded", () => {
-  // --- 1️⃣ Fade in navbar greeting ---
-  const greeting = document.querySelector(".navbar .nav-item.text-mustard");
-  if (greeting) {
-    greeting.classList.add("fade-in");
-    setTimeout(() => greeting.classList.add("show"), 100);
+  const soundBtn = document.getElementById("soundBtn");
+
+  soundBtn.addEventListener("click", () => {
+    const sound = new Audio("sounds/notification.mp3"); // make sure file exists
+    sound.play();
+  });
+});
+   // ===== Task: Animations =====
+// Goal: Animate the website logo when clicked
+
+document.addEventListener("DOMContentLoaded", () => {
+  const logo = document.querySelector(".logo");
+
+  logo.addEventListener("click", () => {
+    logo.style.transition = "transform 0.6s ease";
+    logo.style.transform = "rotate(10deg) scale(1.3)";
+
+    // return to normal
+    setTimeout(() => {
+      logo.style.transform = "rotate(0deg) scale(1)";
+    }, 600);
+  });
+});
+
+// ===== Task: Login Button Redirect =====
+// Moves user to index.html after clicking Login button
+document.addEventListener("DOMContentLoaded", () => {
+  const loginBtn = document.getElementById("loginBtn");
+  if (loginBtn) {
+    loginBtn.addEventListener("click", (e) => {
+      e.preventDefault(); // stops form reload
+      window.location.href = "index.html";
+    });
   }
+});
+ // ===== Task: Reset Form =====
+// Clears all input fields in the contact form when the reset button is clicked
 
-  // --- 2️⃣ Pulse effect on successful form submission ---
-  const allForms = ["subscribeForm", "recipeForm", "editProfileForm", "contactForm"];
-  allForms.forEach(id => {
-    const form = document.getElementById(id);
-    if (!form) return;
-
-    form.addEventListener("submit", () => {
-      form.classList.add("pulse-success");
-      setTimeout(() => form.classList.remove("pulse-success"), 800);
+document.addEventListener("DOMContentLoaded", () => {
+  const resetBtn = document.getElementById("resetContact");
+  if (resetBtn) {
+    resetBtn.addEventListener("click", () => {
+      document.querySelectorAll("#contactForm input, #contactForm textarea").forEach(input => {
+        input.value = "";
+      });
+      document.getElementById("contactFeedback").textContent = "Form has been cleared!";
+      setTimeout(() => {
+        document.getElementById("contactFeedback").textContent = "";
+      }, 2000);
     });
-  });
-
-  // --- 3️⃣ Bounce animation on button click ---
-  const buttons = document.querySelectorAll("button, .btn");
-  buttons.forEach(btn => {
-    btn.addEventListener("click", () => {
-      btn.classList.add("bounce");
-      setTimeout(() => btn.classList.remove("bounce"), 300);
-    });
-  });
+  }
 });

@@ -130,7 +130,26 @@
             </div>
           </div>
         </section>
-
+        <!-- Contact Form for Task 2 -->
+        <section id="contact" class="section mt-5">
+        <h2 class="section-title mb-3">Contact Us</h2>
+        <form id="contactForm" class="p-3 rounded">
+          <div class="mb-3">
+          <label for="name" class="form-label">Name:</label>
+          <input type="text" id="name" name="name" class="form-control" required />
+          </div>
+          <div class="mb-3">
+          <label for="email" class="form-label">Email:</label>
+          <input type="email" id="email" name="email" class="form-control" required />
+          </div>
+          <div class="mb-3">
+          <label for="message" class="form-label">Message:</label>
+          <textarea id="message" name="message" class="form-control" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-outline-dark-brown">Send</button>
+          </form>
+            <p id="contactStatus" class="mt-2"></p>
+        </section>
       </main>
     </div>
   </div>
