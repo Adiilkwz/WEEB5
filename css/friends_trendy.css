@@ -269,3 +269,27 @@ footer {
 #changeBgBtn {
   transition: background-color 0.3s, color 0.3s;
 }
+
+/* ===== Task 1: Star Rating Styles ===== */
+#stars {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.star {
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+.star:hover {
+  transform: scale(1.2);
+  color: var(--mustard);
+}
+
+/* ===== Logo Animation ===== */
+.logo {
+  transition: transform 0.4s ease;
+}
+.logo:hover {
+  transform: rotate(-5deg) scale(1.05);
+}

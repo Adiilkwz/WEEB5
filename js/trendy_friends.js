@@ -217,3 +217,141 @@ document.addEventListener("DOMContentLoaded", () => {
   updateDateTime();
   setInterval(updateDateTime, 1000);
 });
+
+// ===== Task 1: DOM Manipulation and Styling =====
+document.addEventListener("DOMContentLoaded", () => {
+  const stars = document.querySelectorAll(".star");
+  const ratingMessage = document.getElementById("rating-message");
+  const toggleThemeBtn = document.getElementById("toggleThemeBtn");
+  const body = document.body;
+
+  // === Star Rating System ===
+  stars.forEach((star, index) => {
+    star.addEventListener("click", () => {
+      stars.forEach((s, i) => {
+        s.innerHTML = i <= index ? "&#9733;" : "&#9734;"; // заполненная или пустая звезда
+        s.style.color = i <= index ? "#D8A300" : "#5C4033"; // меняем цвет
+      });
+      ratingMessage.textContent = `You rated ${index + 1} out of 5 stars!`;
+    });
+  });
+
+  // === Theme Toggle (Day/Night Mode) ===
+  let isNight = false;
+  toggleThemeBtn.addEventListener("click", () => {
+    if (!isNight) {
+      body.style.background = "#2C2C2C";
+      body.style.color = "#000000ff";
+      toggleThemeBtn.textContent = "Switch to Day Mode";
+    } else {
+      body.style.background = "#ffffffff";
+      body.style.backgroundSize = "cover";
+      body.style.color = "#5C4033";
+      toggleThemeBtn.textContent = "Switch to Night Mode";
+    }
+    isNight = !isNight;
+  });
+});
+
+// ======================
+// 2. EVENT HANDLING TASK
+// ======================
+
+// 1️⃣ — Show Current Time (Button Example)
+document.addEventListener("DOMContentLoaded", () => {
+  const friendsSection = document.querySelector("#friends");
+  if (friendsSection) {
+    const timeBtn = document.createElement("button");
+    timeBtn.textContent = "Show Current Time";
+    timeBtn.className = "btn btn-outline-dark-brown mt-3";
+
+    const timeOutput = document.createElement("p");
+    timeOutput.className = "fw-bold text-dark-brown mt-2";
+
+    friendsSection.appendChild(timeBtn);
+    friendsSection.appendChild(timeOutput);
+
+    timeBtn.addEventListener("click", () => {
+      const now = new Date().toLocaleTimeString();
+      timeOutput.textContent = `Current time: ${now}`;
+    });
+  }
+});
+
+// 2️⃣ — Keyboard Navigation for Navbar
+document.addEventListener("DOMContentLoaded", () => {
+  const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
+  let index = 0;
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowRight") {
+      index = (index + 1) % navLinks.length;
+      navLinks[index].focus();
+    } else if (e.key === "ArrowLeft") {
+      index = (index - 1 + navLinks.length) % navLinks.length;
+      navLinks[index].focus();
+    }
+  });
+});
+
+
+function sendFormData(data, callback) {
+  fetch("https://jsonplaceholder.typicode.com/posts", {
+    method: "POST",
+    body: data,
+  })
+    .then((res) => res.json())
+    .then(() => callback())
+    .catch(() => alert("❌ Network Error"));
+}
+
+// 4️⃣ — Switch Statement: Greeting Based on Time
+document.addEventListener("DOMContentLoaded", () => {
+  const navbar = document.querySelector(".navbar .navbar-nav");
+  if (!navbar) return;
+
+  // Create a new span for greeting
+  const greeting = document.createElement("li");
+  greeting.className = "nav-item ms-3 text-mustard fw-bold";
+
+  // Get current hour
+  const hour = new Date().getHours();
+  let message = "";
+
+  // Determine greeting using switch statement
+  switch (true) {
+    case hour < 12:
+      message = "Good Morning 🌞";
+      break;
+    case hour < 18:
+      message = "Good Afternoon ☀️";
+      break;
+    case hour < 5:
+      message = "Good Night 🌜";
+    default:
+      message = "Good Evening 🌙";
+  }
+
+  greeting.textContent = message;
+  navbar.appendChild(greeting);
+});
+
+// ===== Task 5: Fun and Interactivity – Play sound on subscribe =====
+const subscribeSound = new Audio("sounds/subscribe.mp3"); // заранее положи звук в папку sounds/
+
+popupForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const name = document.getElementById("popupName").value.trim();
+  const email = document.getElementById("popupEmail").value.trim();
+
+  if (name === "" || email === "" || !email.includes("@")) {
+    alert("Please enter a valid name and email.");
+    return;
+  }
+
+  // Play sound when subscription is successful
+  subscribeSound.play();
+
+  alert("Thank you for subscribing!");
+  popupForm.reset();
+  overlay.style.display = "none";
+});
