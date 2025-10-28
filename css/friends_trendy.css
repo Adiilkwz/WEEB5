@@ -293,3 +293,54 @@ footer {
 .logo:hover {
   transform: rotate(-5deg) scale(1.05);
 }
+
+/* ===== Scroll Progress Bar ===== */
+#scrollProgress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 8px;                 /* thickness */
+  background: rgba(0,0,0,0.06);
+  z-index: 9999;
+  overflow: hidden;
+  pointer-events: none;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+/* animated fill */
+#scrollProgressFill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #D8A300 0%, #FF7A18 50%, #FF3CAC 100%);
+  transform-origin: left center;
+  transition: width 120ms linear, background 300ms ease;
+  box-shadow: 0 0 12px rgba(216,163,0,0.18), inset 0 -2px 8px rgba(0,0,0,0.06);
+}
+
+/* percentage bubble */
+#scrollProgressLabel {
+  position: fixed;
+  top: 12px; /* slightly below bar */
+  right: 18px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #5C4033;
+  background: rgba(255,248,225,0.95);
+  padding: 6px 8px;
+  border-radius: 999px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+  z-index: 10000;
+  pointer-events: none;
+  transition: transform 180ms ease, opacity 180ms ease;
+}
+
+/* hide on very small screens to avoid overlap */
+@media (max-width: 480px) {
+  #scrollProgressLabel { display: none; }
+}
+
+/* optional vertical variant (if you want a vertical bar later) */
+#scrollProgress.vertical { width: 10px; height: 100%; top: 0; left: auto; right: 0; }
+#scrollProgress.vertical #scrollProgressFill { width: 100%; height: 0%; transform-origin: bottom center; }
+
