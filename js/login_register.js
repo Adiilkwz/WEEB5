@@ -368,3 +368,103 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+// ===== Scroll Progress Bar (vanilla JS, reliable) =====
+(function () {
+  var progress = document.getElementById('scrollProgress');
+  if (!progress) return; // если элемент не найден — ничего не делаем
+
+  function updateProgress() {
+    var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    var docHeight = Math.max(
+      document.body.scrollHeight, document.documentElement.scrollHeight,
+      document.body.offsetHeight, document.documentElement.offsetHeight,
+      document.body.clientHeight, document.documentElement.clientHeight
+    ) - window.innerHeight;
+    var percent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    percent = Math.max(0, Math.min(100, percent));
+    progress.style.width = percent + '%';
+    progress.setAttribute('aria-valuenow', Math.round(percent));
+  }
+
+  var ticking = false;
+  function requestUpdate() {
+    if (!ticking) {
+      window.requestAnimationFrame(function () {
+        updateProgress();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }
+
+  // listen to events
+  window.addEventListener('scroll', requestUpdate, { passive: true });
+  window.addEventListener('resize', requestUpdate);
+  window.addEventListener('load', requestUpdate);
+
+  // initial
+  updateProgress();
+})();
+
+// ===== Animated Number Counters =====
+$(function () {
+  var $counts = $('.count');
+
+  function animateCount($el, target, duration) {
+    var start = null;
+    var initial = 0;
+    duration = duration || 1500;
+
+    function step(timestamp) {
+      if (!start) start = timestamp;
+      var progress = Math.min((timestamp - start) / duration, 1);
+      var value = Math.floor(initial + (target - initial) * progress);
+      $el.text(value);
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  if ('IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          var $el = $(entry.target);
+          if (!$el.data('counted')) {
+            animateCount($el, parseInt($el.data('target')), 1500);
+            $el.data('counted', true);
+          }
+        }
+      });
+    }, { threshold: 0.3 });
+
+    $counts.each(function () {
+      observer.observe(this);
+    });
+  }
+});
+// ===== Task 7: Toast Notification System =====
+function showToast(message) {
+  const toast = document.getElementById("toast");
+  const toastMsg = document.getElementById("toastMessage");
+
+  if (!toast || !toastMsg) return;
+  toastMsg.textContent = message;
+
+  toast.classList.add("show");
+  setTimeout(() => {
+    toast.classList.remove("show");
+  }, 3000); // 3 seconds
+}
+
+// Example: show notification on form submit
+document.addEventListener("DOMContentLoaded", () => {
+  const contactForm = document.getElementById("contactForm");
+  if (contactForm) {
+    contactForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      showToast("✅ Form submitted successfully!");
+    });
+  }
+});
+

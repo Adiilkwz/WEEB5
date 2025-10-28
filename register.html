@@ -8,10 +8,17 @@
   <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
+   <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
   <!-- Custom CSS -->
   <link rel="stylesheet" href="css/login_register.css">
 </head>
 <body>
+  <!-- ===== Scroll Progress Bar (put near top of body) ===== -->
+<!-- горизонтальный прогресс-бар всегда вверху страницы -->
+<div id="scrollProgress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark-brown px-3">
     <a class="navbar-brand d-flex align-items-center" href="#">
@@ -47,8 +54,7 @@
           <ol class="list-unstyled">
             <li><a href="#register" class="text-dark-brown text-decoration-none">Register</a></li>
             <li><a href="#whyjoin" class="text-dark-brown text-decoration-none">Why join Nyam-Nyam?</a></li>
-            <!-- ✅ Add your Play Sound button here -->
-    <button id="soundBtn" class="btn btn-mustard w-100 mt-3">Play Sound 🔊</button>
+            
           </ol>
         </div>
       </aside>
@@ -103,13 +109,8 @@
               </div>
             </div>
           </div>
-        </section>
-      </main>
-    </div>
-  </div>
-
-
-   <!-- ===== Task 2: FAQ Accordion ===== -->
+          </section>
+          <!-- ===== Task 2: FAQ Accordion ===== -->
         <section id="faq" class="section mb-5">
         <h2 class="section-title mb-3">Frequently Asked Questions</h2>
         <div class="faq-container p-3 rounded">
@@ -135,31 +136,8 @@
           </div>
         </div>
         </section>
-      </main>
-    </div>
-  </div>
-
-  <!-- Popup Form Container -->
-  <div id="popupOverlay" class="popup-overlay">
-  <div class="popup-content bg-light-mustard p-4 rounded">
-      <button id="closePopup" class="close-btn">&times;</button>
-      <h4 class="mb-3 text-center text-dark-brown">Subscribe to Nyam-Nyam</h4>
-      <form id="popupForm">
-      <div class="mb-3">
-        <label for="popupName" class="form-label fw-bold">Name:</label>
-        <input type="text" id="popupName" class="form-control" placeholder="Enter your name">
-      </div>
-      <div class="mb-3">
-        <label for="popupEmail" class="form-label fw-bold">Email:</label>
-        <input type="email" id="popupEmail" class="form-control" placeholder="Enter your email">
-      </div>
-      <button type="submit" class="btn btn-mustard w-100">Subscribe</button>
-      </form>
-  </div>
-  </div>
-
-<!-- ===== Task: Manipulating Attributes – Read More Button ===== -->
-<section id="aboutNyam" class="section text-center my-5">
+               <!-- ===== Task: Manipulating Attributes – Read More Button ===== -->
+  <section id="aboutNyam" class="section text-center my-5">
   <h2 class="section-title mb-3">About Nyam-Nyam</h2>
   <p id="shortText" class="text-dark-brown">
     Nyam-Nyam is a food sharing community where users can explore delicious recipes and meet other food lovers.
@@ -188,14 +166,45 @@
     <p id="contactFeedback" class="mt-3 text-center fw-bold"></p>
   </form>
 </section>
+      </main>
+    </div>
+  </div>
+  
 
+  <!-- Popup Form Container -->
+  <div id="popupOverlay" class="popup-overlay">
+  <div class="popup-content bg-light-mustard p-4 rounded">
+      <button id="closePopup" class="close-btn">&times;</button>
+      <h4 class="mb-3 text-center text-dark-brown">Subscribe to Nyam-Nyam</h4>
+      <form id="popupForm">
+      <div class="mb-3">
+        <label for="popupName" class="form-label fw-bold">Name:</label>
+        <input type="text" id="popupName" class="form-control" placeholder="Enter your name">
+      </div>
+      <div class="mb-3">
+        <label for="popupEmail" class="form-label fw-bold">Email:</label>
+        <input type="email" id="popupEmail" class="form-control" placeholder="Enter your email">
+      </div>
+      <button type="submit" class="btn btn-mustard w-100">Subscribe</button>
+      </form>
+  </div>
+  </div>
+
+  
+  <!-- ===== Toast Notification (Task 7) ===== -->
+  <div id="toast" class="toast-notification">
+    <span id="toastMessage">Form submitted successfully!</span>
+  </div>
   <!-- Footer -->
   <footer class="bg-dark-brown text-white text-center py-3 mt-5">
     <p class="m-0">&copy; 2025 Nyam-Nyam. Adil, Yerassyl, Yesbol, Bekarys. All rights reserved.</p>
   </footer>
 
   <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="js/login_register.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<!-- Custom JS -->
+<script src="js/login_register.js"></script>
 </body>
 </html>

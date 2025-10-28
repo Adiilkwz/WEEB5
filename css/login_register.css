@@ -76,23 +76,13 @@ body {
 /* =========================
    Section Styling
    ========================= */
-.section-title {
-  position: relative;
-  padding-bottom: 8px;
-  font-weight: bold;
-  text-align: center;
-  color: var(--dark-brown);
-}
-.section-title::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 0;
-  width: 50px;
-  height: 4px;
-  background: var(--mustard);
-  border-radius: 2px;
+.section {
+  max-width: 900px;
+  margin: 0 auto 40px auto;
+  background-color: var(--light-mustard);
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 /* =========================
@@ -376,3 +366,61 @@ footer {
 #changeBgBtn {
   transition: background-color 0.3s, color 0.3s;
 }
+/* ===== Scroll Progress Bar ===== */
+#scrollProgress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 6px;
+  width: 0%;
+  z-index: 9999;
+  border-bottom-right-radius: 6px;
+  border-bottom-left-radius: 6px;
+  background: linear-gradient(90deg, #ffd54f, #d8a300, #5c4033);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  transition: width 0.15s linear;
+}
+
+/* ===== Stats cards styling ===== */
+.stat-card {
+  background: rgba(255, 250, 235, 0.9);
+  border: 1px solid rgba(92,64,51,0.08);
+  text-align: center;
+  min-height: 110px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+.stat-number {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--dark-brown);
+}
+.stat-label {
+  margin: 0;
+  color: #6b4f3f;
+  font-size: 0.95rem;
+}
+
+/* ===== Toast Notification Styling ===== */
+.toast-notification {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: linear-gradient(135deg, #d8a300, #5c4033);
+  color: white;
+  padding: 12px 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  font-weight: 600;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  z-index: 9999;
+}
+.toast-notification.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
