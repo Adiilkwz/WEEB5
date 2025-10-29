@@ -13,6 +13,13 @@
 </head>
 <body>
 
+<!-- Scroll Progress Bar (place right after <body>) -->
+<div id="scrollProgress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+  <div id="scrollProgressFill"></div>
+  <div id="scrollProgressLabel" aria-hidden="true">0%</div>
+</div>
+
+
   <!-- ===== Navbar ===== -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark-brown px-3">
     <a class="navbar-brand d-flex align-items-center" href="#">
@@ -24,7 +31,7 @@
     </button>
 
     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-      <ul class="navbar-nav align-items-center">
+      <ul class="navbar-nav">
         <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
         <li class="nav-item"><a class="nav-link" href="search.html">Search</a></li>
         <li class="nav-item"><a class="nav-link" href="friends.html">Friends</a></li>
@@ -62,39 +69,54 @@
         <section id="trendy" class="section mb-5">
           <h2 class="section-title mb-3">Trendy Recipes</h2>
           <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-            <div class="col">
-              <div class="card h-100 shadow-sm text-center">
-                <img src="images/avocadotoast.jpg" class="card-img-top" alt="Avocado Toast">
-                <div class="card-body">
-                  <h5 class="card-title">Avocado Toast</h5>
-                  <p class="card-text">Healthy and delicious breakfast idea with avocado and eggs.</p>
-                  <button class="btn btn-mustard w-100">Explore</button>
-                </div>
-              </div>
-            </div>
+            <!-- 1️⃣ Avocado Toast -->
+<div class="col">
+  <div class="card h-100 shadow-sm text-center">
+    <img src="images/avocadotoast.jpg" class="card-img-top" alt="Avocado Toast">
+    <div class="card-body">
+      <h5 class="card-title">Avocado Toast</h5>
+      <p class="card-text">Healthy and delicious breakfast idea with avocado and eggs.</p>
+      <button class="btn btn-outline-dark-brown btn-copy mb-2"
+        data-text="Healthy and delicious breakfast idea with avocado and eggs.">
+        📋 Copy
+      </button>
+      <button class="btn btn-mustard w-100">Explore</button>
+    </div>
+  </div>
+</div>
 
-            <div class="col">
-              <div class="card h-100 shadow-sm text-center">
-                <img src="images/ramenbowl.jpg" class="card-img-top" alt="Ramen Bowl">
-                <div class="card-body">
-                  <h5 class="card-title">Ramen Bowl</h5>
-                  <p class="card-text">Japanese noodle soup with rich flavors, trending worldwide.</p>
-                  <button class="btn btn-mustard w-100">Explore</button>
-                </div>
-              </div>
-            </div>
+<!-- 2️⃣ Ramen Bowl -->
+<div class="col">
+  <div class="card h-100 shadow-sm text-center">
+    <img src="images/ramenbowl.jpg" class="card-img-top" alt="Ramen Bowl">
+    <div class="card-body">
+      <h5 class="card-title">Ramen Bowl</h5>
+      <p class="card-text">Japanese noodle soup with rich flavors, trending worldwide.</p>
+      <button class="btn btn-outline-dark-brown btn-copy mb-2"
+        data-text="Japanese noodle soup with rich flavors, trending worldwide.">
+        📋 Copy
+      </button>
+      <button class="btn btn-mustard w-100">Explore</button>
+    </div>
+  </div>
+</div>
 
-            <div class="col">
-              <div class="card h-100 shadow-sm text-center">
-                <img src="images/bubbletea.jpg" class="card-img-top" alt="Bubble Tea">
-                <div class="card-body">
-                  <h5 class="card-title">Bubble Tea</h5>
-                  <p class="card-text">Refreshing Taiwanese drink with tapioca pearls, loved globally.</p>
-                  <button class="btn btn-mustard w-100">Explore</button>
-                </div>
-              </div>
-            </div>
-          </div>
+<!-- 3️⃣ Bubble Tea -->
+<div class="col">
+  <div class="card h-100 shadow-sm text-center">
+    <img src="images/bubbletea.jpg" class="card-img-top" alt="Bubble Tea">
+    <div class="card-body">
+      <h5 class="card-title">Bubble Tea</h5>
+      <p class="card-text">Refreshing Taiwanese drink with tapioca pearls, loved globally.</p>
+      <button class="btn btn-outline-dark-brown btn-copy mb-2"
+        data-text="Refreshing Taiwanese drink with tapioca pearls, loved globally.">
+        📋 Copy
+      </button>
+      <button class="btn btn-mustard w-100">Explore</button>
+    </div>
+  </div>
+</div>
+
         </section>
 
         <!-- ===== Japanese Cuisine Carousel ===== -->
@@ -164,6 +186,37 @@
           </div>
         </div>
         </section>
+        <!-- Contact Form for Task 2 -->
+                <section id="contact" class="section mt-5">
+                <h2 class="section-title mb-3">Contact Us</h2>
+                <form id="contactForm" class="p-3 rounded">
+                    <div class="mb-3">
+                    <label for="name" class="form-label">Name:</label>
+                    <input type="text" id="name" name="name" class="form-control" required />
+                    </div>
+                    <div class="mb-3">
+                    <label for="email" class="form-label">Email:</label>
+                    <input type="email" id="email" name="email" class="form-control" required />
+                    </div>
+                    <div class="mb-3">
+                    <label for="message" class="form-label">Message:</label>
+                    <textarea id="message" name="message" class="form-control" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-outline-dark-brown">Send</button>
+                </form>
+                <p id="contactStatus" class="mt-2"></p>
+                </section>
+                 <!-- ===== Task 1: DOM Manipulation and Styling ===== -->
+<section id="rating" class="section mb-5 text-center">
+  <h2 class="section-title mb-3">Rate Your Nyam-Nyam Experience</h2>
+  <div id="stars" class="mb-3">
+    <i class="star fs-2 text-dark-brown">&#9734;</i>
+    <i class="star fs-2 text-dark-brown">&#9734;</i>
+    <i class="star fs-2 text-dark-brown">&#9734;</i>
+    <i class="star fs-2 text-dark-brown">&#9734;</i>
+    <i class="star fs-2 text-dark-brown">&#9734;</i>
+  </div>
+  <p id="rating-message" class="fw-bold text-dark-brown">Click a star to rate!</p>
       </main>
     </div>
   </div>
