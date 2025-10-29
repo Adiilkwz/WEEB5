@@ -296,3 +296,50 @@ footer {
     width: 48%;
   }
 }
+/* ===== Task 1: Search Bar Styles ===== */
+.input-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  gap: 10px;
+}
+
+#searchInput {
+  border: 2px solid var(--dark-brown);
+  border-radius: 8px;
+  padding: 10px 15px;
+  font-size: 1rem;
+  color: var(--dark-brown);
+  background-color: #fffbea;
+  flex: 1;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+#searchInput:focus {
+  outline: none;
+  border-color: var(--mustard);
+  box-shadow: 0 0 6px rgba(216, 163, 0, 0.4);
+}
+
+#searchBtn {
+  background-color: var(--mustard);
+  color: var(--dark-brown);
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+#searchBtn:hover {
+  background-color: var(--dark-brown);
+  color: var(--mustard);
+}
+
+/* Подсветка совпадений */
+.highlight {
+  background-color: rgba(255, 230, 128, 0.7);
+  border-radius: 4px;
+  padding: 2px 4px;
+}

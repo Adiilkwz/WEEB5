@@ -379,3 +379,178 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  // ===== Task 1: Featured Recipes Search Filter =====
+  const searchInput = document.getElementById("featuredrecipes");
+  const recipeCards = document.querySelectorAll("#featured .card");
+
+  if (searchInput && recipeCards.length > 0) {
+    searchInput.addEventListener("input", () => {
+      const query = searchInput.value.toLowerCase().trim();
+
+      recipeCards.forEach(card => {
+        const title = card.querySelector(".card-title").textContent.toLowerCase();
+        card.parentElement.style.display = title.includes(query) ? "block" : "none";
+      });
+    });
+  }
+
+  // ===== Task 2: Autocomplete for Featured Recipes =====
+  if (searchInput) {
+    // Собираем все названия рецептов из карточек
+    const recipeNames = Array.from(recipeCards).map(card =>
+      card.querySelector(".card-title").textContent.trim()
+    );
+
+    // Создаём выпадающий контейнер
+    const suggestionBox = document.createElement("div");
+    suggestionBox.classList.add("autocomplete-suggestions");
+    suggestionBox.style.position = "absolute";
+    suggestionBox.style.top = "100%";
+    suggestionBox.style.left = "0";
+    suggestionBox.style.right = "0";
+    suggestionBox.style.background = "#fff8e1";
+    suggestionBox.style.border = "1px solid #ccc";
+    suggestionBox.style.borderRadius = "8px";
+    suggestionBox.style.maxHeight = "200px";
+    suggestionBox.style.overflowY = "auto";
+    suggestionBox.style.zIndex = "2000";
+    suggestionBox.style.display = "none";
+    suggestionBox.style.boxShadow = "0 4px 10px rgba(0,0,0,0.1)";
+
+    const wrapper = searchInput.parentElement;
+    wrapper.style.position = "relative";
+    wrapper.appendChild(suggestionBox);
+
+    searchInput.addEventListener("input", () => {
+      const query = searchInput.value.toLowerCase().trim();
+      suggestionBox.innerHTML = "";
+
+      if (!query) {
+        suggestionBox.style.display = "none";
+        return;
+      }
+
+      // Фильтруем рецепты
+      const filtered = recipeNames.filter(name =>
+        name.toLowerCase().includes(query)
+      );
+
+      // Перемешиваем и показываем не больше 5 вариантов
+      const randomResults = filtered.sort(() => 0.5 - Math.random()).slice(0, 5);
+
+      if (randomResults.length > 0) {
+        randomResults.forEach(name => {
+          const div = document.createElement("div");
+          div.textContent = name;
+          div.style.padding = "8px 12px";
+          div.style.cursor = "pointer";
+          div.addEventListener("mouseenter", () => div.style.background = "#f0e6b1");
+          div.addEventListener("mouseleave", () => div.style.background = "transparent");
+          div.addEventListener("click", () => {
+            searchInput.value = name;
+            suggestionBox.style.display = "none";
+
+            // Также фильтруем карточки при выборе
+            recipeCards.forEach(card => {
+              const title = card.querySelector(".card-title").textContent.toLowerCase();
+              card.parentElement.style.display = title.includes(name.toLowerCase()) ? "block" : "none";
+            });
+          });
+          suggestionBox.appendChild(div);
+        });
+        suggestionBox.style.display = "block";
+      } else {
+        suggestionBox.style.display = "none";
+      }
+    });
+
+    // Закрытие по клику вне
+    document.addEventListener("click", (e) => {
+      if (!searchInput.contains(e.target) && !suggestionBox.contains(e.target)) {
+        suggestionBox.style.display = "none";
+      }
+    });
+  }
+
+  // ===== Task 3: FAQ Search Highlighting =====
+  const faqSearch = document.createElement("input");
+  faqSearch.classList.add("form-control", "mb-3");
+  faqSearch.placeholder = "Search FAQ...";
+  const faqSection = document.querySelector("#faq .faq-container");
+
+  if (faqSection) {
+    faqSection.insertAdjacentElement("beforebegin", faqSearch);
+
+    faqSearch.addEventListener("input", () => {
+      const query = faqSearch.value.trim();
+      const items = faqSection.querySelectorAll(".faq-question, .faq-answer");
+
+      items.forEach(el => {
+        const text = el.textContent;
+        if (!query) {
+          el.innerHTML = text;
+          return;
+        }
+        const regex = new RegExp(`(${query})`, "gi");
+        el.innerHTML = text.replace(regex, `<mark style="background-color:#D8A300;">$1</mark>`);
+      });
+    });
+  }
+
+  // ===== Task 4: Contact Form Submission (Simple Feedback) =====
+  const contactForm = document.getElementById("contactForm");
+  const contactStatus = document.getElementById("contactStatus");
+
+  if (contactForm && contactStatus) {
+    contactForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      contactStatus.textContent = "✅ Thank you! Your message has been sent.";
+      contactStatus.style.color = "green";
+      contactForm.reset();
+
+      setTimeout(() => {
+        contactStatus.textContent = "";
+      }, 3000);
+    });
+  }
+
+  // ===== Task 5: Subscribe Popup =====
+  const openPopup = document.getElementById("openPopup");
+  const closePopup = document.getElementById("closePopup");
+  const popupOverlay = document.getElementById("popupOverlay");
+
+  if (openPopup && closePopup && popupOverlay) {
+    openPopup.addEventListener("click", () => popupOverlay.style.display = "flex");
+    closePopup.addEventListener("click", () => popupOverlay.style.display = "none");
+
+    window.addEventListener("click", (e) => {
+      if (e.target === popupOverlay) popupOverlay.style.display = "none";
+    });
+  }
+
+  // ===== Task 6: Date and Time Display =====
+  const dateTimeDisplay = document.getElementById("dateTimeDisplay");
+  if (dateTimeDisplay) {
+    function updateDateTime() {
+      const now = new Date();
+      dateTimeDisplay.textContent = now.toLocaleString();
+    }
+    updateDateTime();
+    setInterval(updateDateTime, 1000);
+  }
+
+  // ===== Task 7: Change Background Button =====
+  const changeBgBtn = document.getElementById("changeBgBtn");
+  const bgColors = ["#fff8e1", "#fce4ec", "#e8f5e9", "#e3f2fd", "#f3e5f5"];
+  let bgIndex = 0;
+
+  if (changeBgBtn) {
+    changeBgBtn.addEventListener("click", () => {
+      bgIndex = (bgIndex + 1) % bgColors.length;
+      document.body.style.backgroundColor = bgColors[bgIndex];
+    });
+  }
+});
