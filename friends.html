@@ -13,6 +13,13 @@
 </head>
 <body>
 
+<!-- Scroll Progress Bar (place right after <body>) -->
+<div id="scrollProgress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+  <div id="scrollProgressFill"></div>
+  <div id="scrollProgressLabel" aria-hidden="true">0%</div>
+</div>
+
+
   <!-- ===== Navbar ===== -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark-brown px-3">
     <a class="navbar-brand d-flex align-items-center" href="#">
@@ -24,7 +31,7 @@
     </button>
 
     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-      <ul class="navbar-nav">
+      <ul class="navbar-nav align-items-center">
         <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
         <li class="nav-item"><a class="nav-link" href="search.html">Search</a></li>
         <li class="nav-item"><a class="nav-link active text-mustard" href="friends.html">Friends</a></li>
@@ -35,7 +42,6 @@
         <li class="nav-item"><button id="openPopup" class="btn btn-mustard ms-2">Subscribe</li>
         <li class="nav-item"><button id="changeBgBtn" class="btn btn-mustard ms-2">Change Background</button></li>
         <li class="nav-item d-flex align-items-center ms-3"><span id="dateTimeDisplay" class="text-white small"></span></li>
-        <li class="nav-item"><button id="toggleThemeBtn" class="btn btn-mustard ms-2">Switch to Night Mode</button></li>
       </ul>
     </div>
   </nav>
@@ -96,9 +102,9 @@
 
         <section id="addfriends" class="section mb-5">
           <h2 class="section-title mb-3">Add Friends</h2>
-          <form class="p-3 rounded shadow-sm bg-light-mustard">
+          <form class="p-3 rounded shadow-sm bg-light-mustard position-relative mb-5">
             <div class="input-group">
-              <input type="text" class="form-control" placeholder="Search friends...">
+              <input type="text" id="friendSearch" class="form-control" placeholder="Search friends...">
               <button type="submit" class="btn btn-mustard">Search</button>
             </div>
           </form>
@@ -131,6 +137,10 @@
         <!-- ===== Task 2: FAQ Accordion ===== -->
         <section id="faq" class="section mb-5">
         <h2 class="section-title mb-3">Frequently Asked Questions</h2>
+
+        <!-- 🔍 FAQ Search Field -->
+        <input type="text" id="faqSearch" class="form-control mb-3" placeholder="Search in FAQ...">
+  
         <div class="faq-container p-3 rounded">
           <div class="faq-item">
           <h5 class="faq-question">How can I add new friends on Nyam-Nyam?</h5>
@@ -153,8 +163,27 @@
           </div>
           </div>
         </div>
-        </section>
 </section>
+        <!-- Contact Form for Task 2 -->
+                <section id="contact" class="section mt-5">
+                <h2 class="section-title mb-3">Contact Us</h2>
+                <form id="contactForm" class="p-3 rounded">
+                    <div class="mb-3">
+                    <label for="name" class="form-label">Name:</label>
+                    <input type="text" id="name" name="name" class="form-control" required />
+                    </div>
+                    <div class="mb-3">
+                    <label for="email" class="form-label">Email:</label>
+                    <input type="email" id="email" name="email" class="form-control" required />
+                    </div>
+                    <div class="mb-3">
+                    <label for="message" class="form-label">Message:</label>
+                    <textarea id="message" name="message" class="form-control" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-outline-dark-brown">Send</button>
+                </form>
+                <p id="contactStatus" class="mt-2"></p>
+                </section>
       </main>
     </div>
   </div>

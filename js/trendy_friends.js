@@ -257,27 +257,6 @@ document.addEventListener("DOMContentLoaded", () => {
 // 2. EVENT HANDLING TASK
 // ======================
 
-// 1️⃣ — Show Current Time (Button Example)
-document.addEventListener("DOMContentLoaded", () => {
-  const friendsSection = document.querySelector("#friends");
-  if (friendsSection) {
-    const timeBtn = document.createElement("button");
-    timeBtn.textContent = "Show Current Time";
-    timeBtn.className = "btn btn-outline-dark-brown mt-3";
-
-    const timeOutput = document.createElement("p");
-    timeOutput.className = "fw-bold text-dark-brown mt-2";
-
-    friendsSection.appendChild(timeBtn);
-    friendsSection.appendChild(timeOutput);
-
-    timeBtn.addEventListener("click", () => {
-      const now = new Date().toLocaleTimeString();
-      timeOutput.textContent = `Current time: ${now}`;
-    });
-  }
-});
-
 // 2️⃣ — Keyboard Navigation for Navbar
 document.addEventListener("DOMContentLoaded", () => {
   const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
@@ -354,4 +333,228 @@ popupForm.addEventListener("submit", (e) => {
   alert("Thank you for subscribing!");
   popupForm.reset();
   overlay.style.display = "none";
+});
+
+const numberArray = [5, 12, 8, 20, 3, 15, 7];
+console.log(numberArray.filter(num => num % 2 === 0));
+
+// ===== Task 1: Real-Time Friend Search Filter =====
+document.addEventListener("DOMContentLoaded", () => {
+  const searchInput = document.getElementById("friendSearch");
+
+  if (searchInput) {
+    searchInput.addEventListener("keyup", () => {
+      const query = searchInput.value.toLowerCase().trim();
+
+      friendCards.forEach(card => {
+        const name = card.querySelector(".card-title").textContent.toLowerCase();
+        card.parentElement.style.display = name.includes(query) ? "block" : "none";
+      });
+    });
+  }
+});
+
+// === Task 2: Autocomplete with Random Kazakh Names (Fixed version) ===
+document.addEventListener("DOMContentLoaded", () => {
+  const input = document.querySelector("#addfriends input");
+
+  // List of random Kazakh names in English
+  const randomNames = [
+    "Aruzhan Serik", "Yesbol Nurtas",
+    "Aigerim Sadu", "Dana Ayan", "Alikhan Nurlybek", "Bakyt Askar",
+    "Zarina Tolegen", "Nurzhan Bek", "Miras Alisher", "Saule Kenzhe",
+    "Ainur Tulegen", "Dias Yerlan", "Madina Nazerke", "Bauyrzhan Alim"
+  ];
+
+  // Create dropdown container
+  const suggestionBox = document.createElement("div");
+  suggestionBox.classList.add("autocomplete-suggestions");
+  suggestionBox.style.position = "absolute";
+  suggestionBox.style.top = "100%";
+  suggestionBox.style.left = "0";
+  suggestionBox.style.right = "0";
+  suggestionBox.style.background = "#fff8e1";
+  suggestionBox.style.border = "1px solid #ccc";
+  suggestionBox.style.borderRadius = "8px";
+  suggestionBox.style.maxHeight = "200px";
+  suggestionBox.style.overflowY = "auto";
+  suggestionBox.style.zIndex = "2000";
+  suggestionBox.style.display = "none";
+  suggestionBox.style.boxShadow = "0 4px 10px rgba(0,0,0,0.1)";
+
+  // Place dropdown inside parent with position:relative
+  const wrapper = input.parentElement;
+  wrapper.style.position = "relative";
+  wrapper.appendChild(suggestionBox);
+
+  input.addEventListener("input", () => {
+    const query = input.value.toLowerCase().trim();
+    suggestionBox.innerHTML = "";
+
+    if (query.length === 0) {
+      suggestionBox.style.display = "none";
+      return;
+    }
+
+    const filtered = randomNames.filter(name =>
+      name.toLowerCase().includes(query)
+    );
+
+    const randomResults = filtered.sort(() => 0.5 - Math.random()).slice(0, 5);
+
+    if (randomResults.length > 0) {
+      randomResults.forEach(name => {
+        const div = document.createElement("div");
+        div.textContent = name;
+        div.style.padding = "8px 12px";
+        div.style.cursor = "pointer";
+        div.style.transition = "background 0.2s";
+
+        div.addEventListener("mouseenter", () => (div.style.background = "#f0e6b1"));
+        div.addEventListener("mouseleave", () => (div.style.background = "transparent"));
+
+        div.addEventListener("click", () => {
+          input.value = name;
+          suggestionBox.style.display = "none";
+        });
+
+        suggestionBox.appendChild(div);
+      });
+
+      suggestionBox.style.display = "block";
+    } else {
+      suggestionBox.style.display = "none";
+    }
+  });
+
+  document.addEventListener("click", e => {
+    if (!input.contains(e.target) && !suggestionBox.contains(e.target)) {
+      suggestionBox.style.display = "none";
+    }
+  });
+});
+
+
+
+// ===== Task 3: Search Highlighting in FAQ =====
+document.addEventListener("DOMContentLoaded", () => {
+  const faqInput = document.getElementById("faqSearch");
+  const faqContainer = document.getElementById("faq");
+
+  if (!faqInput || !faqContainer) return;
+
+  faqInput.addEventListener("input", () => {
+    const query = faqInput.value.trim();
+    const answers = faqContainer.querySelectorAll(".faq-answer p, .faq-question");
+
+    answers.forEach(el => {
+      const originalText = el.textContent;
+      if (query === "") {
+        el.innerHTML = originalText;
+        return;
+      }
+      const regex = new RegExp(`(${query})`, "gi");
+      el.innerHTML = originalText.replace(regex, `<mark style="background-color:#D8A300;">$1</mark>`);
+    });
+  });
+});
+
+// ===== Scroll Progress Bar =====
+(function () {
+  // safe-get elements (if already present on the page)
+  const bar = document.getElementById('scrollProgress');
+  const fill = document.getElementById('scrollProgressFill');
+  const label = document.getElementById('scrollProgressLabel');
+  if (!bar || !fill || !label) return;
+
+  // throttle helper
+  let ticking = false;
+  function onScroll() {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        updateProgress();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }
+
+  function updateProgress() {
+    const doc = document.documentElement;
+    const scrollTop = window.pageYOffset || doc.scrollTop || document.body.scrollTop || 0;
+    const scrollHeight = Math.max(doc.scrollHeight, document.body.scrollHeight);
+    const winHeight = window.innerHeight || doc.clientHeight;
+    const maxScroll = Math.max(1, scrollHeight - winHeight);
+    let percent = Math.min(100, Math.round((scrollTop / maxScroll) * 100));
+
+    // update fill width/height (for horizontal bar)
+    fill.style.width = percent + '%';
+
+    // dynamic color shift (hue rotate by percent)
+    // generate a pleasing gradient by changing background using HSL stops
+    const hue1 = 40 + Math.round(percent * 0.8);  // 40..120
+    const hue2 = 18 + Math.round(percent * 1.2);  // 18..138
+    fill.style.background = `linear-gradient(90deg, hsl(${hue1} 82% 48%) 0%, hsl(${hue2} 90% 55%) 60%, hsl(${(hue2+70)%360} 85% 52%) 100%)`;
+
+    // update label
+    label.textContent = percent + '%';
+    bar.setAttribute('aria-valuenow', String(percent));
+
+    // subtle label animation when scroll reaches 100%
+    if (percent >= 99) {
+      label.style.transform = 'scale(1.05)';
+    } else {
+      label.style.transform = 'scale(1)';
+    }
+  }
+
+  // init
+  updateProgress();
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+})();
+
+// ===== Task 8: Copy to Clipboard Buttons =====
+document.addEventListener("DOMContentLoaded", () => {
+  const copyButtons = document.querySelectorAll(".btn-copy");
+
+  copyButtons.forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      const text = btn.getAttribute("data-text");
+      try {
+        await navigator.clipboard.writeText(text);
+        btn.classList.add("copied");
+        btn.textContent = "✅ Copied!";
+        setTimeout(() => {
+          btn.classList.remove("copied");
+          btn.textContent = "📋 Copy";
+        }, 2000);
+      } catch (err) {
+        alert("Failed to copy text. Try again!");
+      }
+    });
+  });
+});
+
+// ===== Task 9: Lazy Loading for Images =====
+document.addEventListener("DOMContentLoaded", () => {
+  const lazyImages = document.querySelectorAll(".lazy-image");
+
+  const loadImage = (img) => {
+    const src = img.getAttribute("data-src");
+    if (!src) return;
+    img.src = src;
+    img.removeAttribute("data-src");
+  };
+
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        loadImage(entry.target);
+        observer.unobserve(entry.target);
+      }
+    });
+  });
+
+  lazyImages.forEach(img => observer.observe(img));
 });
