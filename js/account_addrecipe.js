@@ -105,25 +105,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-// ===== Task 2: FAQ Accordion =====
-document.addEventListener("DOMContentLoaded", () => {
-  const questions = document.querySelectorAll(".faq-question");
-
-  questions.forEach((q) => {
-    q.addEventListener("click", () => {
-      const answer = q.nextElementSibling;
-
-      // Toggle active state
-      answer.classList.toggle("show");
-
-      // Close others when opening a new one
-      questions.forEach((other) => {
-        if (other !== q) other.nextElementSibling.classList.remove("show");
-      });
-    });
-  });
-});
-
 // ===== Task 3: Popup Subscription Form =====
 document.addEventListener("DOMContentLoaded", () => {
   const openBtn = document.getElementById("openPopup");
@@ -167,27 +148,41 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// ===== Task 4: Change Background Color =====
 document.addEventListener("DOMContentLoaded", () => {
-  const changeBgBtn = document.getElementById("changeBgBtn");
+  const toggleModeBtn = document.getElementById("toggleModeBtn");
   const body = document.body;
 
-  // Predefined color palette (matches your theme)
-  const colors = [
-    "#FFF8E1", // light mustard
-    "#F0EAD6", // cream
-    "#D8A300", // mustard
-    "#5C4033", // dark brown
-    "#FCEACB", // peachy light
-  ];
+  // Check local storage for saved mode preference
+  const savedMode = localStorage.getItem("theme");
 
-  let currentIndex = 0;
+  // Apply the saved mode (if any)
+  if (savedMode === "dark") {
+    body.classList.add("dark-mode");
+    toggleModeBtn.classList.add("dark-mode");
+    toggleModeBtn.textContent = "Switch to Light Mode";
+  } else {
+    body.classList.remove("dark-mode");
+    toggleModeBtn.classList.remove("dark-mode");
+    toggleModeBtn.textContent = "Switch to Dark Mode";
+  }
 
-  changeBgBtn.addEventListener("click", () => {
-    // Cycle through colors
-    currentIndex = (currentIndex + 1) % colors.length;
-    body.style.backgroundColor = colors[currentIndex];
-    body.style.transition = "background-color 0.6s ease";
+  // Toggle between light and dark modes when the button is clicked
+  toggleModeBtn.addEventListener("click", () => {
+    if (body.classList.contains("dark-mode")) {
+      // Switch to light mode
+      body.classList.remove("dark-mode");
+      toggleModeBtn.classList.remove("dark-mode");
+      toggleModeBtn.textContent = "Switch to Dark Mode";
+      // Save preference to local storage
+      localStorage.setItem("theme", "light");
+    } else {
+      // Switch to dark mode
+      body.classList.add("dark-mode");
+      toggleModeBtn.classList.add("dark-mode");
+      toggleModeBtn.textContent = "Switch to Light Mode";
+      // Save preference to local storage
+      localStorage.setItem("theme", "dark");
+    }
   });
 });
 
@@ -280,42 +275,6 @@ document.addEventListener("keydown", (e) => {
     navLinks[navIndex].focus();
   }
 });
-
-// ===== Responding to Events with Callbacks (Async Contact Form using fetch) =====
-const contactForm = document.getElementById("contactForm");
-const contactStatus = document.getElementById("contactStatus");
-
-if (contactForm && contactStatus) {
-  contactForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-
-    const formData = new FormData(contactForm);
-    contactStatus.textContent = "Sending message...";
-
-    // Use fetch to POST form data
-    sendFormData(formData, () => {
-      contactStatus.textContent = "✅ Message sent successfully!";
-      contactForm.reset();
-    });
-  });
-}
-
-// Function using fetch and a callback
-function sendFormData(data, callback) {
-  fetch("https://jsonplaceholder.typicode.com/posts", {
-    method: "POST",
-    body: data,
-  })
-    .then((response) => {
-      if (!response.ok) throw new Error("Network error");
-      return response.json();
-    })
-    .then(() => callback()) // Callback after successful fetch
-    .catch((error) => {
-      console.error("Error:", error);
-      contactStatus.textContent = "❌ Failed to send message.";
-    });
-}
 
 // ===== Task 3: Play Sounds on Successful Form Submission =====
 function playSuccessSound() {
