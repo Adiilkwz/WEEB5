@@ -33,7 +33,7 @@
                 <li class="nav-item"><a class="nav-link active text-mustard" href="account.html">Profile</a></li>
                 <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
                 <li class="nav-item"><button id="openPopup" class="btn btn-mustard ms-2">Subscribe</li>
-                <li class="nav-item"><button id="changeBgBtn" class="btn btn-mustard ms-2">Change Background</button></li>
+                <li class="nav-item"><button id="toggleModeBtn" class="btn btn-mustard ms-2">Toggle Mode</button></li>
                 <li class="nav-item d-flex align-items-center ms-3"><span id="dateTimeDisplay" class="text-white small"></span></li>
             </ul>
         </div>
@@ -53,7 +53,6 @@
                     <ol class="list-unstyled">
                         <li><a href="#info" class="text-dark-brown text-decoration-none">User Information</a></li>
                         <li><a href="#favorites" class="text-dark-brown text-decoration-none">My Favorite Recipes</a></li>
-                        <li><a href="#gallery" class="text-dark-brown text-decoration-none">My Recipes Gallery</a></li>
                         <li><a href="#edit" class="text-dark-brown text-decoration-none">Edit Profile</a></li>
                     </ol>
                 </div>
@@ -90,11 +89,9 @@
                                 <div class="card-body">
                                     <h5 class="card-title">Chocolate Cake</h5>
                                     <p class="card-text">Rich and moist chocolate dessert.</p>
-                                    <button class="btn btn-outline-dark-brown btn-copy mb-2"
-                                        data-text="Rich and moist chocolate dessert.">
+                                    <button class="btn btn-outline-dark-brown btn-copy mb-2" data-text="Rich and moist chocolate dessert.">
                                         📋 Copy
                                     </button>
-                                    <button class="btn btn-mustard w-100">Explore</button>
                                 </div>
                             </div>
                         </div>
@@ -104,11 +101,9 @@
                                 <div class="card-body">
                                     <h5 class="card-title">Pasta Carbonara</h5>
                                     <p class="card-text">Classic Italian pasta with creamy sauce.</p>
-                                    <button class="btn btn-outline-dark-brown btn-copy mb-2"
-                                        data-text="Classic Italian pasta with creamy sauce.">
+                                    <button class="btn btn-outline-dark-brown btn-copy mb-2" data-text="Classic Italian pasta with creamy sauce.">
                                         📋 Copy
                                     </button>
-                                    <button class="btn btn-mustard w-100">Explore</button>
                                 </div>
                             </div>
                         </div>
@@ -118,49 +113,12 @@
                                 <div class="card-body">
                                     <h5 class="card-title">Chicken Curry</h5>
                                     <p class="card-text">Spicy and flavorful Asian curry.</p>
-                                    <button class="btn btn-outline-dark-brown btn-copy mb-2"
-                                        data-text="Spicy and flavorful Asian curry.">
+                                    <button class="btn btn-outline-dark-brown btn-copy mb-2" data-text="Spicy and flavorful Asian curry.">
                                         📋 Copy
                                     </button>
-                                    <button class="btn btn-mustard w-100">Explore</button>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </section>
-
-                <!-- ===== Task 7: Bootstrap Carousel ===== -->
-                <section id="gallery" class="section mb-5">
-                    <h2 class="section-title mb-3">My Recipes Gallery</h2>
-                    <div id="recipeCarousel" class="carousel slide" data-bs-ride="carousel">
-                        <div class="carousel-indicators">
-                            <button type="button" data-bs-target="#recipeCarousel" data-bs-slide-to="0" class="active"></button>
-                            <button type="button" data-bs-target="#recipeCarousel" data-bs-slide-to="1"></button>
-                            <button type="button" data-bs-target="#recipeCarousel" data-bs-slide-to="2"></button>
-                            <button type="button" data-bs-target="#recipeCarousel" data-bs-slide-to="3"></button>
-                            <button type="button" data-bs-target="#recipeCarousel" data-bs-slide-to="4"></button>
-                            <button type="button" data-bs-target="#recipeCarousel" data-bs-slide-to="5"></button>
-                            <button type="button" data-bs-target="#recipeCarousel" data-bs-slide-to="6"></button>
-                            <button type="button" data-bs-target="#recipeCarousel" data-bs-slide-to="7"></button>
-                            <button type="button" data-bs-target="#recipeCarousel" data-bs-slide-to="8"></button>
-                        </div>
-                        <div class="carousel-inner">
-                            <div class="carousel-item active"><img src="images/dish1.jpg" class="d-block w-100" alt="Dish 1"></div>
-                            <div class="carousel-item"><img src="images/dish2.jpg" class="d-block w-100" alt="Dish 2"></div>
-                            <div class="carousel-item"><img src="images/dish3.jpg" class="d-block w-100" alt="Dish 3"></div>
-                            <div class="carousel-item"><img src="images/dish4.jpg" class="d-block w-100" alt="Dish 4"></div>
-                            <div class="carousel-item"><img src="images/dish5.jpg" class="d-block w-100" alt="Dish 5"></div>
-                            <div class="carousel-item"><img src="images/dish6.jpg" class="d-block w-100" alt="Dish 6"></div>
-                            <div class="carousel-item"><img src="images/dish7.jpg" class="d-block w-100" alt="Dish 7"></div>
-                            <div class="carousel-item"><img src="images/dish8.jpg" class="d-block w-100" alt="Dish 8"></div>
-                            <div class="carousel-item"><img src="images/dish9.jpg" class="d-block w-100" alt="Dish 9"></div>
-                        </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#recipeCarousel" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon"></span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#recipeCarousel" data-bs-slide="next">
-                            <span class="carousel-control-next-icon"></span>
-                        </button>
                     </div>
                 </section>
 
@@ -188,53 +146,6 @@
                             <button type="reset" class="btn btn-outline-dark-brown">Reset</button>
                         </div>
                     </form>
-                </section>
-                
-                <!-- ===== Task 2: FAQ Accordion ===== -->
-                <section id="faq" class="section mb-5">
-                <h2 class="section-title mb-3">Frequently Asked Questions</h2>
-                <div class="faq-container p-3 rounded">
-                    <div class="faq-item">
-                    <h5 class="faq-question">What is Nyam-Nyam?</h5>
-                    <div class="faq-answer">
-                        <p>Nyam-Nyam is a community-driven recipe sharing platform where users can post, explore, and favorite recipes from around the world.</p>
-                    </div>
-                    </div>
-
-                    <div class="faq-item">
-                    <h5 class="faq-question">How do I add my own recipe?</h5>
-                    <div class="faq-answer">
-                        <p>You can add your recipe by navigating to the “Add Recipe” page and filling in the required details including ingredients, steps, and an image.</p>
-                    </div>
-                    </div>
-
-                    <div class="faq-item">
-                    <h5 class="faq-question">Can I edit my profile information?</h5>
-                    <div class="faq-answer">
-                        <p>Yes! Go to the “Profile” page and use the Edit Profile form to update your name, email, or bio information.</p>
-                    </div>
-                    </div>
-                </div>
-                </section>
-                <!-- Contact Form for Task 2 -->
-                <section id="contact" class="section mt-5">
-                <h2 class="section-title mb-3">Contact Us</h2>
-                <form id="contactForm" class="p-3 rounded">
-                    <div class="mb-3">
-                    <label for="name" class="form-label">Name:</label>
-                    <input type="text" id="name" name="name" class="form-control" required />
-                    </div>
-                    <div class="mb-3">
-                    <label for="email" class="form-label">Email:</label>
-                    <input type="email" id="email" name="email" class="form-control" required />
-                    </div>
-                    <div class="mb-3">
-                    <label for="message" class="form-label">Message:</label>
-                    <textarea id="message" name="message" class="form-control" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-outline-dark-brown">Send</button>
-                </form>
-                <p id="contactStatus" class="mt-2"></p>
                 </section>
             </main>
         </div>
