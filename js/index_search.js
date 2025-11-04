@@ -380,6 +380,14 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+// ===== Task 4: Scroll Progress Bar using jQuery =====
+$(window).on("scroll", function() {
+  const scrollTop = $(window).scrollTop();
+  const docHeight = $(document).height() - $(window).height();
+  const scrollPercent = (scrollTop / docHeight) * 100;
+  $("#scrollProgressBar").css("width", scrollPercent + "%");
+});
+
 document.addEventListener("DOMContentLoaded", () => {
 
   // ===== Task 1: Featured Recipes Search Filter =====
@@ -553,4 +561,11 @@ document.addEventListener("DOMContentLoaded", () => {
       document.body.style.backgroundColor = bgColors[bgIndex];
     });
   }
+});
+
+
+$(document).ready(function() {
+  $().click(function(){
+    $().text("текст изменился ")
+  });
 });

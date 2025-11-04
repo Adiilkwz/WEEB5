@@ -379,3 +379,92 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+// ===== Task 4: Scroll Progress Bar using jQuery =====
+$(window).on("scroll", function() {
+  const scrollTop = $(window).scrollTop();
+  const docHeight = $(document).height() - $(window).height();
+  const scrollPercent = (scrollTop / docHeight) * 100;
+  $("#scrollProgressBar").css("width", scrollPercent + "%");
+});
+
+/* ============================================================
+   ✅ Task 6: Loading Spinner on Submit (Edit + Add Forms)
+============================================================ */
+$(document).ready(function () {
+  function attachLoadingSpinner(formSelector) {
+    const $form = $(formSelector);
+
+    if ($form.length === 0) return; // skip if not found
+
+    $form.on("submit", function (e) {
+      e.preventDefault(); // prevent reload
+
+      const $btn = $form.find("button[type='submit']");
+      const originalText = $btn.text();
+
+      // Show spinner and disable button
+      $btn
+        .addClass("loading")
+        .html(
+          '<span class="spinner-border spinner-border-sm me-2" role="status"></span> Please wait...'
+        )
+        .prop("disabled", true);
+
+      // Simulate async action (like saving)
+      setTimeout(() => {
+        $btn.removeClass("loading").prop("disabled", false).text(originalText);
+        $form.trigger("reset");
+      }, 2000);
+    });
+  }
+
+  // Apply to both forms
+  attachLoadingSpinner("#addRecipeForm");
+  attachLoadingSpinner("#editProfileForm");
+});
+
+// ===== Task 8: Copy to Clipboard Buttons =====
+document.addEventListener("DOMContentLoaded", () => {
+  const copyButtons = document.querySelectorAll(".btn-copy");
+
+  copyButtons.forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      const text = btn.getAttribute("data-text");
+      try {
+        await navigator.clipboard.writeText(text);
+        btn.classList.add("copied");
+        btn.textContent = "✅ Copied!";
+        setTimeout(() => {
+          btn.classList.remove("copied");
+          btn.textContent = "📋 Copy";
+        }, 2000);
+      } catch (err) {
+        alert("Failed to copy text. Try again!");
+      }
+    });
+  });
+});
+
+// ===== Task 9: Lazy Loading for Images =====
+document.addEventListener("DOMContentLoaded", () => {
+  const lazyImages = document.querySelectorAll(".lazy-image");
+
+  const loadImage = (img) => {
+    const src = img.getAttribute("data-src");
+    if (!src) return;
+    img.src = src;
+    img.removeAttribute("data-src");
+  };
+
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        loadImage(entry.target);
+        observer.unobserve(entry.target);
+      }
+    });
+  });
+
+  lazyImages.forEach(img => observer.observe(img));
+});

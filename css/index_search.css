@@ -343,3 +343,28 @@ footer {
   border-radius: 4px;
   padding: 2px 4px;
 }
+#scrollProgressContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  background-color: #222; /* dark background for contrast */
+  z-index: 1000;
+}
+
+#scrollProgressBar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #ffcc00, #ff6f61, #f06292, #42a5f5);
+  background-size: 400% 100%;
+  border-radius: 0 4px 4px 0;
+  transition: width 0.15s ease-out;
+  animation: gradientMove 4s linear infinite;
+}
+
+/* Animated gradient effect */
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
