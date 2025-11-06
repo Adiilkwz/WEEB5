@@ -40,7 +40,7 @@
         <li class="nav-item"><a class="nav-link" href="account.html">Profile</a></li>
         <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
         <li class="nav-item"><button id="openPopup" class="btn btn-mustard ms-2">Subscribe</li>
-        <li class="nav-item"><button id="changeBgBtn" class="btn btn-mustard ms-2">Change Background</button></li>
+        <li class="nav-item"><button id="toggleModeBtn" class="btn btn-mustard ms-2">Toogle Mode</button></li>
         <li class="nav-item d-flex align-items-center ms-3"><span id="dateTimeDisplay" class="text-white small"></span></li>
       </ul>
     </div>
@@ -58,7 +58,6 @@
                 <li><a href="#friends" class="text-dark-brown text-decoration-none">My Friends</a></li>
                 <li><a href="#addfriends" class="text-dark-brown text-decoration-none">Add Friends</a></li>
                 <li><a href="#suggested" class="text-dark-brown text-decoration-none">Suggested friends</a></li>
-                <li><a href="#faq" class="text-dark-brown text-decoration-none">FAQ</a></li>
               </ol>
           </div>
         </aside>
@@ -134,61 +133,8 @@
             </div>
           </div>
         </section>
-        <!-- ===== Task 2: FAQ Accordion ===== -->
-        <section id="faq" class="section mb-5">
-        <h2 class="section-title mb-3">Frequently Asked Questions</h2>
-
-        <!-- 🔍 FAQ Search Field -->
-        <input type="text" id="faqSearch" class="form-control mb-3" placeholder="Search in FAQ...">
-  
-        <div class="faq-container p-3 rounded">
-          <div class="faq-item">
-          <h5 class="faq-question">How can I add new friends on Nyam-Nyam?</h5>
-          <div class="faq-answer">
-            <p>To add friends, go to the "Friends" page and use the search bar to find users by name or email. Then click the "Add Friend" button.</p>
-          </div>
-          </div>
-
-          <div class="faq-item">
-          <h5 class="faq-question">Can I remove a friend after adding them?</h5>
-          <div class="faq-answer">
-           <p>Yes! On the "Friends" page, each friend has a "Delete" button next to their name. Click it to remove them from your list.</p>
-          </div>
-          </div>
-
-          <div class="faq-item">
-          <h5 class="faq-question">Will my friends see my recipes and activities?</h5>
-          <div class="faq-answer">
-            <p>Your friends can see your public recipes and interactions, such as likes and comments, depending on your privacy settings.</p>
-          </div>
-          </div>
-        </div>
-<<<<<<< HEAD
       </section>
-=======
 </section>
->>>>>>> 5091f55cc8049d7eae1b354d09cb918df154b53a
-        <!-- Contact Form for Task 2 -->
-                <section id="contact" class="section mt-5">
-                <h2 class="section-title mb-3">Contact Us</h2>
-                <form id="contactForm" class="p-3 rounded">
-                    <div class="mb-3">
-                    <label for="name" class="form-label">Name:</label>
-                    <input type="text" id="name" name="name" class="form-control" required />
-                    </div>
-                    <div class="mb-3">
-                    <label for="email" class="form-label">Email:</label>
-                    <input type="email" id="email" name="email" class="form-control" required />
-                    </div>
-                    <div class="mb-3">
-                    <label for="message" class="form-label">Message:</label>
-                    <textarea id="message" name="message" class="form-control" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-outline-dark-brown">Send</button>
-                </form>
-                <p id="contactStatus" class="mt-2"></p>
-                </section>
-      </main>
     </div>
   </div>
       </main>
@@ -219,6 +165,8 @@
   
 <!-- JS dynamic section placeholder -->
 <div id="js-dynamic-section" class="container my-5"></div>
+<!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
   <!-- ===== Footer ===== -->
   <footer class="text-center text-white py-3 mt-4 bg-dark-brown">
