@@ -344,4 +344,3 @@ footer {
 /* optional vertical variant (if you want a vertical bar later) */
 #scrollProgress.vertical { width: 10px; height: 100%; top: 0; left: auto; right: 0; }
 #scrollProgress.vertical #scrollProgressFill { width: 100%; height: 0%; transform-origin: bottom center; }
-
