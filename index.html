@@ -34,7 +34,7 @@
         <li class="nav-item"><a class="nav-link" href="account.html">Profile</a></li>
         <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
         <li class="nav-item"><button id="openPopup" class="btn btn-mustard ms-2">Subscribe</li>
-        <li class="nav-item"><button id="changeBgBtn" class="btn btn-mustard ms-2">Change Background</button></li>
+        <li class="nav-item"><button id="toggleModeBtn" class="btn btn-mustard ms-2">Toogle Mode</button></li>
         <li class="nav-item d-flex align-items-center ms-3"><span id="dateTimeDisplay" class="text-white small"></span></li>
       </ul>
     </div>
@@ -56,6 +56,7 @@
             <li><a href="#welcome" class="text-dark-brown text-decoration-none">Main</a></li>
             <li><a href="#featured" class="text-dark-brown text-decoration-none">Featured Recipes</a></li>
             <li><a href="#faq" class="text-dark-brown text-decoration-none">FAQ</a></li>
+            <li><a href="#contact" class="text-dark-brown text-decoration-none">Contact Us</a></li>
           </ol>
         </div>
       </aside>
@@ -91,7 +92,6 @@
                 <div class="card-body">
                   <h5 class="card-title">Classic Lasagna</h5>
                   <p class="card-text">A delicious Italian dish with layers of pasta, meat, and cheese.</p>
-                  <button class="btn btn-mustard w-100">View Recipe</button>
                 </div>
               </div>
             </div>
@@ -102,7 +102,6 @@
                 <div class="card-body">
                   <h5 class="card-title">Chocolate Brownies</h5>
                   <p class="card-text">Rich and fudgy brownies, perfect with a cup of coffee.</p>
-                  <button class="btn btn-mustard w-100">View Recipe</button>
                 </div>
               </div>
             </div>
@@ -113,7 +112,6 @@
                 <div class="card-body">
                   <h5 class="card-title">Fresh Salad</h5>
                   <p class="card-text">A healthy mix of greens, tomatoes, and cucumber with olive oil.</p>
-                  <button class="btn btn-mustard w-100">View Recipe</button>
                 </div>
               </div>
             </div>
@@ -134,7 +132,7 @@
               <p class="faq-answer">Simply click on the "Login" page and sign up using your email address or social media account.</p>
             </div>
 
-            <div class="faq-item">
+            <div class="faq-item mb-3">
               <h5 class="faq-question">Can I share my own recipes?</h5>
               <p class="faq-answer">Yes! Go to the “Add Recipe” page to upload your ingredients, instructions, and a photo of your dish.</p>
             </div>
@@ -156,7 +154,7 @@
           <label for="message" class="form-label">Message:</label>
           <textarea id="message" name="message" class="form-control" required></textarea>
           </div>
-          <button type="submit" class="btn btn-outline-dark-brown">Send</button>
+          <button type="submit" class="btn btn-mustard">Send</button>
           </form>
             <p id="contactStatus" class="mt-2"></p>
         </section>
@@ -187,11 +185,12 @@
   <footer class="bg-dark-brown text-center text-white py-3 mt-4">
     <p class="m-0">&copy; 2025 Nyam-Nyam. Adil, Yerassyl, Yesbol, Bekarys. All rights reserved.</p>
   </footer>
-  '
+  
   <!-- jQuery -->
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+ 
   <script src="js/index_search.js"></script>
 </body>
 </html>

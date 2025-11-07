@@ -7,10 +7,48 @@
 
 /* ===== Общие стили ===== */
 body {
-  font-family: "Times New Roman", Times, serif;
-  background-size: cover;
-  color: var(--dark-brown);
-  min-height: 100vh;
+  background-color: #FFFFFF;  /* White background */
+  color: #5C4033;             /* Dark brown text */
+}
+
+/* Dark mode styles */
+body.dark-mode {
+  background-color: #2C2C2C;  /* Dark gray background */
+  color: #D8A300;             /* Light mustard text */
+}
+
+/* Containers (change color to dark brown and text to white in dark mode) */
+body.dark-mode .container, 
+body.dark-mode .section, 
+body.dark-mode .sidebar {
+  background-color: #5C4033;  /* Dark brown container background */
+  color: #FFFFFF;             /* White text */
+}
+
+/* Sidebar specific background color in dark mode */
+body.dark-mode .container-fluid .sidebar .p-3.bg-light-mustard {
+  background-color: #5C4033;  /* Dark brown background for sidebar */
+  color: #FFFFFF;             /* White text */
+}
+
+/* Sidebar links in dark mode */
+body.dark-mode .container-fluid .sidebar a {
+  color: #FFFFFF;             /* White text for links in dark mode */
+}
+
+body.dark-mode .container-fluid .sidebar a:hover {
+  color: #D8A300;             /* Light mustard color on hover */
+}
+
+/* Buttons (to match dark mode color scheme) */
+button.dark-mode {
+  background-color: #5C4033;  /* Dark brown */
+  color: #D8A300;             /* Light mustard text */
+}
+
+button.light-mode {
+  background-color: #D8A300;  /* Mustard */
+  color: #5C4033;             /* Dark brown text */
 }
 
 /* Логотип */
@@ -45,6 +83,46 @@ body {
 .btn-outline-dark-brown:hover {
   background-color: var(--dark-brown);
   color: var(--mustard);
+}
+
+/* Reset button: white background with dark-brown text */
+button[type="reset"].btn-outline-dark-brown {
+  background-color: #FFFFFF; /* White background */
+  color: #5C4033;            /* Dark brown text */
+  border: 2px solid #5C4033; /* Dark brown border */
+}
+
+/* Hover effect: dark-brown background with white text */
+button[type="reset"].btn-outline-dark-brown:hover {
+  background-color: #5C4033; /* Dark brown background */
+  color: #FFFFFF;            /* White text */
+}
+
+/* Default (light mode) styles for the Read More button */
+button#readMoreBtn {
+  background-color: #D8A300;  /* Mustard background for light mode */
+  color: #5C4033;             /* Dark brown text */
+  border: none;
+  padding: 8px 16px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button#readMoreBtn:hover {
+  background-color: #5C4033;  /* Dark brown background on hover */
+  color: #FFFFFF;             /* White text on hover */
+}
+
+/* Dark mode styles for the Read More button */
+body.dark-mode button#readMoreBtn {
+  background-color: #D8A300;  /* Mustard background in dark mode */
+  color: #5C4033;             /* Dark brown text in dark mode */
+}
+
+body.dark-mode button#readMoreBtn:hover {
+  background-color: #5C4033;  /* Dark brown background on hover */
+  color: #FFFFFF;             /* White text on hover */
 }
 
 /* ===== Боковое меню ===== */
@@ -187,40 +265,6 @@ footer {
     height: 200px;
   }
 }
-/* ===== Task 2: FAQ Accordion Styles ===== */
-.faq-container {
-  margin: 0 auto;
-}
-
-.faq-item {
-  border-bottom: 1px solid rgba(92, 64, 51, 0.3);
-  padding: 15px 0;
-}
-
-.faq-question {
-  cursor: pointer;
-  position: relative;
-  font-weight: bold;
-  color: var(--dark-brown);
-  transition: color 0.3s ease;
-}
-
-.faq-question:hover {
-  color: var(--mustard);
-}
-
-.faq-answer {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s ease, opacity 0.4s ease;
-  opacity: 0;
-}
-
-.faq-answer.show {
-  max-height: 200px;
-  opacity: 1;
-  margin-top: 10px;
-}
 /* ===== Task 3: Popup Subscription Form ===== */
 .popup-overlay {
   display: none; /* hidden by default */
@@ -266,33 +310,6 @@ footer {
   to { opacity: 1; transform: scale(1); }
 }
 
-#changeBgBtn {
-  transition: background-color 0.3s, color 0.3s;
-}
-
-/* ===== Task 1: Star Rating Styles ===== */
-#stars {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  cursor: pointer;
-}
-
-.star {
-  transition: transform 0.2s ease, color 0.2s ease;
-}
-.star:hover {
-  transform: scale(1.2);
-  color: var(--mustard);
-}
-
-/* ===== Logo Animation ===== */
-.logo {
-  transition: transform 0.4s ease;
-}
-.logo:hover {
-  transform: rotate(-5deg) scale(1.05);
-}
 
 /* ===== Scroll Progress Bar ===== */
 #scrollProgress {
@@ -315,25 +332,9 @@ footer {
   background: linear-gradient(90deg, #D8A300 0%, #FF7A18 50%, #FF3CAC 100%);
   transform-origin: left center;
   transition: width 120ms linear, background 300ms ease;
-  box-shadow: 0 0 12px rgba(216,163,0,0.18), inset 0 -2px 8px rgba(0,0,0,0.06);
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.18), inset 0 -2px 8px rgba(0,0,0,0.06);
 }
 
-/* percentage bubble */
-#scrollProgressLabel {
-  position: fixed;
-  top: 12px; /* slightly below bar */
-  right: 18px;
-  font-size: 12px;
-  font-weight: 700;
-  color: #5C4033;
-  background: rgba(255,248,225,0.95);
-  padding: 6px 8px;
-  border-radius: 999px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
-  z-index: 10000;
-  pointer-events: none;
-  transition: transform 180ms ease, opacity 180ms ease;
-}
 
 /* hide on very small screens to avoid overlap */
 @media (max-width: 480px) {
@@ -343,4 +344,3 @@ footer {
 /* optional vertical variant (if you want a vertical bar later) */
 #scrollProgress.vertical { width: 10px; height: 100%; top: 0; left: auto; right: 0; }
 #scrollProgress.vertical #scrollProgressFill { width: 100%; height: 0%; transform-origin: bottom center; }
-

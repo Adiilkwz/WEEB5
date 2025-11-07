@@ -105,25 +105,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-// ===== Task 2: FAQ Accordion =====
-document.addEventListener("DOMContentLoaded", () => {
-  const questions = document.querySelectorAll(".faq-question");
-
-  questions.forEach((q) => {
-    q.addEventListener("click", () => {
-      const answer = q.nextElementSibling;
-
-      // Toggle active state
-      answer.classList.toggle("show");
-
-      // Close others when opening a new one
-      questions.forEach((other) => {
-        if (other !== q) other.nextElementSibling.classList.remove("show");
-      });
-    });
-  });
-});
-
 // ===== Task 3: Popup Subscription Form =====
 document.addEventListener("DOMContentLoaded", () => {
   const openBtn = document.getElementById("openPopup");
@@ -169,28 +150,41 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // ===== Task 4: Change Background Color =====
 document.addEventListener("DOMContentLoaded", () => {
-  const changeBgBtn = document.getElementById("changeBgBtn");
-  const body = document.body;
+const toggleModeBtn = document.getElementById("toggleModeBtn");
+const body = document.body;
+   // Check local storage for saved mode preference
+  const savedMode = localStorage.getItem("theme");
 
-  // Predefined color palette (matches your theme)
-  const colors = [
-    "#FFF8E1", // light mustard
-    "#F0EAD6", // cream
-    "#D8A300", // mustard
-    "#5C4033", // dark brown
-    "#FCEACB", // peachy light
-  ];
+  // Apply the saved mode (if any)
+  if (savedMode === "dark") {
+    body.classList.add("dark-mode");
+    toggleModeBtn.classList.add("dark-mode");
+    toggleModeBtn.textContent = "Switch to Light Mode";
+  } else {
+    body.classList.remove("dark-mode");
+    toggleModeBtn.classList.remove("dark-mode");
+    toggleModeBtn.textContent = "Switch to Dark Mode";
+  }
 
-  let currentIndex = 0;
-
-  changeBgBtn.addEventListener("click", () => {
-    // Cycle through colors
-    currentIndex = (currentIndex + 1) % colors.length;
-    body.style.backgroundColor = colors[currentIndex];
-    body.style.transition = "background-color 0.6s ease";
+  // Toggle between light and dark modes when the button is clicked
+  toggleModeBtn.addEventListener("click", () => {
+    if (body.classList.contains("dark-mode")) {
+      // Switch to light mode
+      body.classList.remove("dark-mode");
+      toggleModeBtn.classList.remove("dark-mode");
+      toggleModeBtn.textContent = "Switch to Dark Mode";
+      // Save preference to local storage
+      localStorage.setItem("theme", "light");
+    } else {
+      // Switch to dark mode
+      body.classList.add("dark-mode");
+      toggleModeBtn.classList.add("dark-mode");
+      toggleModeBtn.textContent = "Switch to Light Mode";
+      // Save preference to local storage
+      localStorage.setItem("theme", "dark");
+    }
   });
 });
-
 // ===== Task 5: Display Current Date and Time =====
 document.addEventListener("DOMContentLoaded", () => {
   const dateTimeDisplay = document.getElementById("dateTimeDisplay");
@@ -283,7 +277,7 @@ function sendFormData(data, callback) {
     .catch(() => alert("❌ Network Error"));
 }
 
-// 4️⃣ — Switch Statement: Greeting Based on Time
+// ===== Task 2: Switch Statement – Greeting Based on Time of Day =====
 document.addEventListener("DOMContentLoaded", () => {
   const navbar = document.querySelector(".navbar .navbar-nav");
   if (!navbar) return;

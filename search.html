@@ -34,7 +34,7 @@
         <li class="nav-item"><a class="nav-link" href="account.html">Profile</a></li>
         <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
         <li class="nav-item"><button id="openPopup" class="btn btn-mustard ms-2">Subscribe</button></li>
-        <li class="nav-item"><button id="changeBgBtn" class="btn btn-mustard ms-2">Change Background</button></li>
+        <li class="nav-item"><button id="toggleModeBtn" class="btn btn-mustard ms-2">Toogle Mode</button></li>
         <li class="nav-item ms-3"><span id="dateTimeDisplay" class="text-white small"></span></li>
       </ul>
     </div>
@@ -54,8 +54,6 @@
           <h3 class="fw-bold mb-3">Search Sections</h3>
           <ol class="list-unstyled">
             <li><a href="#featured" class="text-dark-brown text-decoration-none">Featured Recipes</a></li>
-            <li><a href="#faq" class="text-dark-brown text-decoration-none">FAQ</a></li>
-            <li><a href="#contact" class="text-dark-brown text-decoration-none">Contact</a></li>
           </ol>
         </div>
       </aside>
@@ -81,7 +79,6 @@
                 <div class="card-body">
                   <h5 class="card-title">Creamy Pasta</h5>
                   <p class="card-text">Pasta with creamy sauce and parmesan cheese.</p>
-                  <button class="btn btn-mustard w-100">View Recipe</button>
                 </div>
               </div>
             </div>
@@ -92,7 +89,6 @@
                 <div class="card-body">
                   <h5 class="card-title">Grilled Chicken</h5>
                   <p class="card-text">Juicy chicken breast with spices and herbs.</p>
-                  <button class="btn btn-mustard w-100">View Recipe</button>
                 </div>
               </div>
             </div>
@@ -102,77 +98,37 @@
                 <div class="card-body">
                   <h5 class="card-title">Fruit Dessert</h5>
                   <p class="card-text">Refreshing mix of berries with cream.</p>
-                  <button class="btn btn-mustard w-100">View Recipe</button>
                 </div>
               </div>
             </div>
           </div>
         </section>
-
-        <!-- ===== FAQ Section ===== -->
-        <section id="faq" class="section mb-5">
-          <h2 class="section-title mb-3">Frequently Asked Questions</h2>
-          <div class="faq-container p-3 rounded bg-light-mustard">
-            <div class="faq-item mb-3">
-              <h5 class="faq-question">What is Nyam-Nyam?</h5>
-              <p class="faq-answer">Nyam-Nyam is a platform where users can explore, share, and create recipes while connecting with a community of food lovers.</p>
-            </div>
-
-            <div class="faq-item mb-3">
-              <h5 class="faq-question">How do I create an account?</h5>
-              <p class="faq-answer">Simply click on the "Login" page and sign up using your email address or social media account.</p>
-            </div>
-
-            <div class="faq-item">
-              <h5 class="faq-question">Can I share my own recipes?</h5>
-              <p class="faq-answer">Yes! Go to the “Add Recipe” page to upload your ingredients, instructions, and a photo of your dish.</p>
-            </div>
-          </div>
-        </section>
-
-        <!-- ===== Contact Form ===== -->
-        <section id="contact" class="section mt-5">
-          <h2 class="section-title mb-3">Contact Us</h2>
-          <form id="contactForm" class="p-3 rounded">
-            <div class="mb-3">
-              <label for="name" class="form-label">Name:</label>
-              <input type="text" id="name" name="name" class="form-control" required />
-            </div>
-            <div class="mb-3">
-              <label for="email" class="form-label">Email:</label>
-              <input type="email" id="email" name="email" class="form-control" required />
-            </div>
-            <div class="mb-3">
-              <label for="message" class="form-label">Message:</label>
-              <textarea id="message" name="message" class="form-control" required></textarea>
-            </div>
-            <button type="submit" class="btn btn-outline-dark-brown">Send</button>
-          </form>
-          <p id="contactStatus" class="mt-2"></p>
-        </section>
       </main>
+     </div>
     </div>
-  </div>
 
-  <!-- ===== Popup Form for Subscribe ===== -->
-  <div id="popupOverlay" class="popup-overlay">
-    <div class="popup-content bg-light-mustard p-4 rounded">
-      <button id="closePopup" class="close-btn">&times;</button>
-      <h4 class="mb-3 text-center text-dark-brown">Subscribe to Nyam-Nyam</h4>
-      <form id="popupForm">
-        <div class="mb-3">
-          <label for="popupName" class="form-label fw-bold">Name:</label>
-          <input type="text" id="popupName" class="form-control" placeholder="Enter your name">
+        <!-- ===== Popup Form for Subscribe ===== -->
+      <div id="popupOverlay" class="popup-overlay">
+        <div class="popup-content bg-light-mustard p-4 rounded">
+          <button id="closePopup" class="close-btn">&times;</button>
+          <h4 class="mb-3 text-center text-dark-brown">Subscribe to Nyam-Nyam</h4>
+          <form id="popupForm">
+            <div class="mb-3">
+              <label for="popupName" class="form-label fw-bold">Name:</label>
+              <input type="text" id="popupName" class="form-control" placeholder="Enter your name">
+            </div>
+            <div class="mb-3">
+              <label for="popupEmail" class="form-label fw-bold">Email:</label>
+              <input type="email" id="popupEmail" class="form-control" placeholder="Enter your email">
+            </div>
+            <button type="submit" class="btn btn-mustard w-100">Subscribe</button>
+          </form>
         </div>
-        <div class="mb-3">
-          <label for="popupEmail" class="form-label fw-bold">Email:</label>
-          <input type="email" id="popupEmail" class="form-control" placeholder="Enter your email">
-        </div>
-        <button type="submit" class="btn btn-mustard w-100">Subscribe</button>
-      </form>
-    </div>
-  </div>
+      </div>
 
+  
+  
+  
   <!-- ===== Footer ===== -->
   <footer class="bg-dark-brown text-center text-white py-3 mt-4">
     <p class="m-0">&copy; 2025 Nyam-Nyam. Adil, Yerassyl, Yesbol, Bekarys. All rights reserved.</p>
@@ -180,9 +136,9 @@
 
   <!-- jQuery -->
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+ 
   <script src="js/index_search.js"></script>
 </body>
 </html>
