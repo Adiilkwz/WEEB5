@@ -497,31 +497,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ===== Task 3: FAQ Search Highlighting =====
-  const faqSearch = document.createElement("input");
-  faqSearch.classList.add("form-control", "mb-3");
-  faqSearch.placeholder = "Search FAQ...";
-  const faqSection = document.querySelector("#faq .faq-container");
-
-  if (faqSection) {
-    faqSection.insertAdjacentElement("beforebegin", faqSearch);
-
-    faqSearch.addEventListener("input", () => {
-      const query = faqSearch.value.trim();
-      const items = faqSection.querySelectorAll(".faq-question, .faq-answer");
-
-      items.forEach(el => {
-        const text = el.textContent;
-        if (!query) {
-          el.innerHTML = text;
-          return;
-        }
-        const regex = new RegExp(`(${query})`, "gi");
-        el.innerHTML = text.replace(regex, `<mark style="background-color:#D8A300;">$1</mark>`);
-      });
-    });
-  }
-
   // ===== Task 4: Contact Form Submission (Simple Feedback) =====
   const contactForm = document.getElementById("contactForm");
   const contactStatus = document.getElementById("contactStatus");
