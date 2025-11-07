@@ -169,25 +169,39 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // ===== Task 4: Change Background Color =====
 document.addEventListener("DOMContentLoaded", () => {
-  const changeBgBtn = document.getElementById("changeBgBtn");
-  const body = document.body;
+const toggleModeBtn = document.getElementById("toggleModeBtn");
+const body = document.body;
+   // Check local storage for saved mode preference
+  const savedMode = localStorage.getItem("theme");
 
-  // Predefined color palette (matches your theme)
-  const colors = [
-    "#FFF8E1", // light mustard
-    "#F0EAD6", // cream
-    "#D8A300", // mustard
-    "#5C4033", // dark brown
-    "#FCEACB", // peachy light
-  ];
+  // Apply the saved mode (if any)
+  if (savedMode === "dark") {
+    body.classList.add("dark-mode");
+    toggleModeBtn.classList.add("dark-mode");
+    toggleModeBtn.textContent = "Switch to Light Mode";
+  } else {
+    body.classList.remove("dark-mode");
+    toggleModeBtn.classList.remove("dark-mode");
+    toggleModeBtn.textContent = "Switch to Dark Mode";
+  }
 
-  let currentIndex = 0;
-
-  changeBgBtn.addEventListener("click", () => {
-    // Cycle through colors
-    currentIndex = (currentIndex + 1) % colors.length;
-    body.style.backgroundColor = colors[currentIndex];
-    body.style.transition = "background-color 0.6s ease";
+  // Toggle between light and dark modes when the button is clicked
+  toggleModeBtn.addEventListener("click", () => {
+    if (body.classList.contains("dark-mode")) {
+      // Switch to light mode
+      body.classList.remove("dark-mode");
+      toggleModeBtn.classList.remove("dark-mode");
+      toggleModeBtn.textContent = "Switch to Dark Mode";
+      // Save preference to local storage
+      localStorage.setItem("theme", "light");
+    } else {
+      // Switch to dark mode
+      body.classList.add("dark-mode");
+      toggleModeBtn.classList.add("dark-mode");
+      toggleModeBtn.textContent = "Switch to Light Mode";
+      // Save preference to local storage
+      localStorage.setItem("theme", "dark");
+    }
   });
 });
 
@@ -538,18 +552,6 @@ document.addEventListener("DOMContentLoaded", () => {
       if (e.target === popupOverlay) popupOverlay.style.display = "none";
     });
   }
-
-  // ===== Task 6: Date and Time Display =====
-  const dateTimeDisplay = document.getElementById("dateTimeDisplay");
-  if (dateTimeDisplay) {
-    function updateDateTime() {
-      const now = new Date();
-      dateTimeDisplay.textContent = now.toLocaleString();
-    }
-    updateDateTime();
-    setInterval(updateDateTime, 1000);
-  }
-
   // ===== Task 7: Change Background Button =====
   const changeBgBtn = document.getElementById("changeBgBtn");
   const bgColors = ["#fff8e1", "#fce4ec", "#e8f5e9", "#e3f2fd", "#f3e5f5"];
@@ -561,11 +563,4 @@ document.addEventListener("DOMContentLoaded", () => {
       document.body.style.backgroundColor = bgColors[bgIndex];
     });
   }
-});
-
-
-$(document).ready(function() {
-  $().click(function(){
-    $().text("текст изменился ")
-  });
 });
