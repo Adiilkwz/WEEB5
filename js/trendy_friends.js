@@ -380,7 +380,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const applyTheme = () => {
     const isDark = document.body.classList.contains("dark-mode");
     suggestionBox.style.background = isDark ? "#5C4033" : " #fffbea"; // фон
-    suggestionBox.style.color = isDark ? "#ffffffff" : "#000000";      // текст
+    suggestionBox.style.color = isDark ? "#000000ff" : "#000000";      // текст
     suggestionBox.style.border = isDark
       ? "1px solid rgba(255,255,255,0.3)"
       : "1px solid #ccc";
@@ -423,7 +423,7 @@ document.addEventListener("DOMContentLoaded", () => {
           padding: "8px 12px",
           cursor: "pointer",
           transition: "background 0.2s",
-          color: isDark ? "#ffffffff" : "#ffffffff"
+          color: isDark ? "#ffffffff" : "#000000ff"
         });
 
         div.addEventListener("mouseenter", () => {
