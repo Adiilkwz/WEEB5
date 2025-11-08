@@ -118,6 +118,35 @@ body.dark-mode .faq-answer {
   color: var(--white) !important;
 }
 
+/* ===== Form Dark Mode ===== */
+body.dark-mode form.bg-light-mustard {
+  background-color: var(--dark-brown) !important;
+  color: var(--white) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Input field inside dark mode form */
+body.dark-mode form.bg-light-mustard input.form-control {
+  background-color: #3a3a3a !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+body.dark-mode form.bg-light-mustard input.form-control::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Button inside the form */
+body.dark-mode form.bg-light-mustard .btn.btn-mustard {
+  background-color: var(--mustard) !important;
+  color: var(--dark-brown) !important;
+  border: none;
+}
+
+body.dark-mode form.bg-light-mustard .btn.btn-mustard:hover {
+  background-color: var(--white) !important;
+  color: var(--dark-brown) !important;
+}
 
 
 /* Логотип */

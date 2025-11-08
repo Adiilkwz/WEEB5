@@ -420,82 +420,106 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ===== Task 2: Autocomplete for Featured Recipes =====
-  if (searchInput) {
-    // Собираем все названия рецептов из карточек
-    const recipeNames = Array.from(recipeCards).map(card =>
-      card.querySelector(".card-title").textContent.trim()
+if (searchInput) {
+  // Собираем все названия рецептов из карточек
+  const recipeNames = Array.from(recipeCards).map(card =>
+    card.querySelector(".card-title").textContent.trim()
+  );
+
+  // Создаём выпадающий контейнер
+  const suggestionBox = document.createElement("div");
+  suggestionBox.classList.add("autocomplete-suggestions");
+  Object.assign(suggestionBox.style, {
+    position: "absolute",
+    top: "100%",
+    left: "0",
+    right: "0",
+    borderRadius: "8px",
+    maxHeight: "200px",
+    overflowY: "auto",
+    zIndex: "2000",
+    display: "none",
+    boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
+    transition: "background 0.3s, color 0.3s, border 0.3s"
+  });
+
+  // Функция для применения темы
+  const applyTheme = () => {
+    const isDark = document.body.classList.contains("dark-mode");
+    suggestionBox.style.background = isDark ? "#5C4033" : "#5C4033"; // фон
+    suggestionBox.style.color = isDark ? "#ffffffff" : "#000000"         // текст
+    suggestionBox.style.border = isDark
+      ? "1px solid rgba(255,255,255,0.3)"
+      : "1px solid #ccc";
+  };
+
+  // Первичное применение
+  applyTheme();
+
+  const wrapper = searchInput.parentElement;
+  wrapper.style.position = "relative";
+  wrapper.appendChild(suggestionBox);
+
+  // Слушатель для изменения темы
+  const observer = new MutationObserver(applyTheme);
+  observer.observe(document.body, { attributes: true, attributeFilter: ["class"] });
+
+  searchInput.addEventListener("input", () => {
+    const query = searchInput.value.toLowerCase().trim();
+    suggestionBox.innerHTML = "";
+
+    if (!query) {
+      suggestionBox.style.display = "none";
+      return;
+    }
+
+    const filtered = recipeNames.filter(name =>
+      name.toLowerCase().includes(query)
     );
+    const randomResults = filtered.sort(() => 0.5 - Math.random()).slice(0, 5);
 
-    // Создаём выпадающий контейнер
-    const suggestionBox = document.createElement("div");
-    suggestionBox.classList.add("autocomplete-suggestions");
-    suggestionBox.style.position = "absolute";
-    suggestionBox.style.top = "100%";
-    suggestionBox.style.left = "0";
-    suggestionBox.style.right = "0";
-    suggestionBox.style.background = "#fff8e1";
-    suggestionBox.style.border = "1px solid #ccc";
-    suggestionBox.style.borderRadius = "8px";
-    suggestionBox.style.maxHeight = "200px";
-    suggestionBox.style.overflowY = "auto";
-    suggestionBox.style.zIndex = "2000";
-    suggestionBox.style.display = "none";
-    suggestionBox.style.boxShadow = "0 4px 10px rgba(0,0,0,0.1)";
+    if (randomResults.length > 0) {
+      randomResults.forEach(name => {
+        const div = document.createElement("div");
+        div.textContent = name;
+        div.style.padding = "8px 12px";
+        div.style.cursor = "pointer";
 
-    const wrapper = searchInput.parentElement;
-    wrapper.style.position = "relative";
-    wrapper.appendChild(suggestionBox);
-
-    searchInput.addEventListener("input", () => {
-      const query = searchInput.value.toLowerCase().trim();
-      suggestionBox.innerHTML = "";
-
-      if (!query) {
-        suggestionBox.style.display = "none";
-        return;
-      }
-
-      // Фильтруем рецепты
-      const filtered = recipeNames.filter(name =>
-        name.toLowerCase().includes(query)
-      );
-
-      // Перемешиваем и показываем не больше 5 вариантов
-      const randomResults = filtered.sort(() => 0.5 - Math.random()).slice(0, 5);
-
-      if (randomResults.length > 0) {
-        randomResults.forEach(name => {
-          const div = document.createElement("div");
-          div.textContent = name;
-          div.style.padding = "8px 12px";
-          div.style.cursor = "pointer";
-          div.addEventListener("mouseenter", () => div.style.background = "#f0e6b1");
-          div.addEventListener("mouseleave", () => div.style.background = "transparent");
-          div.addEventListener("click", () => {
-            searchInput.value = name;
-            suggestionBox.style.display = "none";
-
-            // Также фильтруем карточки при выборе
-            recipeCards.forEach(card => {
-              const title = card.querySelector(".card-title").textContent.toLowerCase();
-              card.parentElement.style.display = title.includes(name.toLowerCase()) ? "block" : "none";
-            });
-          });
-          suggestionBox.appendChild(div);
+        div.addEventListener("mouseenter", () => {
+          div.style.background = document.body.classList.contains("dark-mode")
+            ? "#4b3621"
+            : "#f0e6b1";
         });
-        suggestionBox.style.display = "block";
-      } else {
-        suggestionBox.style.display = "none";
-      }
-    });
+        div.addEventListener("mouseleave", () => {
+          div.style.background = "transparent";
+        });
+        div.addEventListener("click", () => {
+          searchInput.value = name;
+          suggestionBox.style.display = "none";
+          recipeCards.forEach(card => {
+            const title = card.querySelector(".card-title").textContent.toLowerCase();
+            card.parentElement.style.display = title.includes(name.toLowerCase())
+              ? "block"
+              : "none";
+          });
+        });
 
-    // Закрытие по клику вне
-    document.addEventListener("click", (e) => {
-      if (!searchInput.contains(e.target) && !suggestionBox.contains(e.target)) {
-        suggestionBox.style.display = "none";
-      }
-    });
-  }
+        suggestionBox.appendChild(div);
+      });
+      suggestionBox.style.display = "block";
+    } else {
+      suggestionBox.style.display = "none";
+    }
+  });
+
+  // Закрытие по клику вне
+  document.addEventListener("click", (e) => {
+    if (!searchInput.contains(e.target) && !suggestionBox.contains(e.target)) {
+      suggestionBox.style.display = "none";
+    }
+  });
+}
+
 
   // ===== Task 4: Contact Form Submission (Simple Feedback) =====
   const contactForm = document.getElementById("contactForm");
