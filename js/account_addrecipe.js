@@ -380,3 +380,51 @@ document.addEventListener("DOMContentLoaded", () => {
 
   lazyImages.forEach(img => observer.observe(img));
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const chatBox = document.getElementById("chatBox");
+  const chatInput = document.getElementById("chatInput");
+  const chatSend = document.getElementById("chatSend");
+
+  async function sendMessage() {
+    const message = chatInput.value.trim();
+    if (!message) return;
+
+    // Сообщение пользователя
+    const userDiv = document.createElement("div");
+    userDiv.className = "user-msg";
+    userDiv.textContent = "You: " + message;
+    chatBox.appendChild(userDiv);
+    chatBox.scrollTop = chatBox.scrollHeight;
+    chatInput.value = "";
+
+    // Отправка на бекенд (Flask)
+    try {
+      const response = await fetch("http://localhost:5000/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message })
+      });
+      const data = await response.json();
+
+      const aiDiv = document.createElement("div");
+      aiDiv.className = "ai-msg";
+      aiDiv.textContent = "AI: " + (data.reply || data.error || "No response");
+      chatBox.appendChild(aiDiv);
+      chatBox.scrollTop = chatBox.scrollHeight;
+
+    } catch (err) {
+      const errorDiv = document.createElement("div");
+      errorDiv.textContent = "⚠️ Error: Could not get response from AI.";
+      errorDiv.style.color = "red";
+      chatBox.appendChild(errorDiv);
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+  }
+
+  chatSend.addEventListener("click", sendMessage);
+  chatInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") sendMessage();
+  });
+});
+
