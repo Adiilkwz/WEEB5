@@ -10,15 +10,12 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function showFieldError(field, message) {
-    // add bootstrap invalid class
     field.classList.add('is-invalid');
 
-    // create feedback element (Bootstrap's invalid-feedback is hidden by default, so add d-block)
     const err = document.createElement('div');
     err.className = 'invalid-feedback d-block js-error';
     err.textContent = message;
 
-    // insert after the field (works for inputs, textarea, select)
     if (field.nextElementSibling) {
       field.parentNode.insertBefore(err, field.nextElementSibling);
     } else {
@@ -207,7 +204,6 @@ document.addEventListener("DOMContentLoaded", () => {
     dateTimeDisplay.textContent = formattedDate;
   }
 
-  // Initial call + update every second
   updateDateTime();
   setInterval(updateDateTime, 1000);
 });
@@ -217,15 +213,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const navbar = document.querySelector(".navbar .navbar-nav");
   if (!navbar) return;
 
-  // Create a new span for greeting
   const greeting = document.createElement("li");
   greeting.className = "nav-item ms-3 text-mustard fw-bold";
 
-  // Get current hour
   const hour = new Date().getHours();
   let message = "";
 
-  // Determine greeting using switch statement
   switch (true) {
     case hour < 12:
       message = "Good Morning 🌞";
@@ -244,7 +237,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-// 🔽 NEW PART for Task 1 requirement: Manipulating Attributes (Read More Toggle)
+//Task 1 requirement: Manipulating Attributes (Read More Toggle)
 document.addEventListener("DOMContentLoaded", () => {
   const readMoreBtn = document.getElementById("readMoreBtn");
   const moreText = document.getElementById("moreText");
@@ -290,10 +283,8 @@ function attachFormSound(formId, onSubmit) {
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    // Optional custom handler logic for each form
     if (onSubmit) onSubmit(e, form);
 
-    // Play success sound
     playSuccessSound();
   });
 }
@@ -304,41 +295,6 @@ attachFormSound("popupForm", () => {
   alert("Thank you for subscribing!");
 });
 
-attachFormSound("contactForm", () => {
-  console.log("Contact form sent!");
-});
-
-// ===== Task 3: Animations =====
-document.addEventListener("DOMContentLoaded", () => {
-  // --- 1️⃣ Fade in navbar greeting ---
-  const greeting = document.querySelector(".navbar .nav-item.text-mustard");
-  if (greeting) {
-    greeting.classList.add("fade-in");
-    setTimeout(() => greeting.classList.add("show"), 100);
-  }
-
-  // --- 2️⃣ Pulse effect on successful form submission ---
-  const allForms = ["subscribeForm", "recipeForm", "editProfileForm", "contactForm"];
-  allForms.forEach(id => {
-    const form = document.getElementById(id);
-    if (!form) return;
-
-    form.addEventListener("submit", () => {
-      form.classList.add("pulse-success");
-      setTimeout(() => form.classList.remove("pulse-success"), 800);
-    });
-  });
-
-  // --- 3️⃣ Bounce animation on button click ---
-  const buttons = document.querySelectorAll("button, .btn");
-  buttons.forEach(btn => {
-    btn.addEventListener("click", () => {
-      btn.classList.add("bounce");
-      setTimeout(() => btn.classList.remove("bounce"), 300);
-    });
-  });
-});
-
 // ===== Task 4: Scroll Progress Bar using jQuery =====
 $(window).on("scroll", function() {
   const scrollTop = $(window).scrollTop();
@@ -347,17 +303,16 @@ $(window).on("scroll", function() {
   $("#scrollProgressBar").css("width", scrollPercent + "%");
 });
 
-/* ============================================================
-   ✅ Task 6: Loading Spinner on Submit (Edit + Add Forms)
-============================================================ */
+// Task 6: Loading Spinner on Submit (Edit + Add Forms)
+
 $(document).ready(function () {
   function attachLoadingSpinner(formSelector) {
     const $form = $(formSelector);
 
-    if ($form.length === 0) return; // skip if not found
+    if ($form.length === 0) return;
 
     $form.on("submit", function (e) {
-      e.preventDefault(); // prevent reload
+      e.preventDefault();
 
       const $btn = $form.find("button[type='submit']");
       const originalText = $btn.text();
@@ -370,7 +325,6 @@ $(document).ready(function () {
         )
         .prop("disabled", true);
 
-      // Simulate async action (like saving)
       setTimeout(() => {
         $btn.removeClass("loading").prop("disabled", false).text(originalText);
         $form.trigger("reset");
@@ -378,7 +332,6 @@ $(document).ready(function () {
     });
   }
 
-  // Apply to both forms
   attachLoadingSpinner("#addRecipeForm");
   attachLoadingSpinner("#editProfileForm");
 });
