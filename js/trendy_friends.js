@@ -379,8 +379,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // Function to apply color scheme
   const applyTheme = () => {
     const isDark = document.body.classList.contains("dark-mode");
-    suggestionBox.style.background = isDark ? "#5C4033" : "#5C4033"; // фон
-    suggestionBox.style.color = isDark ? "#000000" : "#000000";      // текст
+    suggestionBox.style.background = isDark ? "#5C4033" : " #fffbea"; // фон
+    suggestionBox.style.color = isDark ? "#ffffffff" : "#000000";      // текст
     suggestionBox.style.border = isDark
       ? "1px solid rgba(255,255,255,0.3)"
       : "1px solid #ccc";

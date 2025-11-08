@@ -446,7 +446,7 @@ if (searchInput) {
   // Функция для применения темы
   const applyTheme = () => {
     const isDark = document.body.classList.contains("dark-mode");
-    suggestionBox.style.background = isDark ? "#5C4033" : "#5C4033"; // фон
+    suggestionBox.style.background = isDark ? "#5C4033" : " #fffbea"; // фон
     suggestionBox.style.color = isDark ? "#ffffffff" : "#000000"         // текст
     suggestionBox.style.border = isDark
       ? "1px solid rgba(255,255,255,0.3)"
