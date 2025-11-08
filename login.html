@@ -11,13 +11,37 @@
   <!-- jQuery -->
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-
   <!-- Custom CSS -->
   <link rel="stylesheet" href="css/login_register.css">
+
+  <style>
+    .invalid { border: 2px solid red; }
+    .valid { border: 2px solid green; }
+    .error-message { color: red; font-size: 0.9rem; margin-top: 0.25rem; }
+    .toast-notification {
+      visibility: hidden;
+      min-width: 250px;
+      background-color: #5C4033;
+      color: #fff;
+      text-align: center;
+      border-radius: 5px;
+      padding: 10px;
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1000;
+      transition: visibility 0.3s, opacity 0.3s ease-in-out;
+      opacity: 0;
+    }
+    .toast-notification.show {
+      visibility: visible;
+      opacity: 1;
+    }
+  </style>
 </head>
 <body>
   <!-- Scroll Progress Bar -->
-<div id="scrollProgress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+  <div id="scrollProgress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
 
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark-brown px-3">
@@ -45,120 +69,167 @@
     </div>
   </nav>
 
-  <!-- Main Container -->
   <div class="container-fluid py-4 px-sm-2 px-md-4">
     <div class="row">
-
       <!-- Sidebar -->
       <aside class="col-lg-3 mb-4">
         <div class="p-3 bg-light-mustard rounded">
           <h3 class="fw-bold mb-3">Starting Menu</h3>
           <ol class="list-unstyled">
             <li><a href="#login" class="text-dark-brown text-decoration-none">Login</a></li>
-            <li><a href="#quickrecipes" class="text-dark-brown text-decoration-none">Quick Recipes</a></li>
+            <li><a href="#nyam-nyam in numbers" class="text-dark-brown text-decoration-none">Nyam-Nyam in Numbers</a></li>
+            <li><a href="#aboutNyam" class="text-dark-brown text-decoration-none">About Nyam-Nyam</a></li>
           </ol>
         </div>
       </aside>
 
- <!-- Main content -->
-<main class="col-lg-9">
+      <!-- Main content -->
+      <main class="col-lg-9">
+        <!-- Login Form -->
+        <section id="login" class="mb-5">
+          <div class="bg-light-mustard p-4 rounded" style="border: 1px solid #a88b5c;">
+            <h2 class="text-center mb-3">Login</h2>
+            <form id="loginForm">
+              <div class="mb-3">
+                <label for="email" class="form-label fw-bold">Email:</label>
+                <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
+                <div class="error-message" id="emailError"></div>
+              </div>
 
-  <!-- ===== Login Form ===== -->
-  <section id="login" class="mb-5">
-    <div class="bg-light-mustard p-4 rounded">
-      <h2 class="text-center mb-3">Login</h2>
-      <form>
-        <div class="mb-3">
-          <label for="email" class="form-label fw-bold">Email:</label>
-          <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
-        </div>
+              <div class="mb-3">
+                <label for="password" class="form-label fw-bold">Password:</label>
+                <input type="password" id="password" class="form-control" placeholder="Enter your password" required>
+                <div class="error-message" id="passwordError"></div>
+              </div>
 
-        <div class="mb-3">
-          <label for="password" class="form-label fw-bold">Password:</label>
-          <input type="password" id="password" class="form-control" placeholder="Enter your password" required>
-        </div>
-
-        <button type="submit" class="btn btn-mustard w-100 mb-2" onclick="window.location.href='index.html'">
-          Login
-        </button>
-        <p class="text-center mb-0">
-          Don’t have an account?
-          <a href="register.html" class="text-dark-brown fw-bold">Register here</a>
-        </p>
-      </form>
-    </div>
-  </section>
-
-  <!-- ===== Nyam-Nyam in Numbers ===== -->
-  <section id="stats" class="mb-5">
-    <div class="bg-light-mustard p-4 rounded">
-      <h2 class="text-center mb-4">Nyam-Nyam in Numbers</h2>
-      <div class="row g-4 justify-content-center">
-        <div class="col-6 col-md-4">
-          <div class="stat-card p-3 rounded">
-            <div class="stat-number"><span class="count" data-target="1200">0</span>+</div>
-            <p class="stat-label">Active Users</p>
+              <button type="submit" class="btn btn-mustard w-100 mb-2">Login</button>
+              <p class="text-center mb-0">
+                Don’t have an account?
+                <a href="register.html" class="text-dark-brown fw-bold">Register here</a>
+              </p>
+            </form>
           </div>
-        </div>
-        <div class="col-6 col-md-4">
-          <div class="stat-card p-3 rounded">
-            <div class="stat-number"><span class="count" data-target="350">0</span>+</div>
-            <p class="stat-label">Delicious Recipes</p>
+        </section>
+
+        <!-- Nyam-Nyam in Numbers -->
+        <section id="nyam-nyam in numbers" class="mb-5">
+          <div class="bg-light-mustard p-4 rounded" style="border: 1px solid #a88b5c;">
+            <h2 class="text-center mb-4">Nyam-Nyam in Numbers</h2>
+            <div class="row g-4 justify-content-center">
+              <div class="col-6 col-md-4">
+                <div class="stat-card p-3 rounded" style="border: 1px solid #a88b5c;">
+                  <div class="stat-number"><span class="count" data-target="1200">0</span>+</div>
+                  <p class="stat-label">Active Users</p>
+                </div>
+              </div>
+              <div class="col-6 col-md-4">
+                <div class="stat-card p-3 rounded" style="border: 1px solid #a88b5c;">
+                  <div class="stat-number"><span class="count" data-target="350">0</span>+</div>
+                  <p class="stat-label">Delicious Recipes</p>
+                </div>
+              </div>
+              <div class="col-6 col-md-4">
+                <div class="stat-card p-3 rounded" style="border: 1px solid #a88b5c;">
+                  <div class="stat-number"><span class="count" data-target="25">0</span>+</div>
+                  <p class="stat-label">World Cuisines</p>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="col-6 col-md-4">
-          <div class="stat-card p-3 rounded">
-            <div class="stat-number"><span class="count" data-target="25">0</span>+</div>
-            <p class="stat-label">World Cuisines</p>
+        </section>
+
+        <!-- About Nyam-Nyam -->
+        <section id="aboutNyam" class="mb-5">
+          <div class="bg-light-mustard p-4 rounded text-center" style="border: 1px solid #a88b5c;">
+            <h2 class="text-center mb-3">About Nyam-Nyam</h2>
+            <p id="shortText" class="text-dark-brown">
+              Nyam-Nyam is a food sharing community where users can explore delicious recipes and meet other food lovers.
+            </p>
+
+            <p id="moreText" class="text-dark-brown" style="display: none;">
+              We aim to connect people who love to cook and discover new dishes. On Nyam-Nyam, you can create your own recipes,
+              follow friends, like and comment on their posts, and explore trending dishes from around the world.
+            </p>
+
+            <button id="readMoreBtn" class="btn btn-mustard mt-2">Read More</button>
           </div>
-        </div>
-      </div>
+        </section>
+      </main>
     </div>
-  </section>
+  </div>
 
-  <!-- ===== About Nyam-Nyam Section ===== -->
-  <section id="aboutNyam" class="mb-5">
-    <div class="bg-light-mustard p-4 rounded">
-      <h2 class="text-center mb-3">About Nyam-Nyam</h2>
-      <p id="shortText" class="text-dark-brown">
-        Nyam-Nyam is a food sharing community where users can explore delicious recipes and meet other food lovers.
-      </p>
-
-      <p id="moreText" class="text-dark-brown" style="display: none;">
-        We aim to connect people who love to cook and discover new dishes. On Nyam-Nyam, you can create your own recipes,
-        follow friends, like and comment on their posts, and explore trending dishes from around the world.
-      </p>
-
-      <button id="readMoreBtn" class="btn btn-mustard mt-2">Read More</button>
-    </div>
-  </section>
-
-</main>
-
-<!-- ===== Toast Notification (Task 7) ===== -->
+  <!-- Toast Notification -->
   <div id="toast" class="toast-notification">
     <span id="toastMessage">Form submitted successfully!</span>
   </div>
 
-  <!-- Footer -->
-   </section> 
-  </main>
-</div>  <!-- если есть общий контейнер -->
-</div>  <!-- если есть ещё один -->
+  
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/login_register.js"></script>
+
+  <!-- Login Form Validation -->
+  <script>
+  const loginForm = document.getElementById('loginForm');
+  const emailInput = document.getElementById('email');
+  const passwordInput = document.getElementById('password');
+  const emailError = document.getElementById('emailError');
+  const passwordError = document.getElementById('passwordError');
+  const toast = document.getElementById('toast');
+
+  function showToast(message) {
+    const toastMsg = document.getElementById('toastMessage');
+    toastMsg.textContent = message;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 3000);
+  }
+
+  loginForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    emailInput.classList.remove('invalid', 'valid');
+    passwordInput.classList.remove('invalid', 'valid');
+    emailError.textContent = '';
+    passwordError.textContent = '';
+
+    let valid = true;
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(emailInput.value)) {
+      emailError.textContent = 'Enter a valid email';
+      emailInput.classList.add('invalid');
+      valid = false;
+    } else emailInput.classList.add('valid');
+
+    if (passwordInput.value.trim() === '') {
+      passwordError.textContent = 'Password is required';
+      passwordInput.classList.add('invalid');
+      valid = false;
+    } else passwordInput.classList.add('valid');
+
+    if (!valid) return;
+
+    // Получаем пользователей из localStorage
+    let users = JSON.parse(localStorage.getItem('users')) || [];
+    const user = users.find(u => u.email === emailInput.value && u.password === passwordInput.value);
+
+    if (user) {
+      showToast('Login Successful!');
+      localStorage.setItem('currentUser', JSON.stringify(user));
+      setTimeout(() => {
+        window.location.href = 'account.html'; 
+      }, 1000);
+    } else {
+      showToast('Invalid email or password');
+      emailInput.classList.add('invalid');
+      passwordInput.classList.add('invalid');
+    }
+  });
+</script>
+</body>
+</html>
+
+<!-- Footer -->
   <footer class="bg-dark-brown text-center text-white py-3 mt-4">
     <p class="m-0">&copy; 2025 Nyam-Nyam. Adil, Yerassyl, Yesbol, Bekarys. All rights reserved.</p>
   </footer>
 
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src = "js/login_register.js"></script>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<!-- jQuery (если нужен в других частях) -->
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<!-- Твой кастомный файл -->
-<script src="js/login_register.js"></script>
-</body>
-</html>
-</body>
-</html>

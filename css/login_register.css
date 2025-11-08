@@ -90,46 +90,35 @@ button.light-mode {
 }
 
 
-/* Reset button: white background with dark-brown text */
-button[type="reset"].btn-outline-dark-brown {
-  background-color: #FFFFFF; /* White background */
-  color: #5C4033;            /* Dark brown text */
-  border: 2px solid #5C4033; /* Dark brown border */
+/* ===== Form Dark Mode ===== */
+body.dark-mode form.bg-light-mustard {
+  background-color: var(--dark-brown) !important;
+  color: var(--white) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
 }
 
-/* Hover effect: dark-brown background with white text */
-button[type="reset"].btn-outline-dark-brown:hover {
-  background-color: #5C4033; /* Dark brown background */
-  color: #FFFFFF;            /* White text */
+/* Input field inside dark mode form */
+body.dark-mode form.bg-light-mustard input.form-control {
+  background-color: #3a3a3a !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
 }
 
-/* Default (light mode) styles for the Read More button */
-button#readMoreBtn {
-  background-color: #D8A300;  /* Mustard background for light mode */
-  color: #5C4033;             /* Dark brown text */
+body.dark-mode form.bg-light-mustard input.form-control::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Button inside the form */
+body.dark-mode form.bg-light-mustard .btn.btn-mustard {
+  background-color: var(--mustard) !important;
+  color: var(--dark-brown) !important;
   border: none;
-  padding: 8px 16px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
-button#readMoreBtn:hover {
-  background-color: #5C4033;  /* Dark brown background on hover */
-  color: #FFFFFF;             /* White text on hover */
+body.dark-mode form.bg-light-mustard .btn.btn-mustard:hover {
+  background-color: var(--white) !important;
+  color: var(--dark-brown) !important;
 }
-
-/* Dark mode styles for the Read More button */
-body.dark-mode button#readMoreBtn {
-  background-color: #D8A300;  /* Mustard background in dark mode */
-  color: #5C4033;             /* Dark brown text in dark mode */
-}
-
-body.dark-mode button#readMoreBtn:hover {
-  background-color: #5C4033;  /* Dark brown background on hover */
-  color: #FFFFFF;             /* White text on hover */
-}
-
 /* =========================
    Sidebar
    ========================= */
@@ -279,40 +268,7 @@ footer {
   }
 }
 
-/* ===== Task 2: FAQ Accordion Styles ===== */
-.faq-container {
-  margin: 0 auto;
-}
 
-.faq-item {
-  border-bottom: 1px solid rgba(92, 64, 51, 0.3);
-  padding: 15px 0;
-}
-
-.faq-question {
-  cursor: pointer;
-  position: relative;
-  font-weight: bold;
-  color: var(--dark-brown);
-  transition: color 0.3s ease;
-}
-
-.faq-question:hover {
-  color: var(--mustard);
-}
-
-.faq-answer {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s ease, opacity 0.4s ease;
-  opacity: 0;
-}
-
-.faq-answer.show {
-  max-height: 200px;
-  opacity: 1;
-  margin-top: 10px;
-}
 /* ===== Task 3: Popup Subscription Form ===== */
 .popup-overlay {
   display: none; /* hidden by default */
