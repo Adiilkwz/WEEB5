@@ -6,49 +6,95 @@
 }
 /* Default (light mode) styles */
 body {
-  background-color: #FFFFFF;  /* White background */
-  color: #5C4033;             /* Dark brown text */
+  background-color: #FFFFFF;
+  color: #5C4033;
 }
 
 /* Dark mode styles */
 body.dark-mode {
-  background-color: #2C2C2C;  /* Dark gray background */
-  color: #D8A300;             /* Light mustard text */
+  background-color: #2C2C2C;
+  color: #D8A300;
 }
 
 /* Containers (change color to dark brown and text to white in dark mode) */
 body.dark-mode .container, 
 body.dark-mode .section, 
 body.dark-mode .sidebar {
-  background-color: #5C4033;  /* Dark brown container background */
-  color: #FFFFFF;             /* White text */
+  background-color: #5C4033;
+  color: #FFFFFF;
 }
 
 /* Sidebar specific background color in dark mode */
 body.dark-mode .container-fluid .sidebar .p-3.bg-light-mustard {
-  background-color: #5C4033;  /* Dark brown background for sidebar */
-  color: #FFFFFF;             /* White text */
+  background-color: #5C4033;
+  color: #FFFFFF;
 }
 
 /* Sidebar links in dark mode */
 body.dark-mode .container-fluid .sidebar a {
-  color: #FFFFFF;             /* White text for links in dark mode */
+  color: #FFFFFF;
 }
 
 body.dark-mode .container-fluid .sidebar a:hover {
-  color: #D8A300;             /* Light mustard color on hover */
+  color: #D8A300;
 }
 
 /* Buttons (to match dark mode color scheme) */
 button.dark-mode {
-  background-color: #5C4033;  /* Dark brown */
-  color: #D8A300;             /* Light mustard text */
+  background-color: #5C4033;
+  color: #D8A300;
 }
 
 button.light-mode {
-  background-color: #D8A300;  /* Mustard */
-  color: #5C4033;             /* Dark brown text */
+  background-color: #D8A300;
+  color: #5C4033;
 }
+
+/* Sidebar container (in both Account and Add Recipe pages) */
+body.dark-mode aside .p-3.bg-light-mustard,
+body.dark-mode .sidebar {
+  background-color: var(--dark-brown) !important;
+  color: #FFFFFF !important;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Sidebar links in dark mode */
+body.dark-mode aside a {
+  color: #FFFFFF !important;
+}
+body.dark-mode aside a:hover {
+  color: var(--mustard) !important;
+}
+
+/* Favorite Recipes cards */
+body.dark-mode .card {
+  background-color: var(--dark-brown) !important;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Inside the card (title + text) */
+body.dark-mode .card .card-title,
+body.dark-mode .card .card-text {
+  color: #FFFFFF !important;
+}
+
+/* Card body background fix */
+body.dark-mode .card-body {
+  background-color: var(--dark-brown) !important;
+  color: #FFFFFF !important;
+}
+
+/* Card buttons */
+body.dark-mode .card .btn-outline-dark-brown {
+  border-color: #FFFFFF !important;
+  color: #FFFFFF !important;
+}
+body.dark-mode .card .btn-outline-dark-brown:hover {
+  background-color: #FFFFFF !important;
+  color: var(--dark-brown) !important;
+}
+
 
 /* Logo */
 .logo {
@@ -95,21 +141,21 @@ button.light-mode {
 
 /* Reset button: white background with dark-brown text */
 button[type="reset"].btn-outline-dark-brown {
-  background-color: #FFFFFF; /* White background */
-  color: #5C4033;            /* Dark brown text */
-  border: 2px solid #5C4033; /* Dark brown border */
+  background-color: #FFFFFF;
+  color: #5C4033;
+  border: 2px solid #5C4033;
 }
 
 /* Hover effect: dark-brown background with white text */
 button[type="reset"].btn-outline-dark-brown:hover {
-  background-color: #5C4033; /* Dark brown background */
-  color: #FFFFFF;            /* White text */
+  background-color: #5C4033;
+  color: #FFFFFF;
 }
 
 /* Default (light mode) styles for the Read More button */
 button#readMoreBtn {
-  background-color: #D8A300;  /* Mustard background for light mode */
-  color: #5C4033;             /* Dark brown text */
+  background-color: #D8A300;
+  color: #5C4033;
   border: none;
   padding: 8px 16px;
   font-size: 1rem;
@@ -118,23 +164,20 @@ button#readMoreBtn {
 }
 
 button#readMoreBtn:hover {
-  background-color: #5C4033;  /* Dark brown background on hover */
-  color: #FFFFFF;             /* White text on hover */
+  background-color: #5C4033;
+  color: #FFFFFF;
 }
 
-/* Dark mode styles for the Read More button */
 body.dark-mode button#readMoreBtn {
-  background-color: #D8A300;  /* Mustard background in dark mode */
-  color: #5C4033;             /* Dark brown text in dark mode */
+  background-color: #D8A300;
+  color: #5C4033;
 }
 
 body.dark-mode button#readMoreBtn:hover {
-  background-color: #5C4033;  /* Dark brown background on hover */
-  color: #FFFFFF;             /* White text on hover */
+  background-color: #5C4033;
+  color: #FFFFFF;
 }
 
-
-/* Section box style (same as account) */
 .section {
   background: var(--light-mustard);
   border: 1px solid rgba(92, 64, 51, 0.5);
@@ -142,7 +185,6 @@ body.dark-mode button#readMoreBtn:hover {
   padding: 20px;
 }
 
-/* Sidebar */
 .sidebar {
   background: var(--light-mustard);
   border: 1px solid rgba(92, 64, 51, 0.5);
@@ -195,7 +237,6 @@ body.dark-mode button#readMoreBtn:hover {
   background-color: var(--light-mustard);
 }
 
-/* Footer */
 footer {
   font-size: 0.9rem;
 }
@@ -207,11 +248,8 @@ footer {
     font-size: 0.9rem;
   }
 }
-/* ===== Responsive Fix for Add Recipe Page ===== */
-
 /* Mobile (≤ 767px): Stack sidebar and form vertically */
 @media (max-width: 767px) {
-  /* Stack elements vertically */
   .row {
     flex-direction: column !important;
   }
@@ -295,7 +333,7 @@ footer {
 
 /* ===== Task 3: Popup Subscription Form ===== */
 .popup-overlay {
-  display: none; /* hidden by default */
+  display: none;
   position: fixed;
   top: 0;
   left: 0;
@@ -332,43 +370,6 @@ footer {
   color: var(--mustard);
 }
 
-/* Smooth fade-in effect */
-@keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
-}
-/* ===== Animations ===== */
-
-/* Fade In */
-.fade-in {
-  opacity: 0;
-  transform: translateY(-10px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
-}
-.fade-in.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Pulse for success forms */
-@keyframes pulseSuccess {
-  0%   { background-color: #fff; }
-  50%  { background-color: #d4edda; } /* light green */
-  100% { background-color: #fff; }
-}
-.pulse-success {
-  animation: pulseSuccess 0.8s ease;
-}
-
-/* Bounce for buttons */
-@keyframes bounceClick {
-  0%, 100% { transform: scale(1); }
-  50%      { transform: scale(1.1); }
-}
-.bounce {
-  animation: bounceClick 0.3s ease;
-}
-
 /* ===== Scroll Progress Bar ===== */
 #scrollProgressContainer {
   position: fixed;
@@ -376,7 +377,7 @@ footer {
   left: 0;
   width: 100%;
   height: 8px;
-  background-color: #222; /* dark background for contrast */
+  background-color: #222;
   z-index: 1000;
 }
 
@@ -400,7 +401,7 @@ footer {
 button.loading {
   position: relative;
   color: #fff !important;
-  background-color: #6c757d !important; /* muted during loading */
+  background-color: #6c757d !important;
   cursor: not-allowed;
   opacity: 0.8;
 }
@@ -423,29 +424,76 @@ button.loading::before {
   from { transform: translateY(-50%) rotate(0deg); }
   to { transform: translateY(-50%) rotate(360deg); }
 }
-/* ===== Task 7: Notification / Toast System ===== */
-#notification-container {
-  position: fixed;
-  top: 1rem;
-  right: 1rem;
-  z-index: 99999;
-  pointer-events: none;
+/* ===== AI Chat Styles ===== */
+#aiChatContainer {
+  display: flex;
+  flex-direction: column;
 }
 
-.notification {
-  background: #2e8b57;
-  color: white;
-  padding: 12px 20px;
+.chat-box {
+  height: 500px;
+  overflow-y: auto;
+  border: 1px solid var(--dark-brown);
   border-radius: 6px;
-  margin-bottom: 10px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-  opacity: 0;
-  transform: translateY(-10px);
-  transition: all 0.4s ease;
-  pointer-events: auto;
+  padding: 8px;
+  background-color: #fffbea; /* светлая тема */
+  font-size: 0.9rem;
 }
 
-.notification.show {
-  opacity: 1;
-  transform: translateY(0);
+.chat-box .user-msg {
+  font-weight: bold;
+  margin-bottom: 6px;
+  color: var(--dark-brown);
+}
+
+.chat-box .ai-msg {
+  margin-bottom: 6px;
+  color: var(--dark-brown);
+}
+
+body.dark-mode #aiChatContainer {
+  background-color: var(--dark-brown);
+}
+
+body.dark-mode .chat-box {
+  background-color: #3a3a3a;
+  color: #fffbea;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+body.dark-mode .chat-box .user-msg {
+  color: var(--mustard);
+}
+
+body.dark-mode .chat-box .ai-msg {
+  color: #ffffff;
+}
+
+#chatInput {
+  border-radius: 6px;
+}
+
+body.dark-mode #chatInput {
+  background-color: #5C4033;
+  color: #fffbea;
+  border: 1px solid var(--mustard);
+}
+
+#chatSend {
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+#chatSend:hover {
+  opacity: 0.9;
+}
+
+/* Responsive */
+@media (max-width: 767px) {
+  .chat-box {
+    height: 250px;
+  }
+  #aiChatContainer {
+    margin-top: 20px;
+  }
 }

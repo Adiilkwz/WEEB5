@@ -4,8 +4,7 @@
   --white: #FFFFFF;
   --light-mustard: rgba(255, 248, 225, 0.95);
 }
-
-/* ===== General Styles ===== */
+/* Default (light mode) styles */
 body {
   background-color: #FFFFFF;  /* White background */
   color: #5C4033;             /* Dark brown text */
@@ -50,6 +49,105 @@ button.light-mode {
   background-color: #D8A300;  /* Mustard */
   color: #5C4033;             /* Dark brown text */
 }
+
+/* Sidebar container (in both Account and Add Recipe pages) */
+body.dark-mode aside .p-3.bg-light-mustard,
+body.dark-mode .sidebar {
+  background-color: var(--dark-brown) !important;
+  color: #FFFFFF !important;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Sidebar links in dark mode */
+body.dark-mode aside a {
+  color: #FFFFFF !important;
+}
+body.dark-mode aside a:hover {
+  color: var(--mustard) !important;
+}
+
+/* Favorite Recipes cards */
+body.dark-mode .card {
+  background-color: var(--dark-brown) !important;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Inside the card (title + text) */
+body.dark-mode .card .card-title,
+body.dark-mode .card .card-text {
+  color: #FFFFFF !important;
+}
+
+/* Card body background fix */
+body.dark-mode .card-body {
+  background-color: var(--dark-brown) !important;
+  color: #FFFFFF !important;
+}
+
+/* Card buttons */
+body.dark-mode .card .btn-outline-dark-brown {
+  border-color: #FFFFFF !important;
+  color: #FFFFFF !important;
+}
+body.dark-mode .card .btn-outline-dark-brown:hover {
+  background-color: #FFFFFF !important;
+  color: var(--dark-brown) !important;
+}
+
+/* ===== FAQ Dark Mode ===== */
+body.dark-mode .faq-container.bg-light-mustard {
+  background-color: var(--dark-brown) !important;
+  color: var(--white) !important;
+  border-radius: 8px;
+}
+
+body.dark-mode .faq-item {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+body.dark-mode .faq-question {
+  color: var(--mustard) !important;
+}
+
+body.dark-mode .faq-question:hover {
+  color: var(--white) !important;
+}
+
+body.dark-mode .faq-answer {
+  color: var(--white) !important;
+}
+
+/* ===== Form Dark Mode ===== */
+body.dark-mode form.bg-light-mustard {
+  background-color: var(--dark-brown) !important;
+  color: var(--white) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Input field inside dark mode form */
+body.dark-mode form.bg-light-mustard input.form-control {
+  background-color: #3a3a3a !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+body.dark-mode form.bg-light-mustard input.form-control::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Button inside the form */
+body.dark-mode form.bg-light-mustard .btn.btn-mustard {
+  background-color: var(--mustard) !important;
+  color: var(--dark-brown) !important;
+  border: none;
+}
+
+body.dark-mode form.bg-light-mustard .btn.btn-mustard:hover {
+  background-color: var(--white) !important;
+  color: var(--dark-brown) !important;
+}
+
 
 /* Логотип */
 .logo {
@@ -197,9 +295,7 @@ footer {
   color: var(--white);
 }
 
-/* =========================================================
-   FAQ Section
-   ========================================================= */
+/* ===== Task 2: FAQ Accordion Styles ===== */
 .faq-container {
   margin: 0 auto;
 }
@@ -211,6 +307,7 @@ footer {
 
 .faq-question {
   cursor: pointer;
+  position: relative;
   font-weight: bold;
   color: var(--dark-brown);
   transition: color 0.3s ease;
@@ -232,7 +329,6 @@ footer {
   opacity: 1;
   margin-top: 10px;
 }
-
 /* ===== Task 3: Popup Subscription Form ===== */
 .popup-overlay {
   display: none; /* hidden by default */
@@ -427,4 +523,77 @@ footer {
 @keyframes gradientMove {
   0% { background-position: 0% 50%; }
   100% { background-position: 100% 50%; }
+}
+/* ===== AI Chat Styles ===== */
+#aiChatContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-box {
+  height: 500px;
+  overflow-y: auto;
+  border: 1px solid var(--dark-brown);
+  border-radius: 6px;
+  padding: 8px;
+  background-color: #fffbea; /* светлая тема */
+  font-size: 0.9rem;
+}
+
+.chat-box .user-msg {
+  font-weight: bold;
+  margin-bottom: 6px;
+  color: var(--dark-brown);
+}
+
+.chat-box .ai-msg {
+  margin-bottom: 6px;
+  color: var(--dark-brown);
+}
+
+body.dark-mode #aiChatContainer {
+  background-color: var(--dark-brown);
+}
+
+body.dark-mode .chat-box {
+  background-color: #3a3a3a;
+  color: #fffbea;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+body.dark-mode .chat-box .user-msg {
+  color: var(--mustard);
+}
+
+body.dark-mode .chat-box .ai-msg {
+  color: #ffffff;
+}
+
+#chatInput {
+  border-radius: 6px;
+}
+
+body.dark-mode #chatInput {
+  background-color: #5C4033;
+  color: #fffbea;
+  border: 1px solid var(--mustard);
+}
+
+#chatSend {
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+#chatSend:hover {
+  opacity: 0.9;
+}
+
+/* Responsive */
+@media (max-width: 767px) {
+  .chat-box {
+    height: 250px;
+  }
+  #aiChatContainer {
+    margin-top: 20px;
+  }
 }

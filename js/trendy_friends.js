@@ -279,18 +279,17 @@ function sendFormData(data, callback) {
 
 // ===== Task 2: Switch Statement – Greeting Based on Time of Day =====
 document.addEventListener("DOMContentLoaded", () => {
-  const navbar = document.querySelector(".navbar .navbar-nav");
+  const navbar = document.querySelector(".navbar");
   if (!navbar) return;
 
-  // Create a new span for greeting
-  const greeting = document.createElement("li");
-  greeting.className = "nav-item ms-3 text-mustard fw-bold";
+  // Create container on the right
+  const greeting = document.createElement("div");
+  greeting.className = "nav-item ms-3 text-mustard fw-bold"; // Bootstrap класс для выравнивания вправо
 
-  // Get current hour
+  // Determine greeting
   const hour = new Date().getHours();
   let message = "";
 
-  // Determine greeting using switch statement
   switch (true) {
     case hour < 12:
       message = "Good Morning 🌞";
@@ -298,10 +297,11 @@ document.addEventListener("DOMContentLoaded", () => {
     case hour < 18:
       message = "Good Afternoon ☀️";
       break;
-    case hour < 5:
-      message = "Good Night 🌜";
-    default:
+    case hour < 21:
       message = "Good Evening 🌙";
+      break;
+    default:
+      message = "Good Night 🌜";
   }
 
   greeting.textContent = message;
@@ -348,11 +348,10 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// === Task 2: Autocomplete with Random Kazakh Names (Fixed version) ===
+// === Task 2: Autocomplete with Random Kazakh Names (Dark Mode Aware) ===
 document.addEventListener("DOMContentLoaded", () => {
   const input = document.querySelector("#addfriends input");
 
-  // List of random Kazakh names in English
   const randomNames = [
     "Aruzhan Serik", "Yesbol Nurtas",
     "Aigerim Sadu", "Dana Ayan", "Alikhan Nurlybek", "Bakyt Askar",
@@ -363,20 +362,38 @@ document.addEventListener("DOMContentLoaded", () => {
   // Create dropdown container
   const suggestionBox = document.createElement("div");
   suggestionBox.classList.add("autocomplete-suggestions");
-  suggestionBox.style.position = "absolute";
-  suggestionBox.style.top = "100%";
-  suggestionBox.style.left = "0";
-  suggestionBox.style.right = "0";
-  suggestionBox.style.background = "#fff8e1";
-  suggestionBox.style.border = "1px solid #ccc";
-  suggestionBox.style.borderRadius = "8px";
-  suggestionBox.style.maxHeight = "200px";
-  suggestionBox.style.overflowY = "auto";
-  suggestionBox.style.zIndex = "2000";
-  suggestionBox.style.display = "none";
-  suggestionBox.style.boxShadow = "0 4px 10px rgba(0,0,0,0.1)";
+  Object.assign(suggestionBox.style, {
+    position: "absolute",
+    top: "100%",
+    left: "0",
+    right: "0",
+    border: "1px solid #ccc",
+    borderRadius: "8px",
+    maxHeight: "200px",
+    overflowY: "auto",
+    zIndex: "2000",
+    display: "none",
+    boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
+  });
 
-  // Place dropdown inside parent with position:relative
+  // Function to apply color scheme
+  const applyTheme = () => {
+    const isDark = document.body.classList.contains("dark-mode");
+    suggestionBox.style.background = isDark ? "#5C4033" : " #fffbea"; // фон
+    suggestionBox.style.color = isDark ? "#000000ff" : "#000000";      // текст
+    suggestionBox.style.border = isDark
+      ? "1px solid rgba(255,255,255,0.3)"
+      : "1px solid #ccc";
+  };
+
+  // Initial theme setup
+  applyTheme();
+
+  // Reapply when theme toggles (если у тебя переключатель меняет класс body)
+  const observer = new MutationObserver(applyTheme);
+  observer.observe(document.body, { attributes: true, attributeFilter: ["class"] });
+
+  // Place dropdown
   const wrapper = input.parentElement;
   wrapper.style.position = "relative";
   wrapper.appendChild(suggestionBox);
@@ -397,16 +414,24 @@ document.addEventListener("DOMContentLoaded", () => {
     const randomResults = filtered.sort(() => 0.5 - Math.random()).slice(0, 5);
 
     if (randomResults.length > 0) {
+      const isDark = document.body.classList.contains("dark-mode");
+
       randomResults.forEach(name => {
         const div = document.createElement("div");
         div.textContent = name;
-        div.style.padding = "8px 12px";
-        div.style.cursor = "pointer";
-        div.style.transition = "background 0.2s";
+        Object.assign(div.style, {
+          padding: "8px 12px",
+          cursor: "pointer",
+          transition: "background 0.2s",
+          color: isDark ? "#ffffffff" : "#000000ff"
+        });
 
-        div.addEventListener("mouseenter", () => (div.style.background = "#f0e6b1"));
-        div.addEventListener("mouseleave", () => (div.style.background = "transparent"));
-
+        div.addEventListener("mouseenter", () => {
+          div.style.background = isDark ? "#7a5a46" : "#f0e6b1";
+        });
+        div.addEventListener("mouseleave", () => {
+          div.style.background = "transparent";
+        });
         div.addEventListener("click", () => {
           input.value = name;
           suggestionBox.style.display = "none";
@@ -429,84 +454,13 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-
-// ===== Task 3: Search Highlighting in FAQ =====
-document.addEventListener("DOMContentLoaded", () => {
-  const faqInput = document.getElementById("faqSearch");
-  const faqContainer = document.getElementById("faq");
-
-  if (!faqInput || !faqContainer) return;
-
-  faqInput.addEventListener("input", () => {
-    const query = faqInput.value.trim();
-    const answers = faqContainer.querySelectorAll(".faq-answer p, .faq-question");
-
-    answers.forEach(el => {
-      const originalText = el.textContent;
-      if (query === "") {
-        el.innerHTML = originalText;
-        return;
-      }
-      const regex = new RegExp(`(${query})`, "gi");
-      el.innerHTML = originalText.replace(regex, `<mark style="background-color:#D8A300;">$1</mark>`);
-    });
-  });
+// ===== Task 4: Scroll Progress Bar using jQuery =====
+$(window).on("scroll", function() {
+  const scrollTop = $(window).scrollTop();
+  const docHeight = $(document).height() - $(window).height();
+  const scrollPercent = (scrollTop / docHeight) * 100;
+  $("#scrollProgressBar").css("width", scrollPercent + "%");
 });
-
-// ===== Scroll Progress Bar =====
-(function () {
-  // safe-get elements (if already present on the page)
-  const bar = document.getElementById('scrollProgress');
-  const fill = document.getElementById('scrollProgressFill');
-  const label = document.getElementById('scrollProgressLabel');
-  if (!bar || !fill || !label) return;
-
-  // throttle helper
-  let ticking = false;
-  function onScroll() {
-    if (!ticking) {
-      window.requestAnimationFrame(() => {
-        updateProgress();
-        ticking = false;
-      });
-      ticking = true;
-    }
-  }
-
-  function updateProgress() {
-    const doc = document.documentElement;
-    const scrollTop = window.pageYOffset || doc.scrollTop || document.body.scrollTop || 0;
-    const scrollHeight = Math.max(doc.scrollHeight, document.body.scrollHeight);
-    const winHeight = window.innerHeight || doc.clientHeight;
-    const maxScroll = Math.max(1, scrollHeight - winHeight);
-    let percent = Math.min(100, Math.round((scrollTop / maxScroll) * 100));
-
-    // update fill width/height (for horizontal bar)
-    fill.style.width = percent + '%';
-
-    // dynamic color shift (hue rotate by percent)
-    // generate a pleasing gradient by changing background using HSL stops
-    const hue1 = 40 + Math.round(percent * 0.8);  // 40..120
-    const hue2 = 18 + Math.round(percent * 1.2);  // 18..138
-    fill.style.background = `linear-gradient(90deg, hsl(${hue1} 82% 48%) 0%, hsl(${hue2} 90% 55%) 60%, hsl(${(hue2+70)%360} 85% 52%) 100%)`;
-
-    // update label
-    label.textContent = percent + '%';
-    bar.setAttribute('aria-valuenow', String(percent));
-
-    // subtle label animation when scroll reaches 100%
-    if (percent >= 99) {
-      label.style.transform = 'scale(1.05)';
-    } else {
-      label.style.transform = 'scale(1)';
-    }
-  }
-
-  // init
-  updateProgress();
-  window.addEventListener('scroll', onScroll, { passive: true });
-  window.addEventListener('resize', onScroll);
-})();
 
 // ===== Task 8: Copy to Clipboard Buttons =====
 document.addEventListener("DOMContentLoaded", () => {
@@ -552,3 +506,51 @@ document.addEventListener("DOMContentLoaded", () => {
 
   lazyImages.forEach(img => observer.observe(img));
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const chatBox = document.getElementById("chatBox");
+  const chatInput = document.getElementById("chatInput");
+  const chatSend = document.getElementById("chatSend");
+
+  async function sendMessage() {
+    const message = chatInput.value.trim();
+    if (!message) return;
+
+    // Сообщение пользователя
+    const userDiv = document.createElement("div");
+    userDiv.className = "user-msg";
+    userDiv.textContent = "You: " + message;
+    chatBox.appendChild(userDiv);
+    chatBox.scrollTop = chatBox.scrollHeight;
+    chatInput.value = "";
+
+    // Отправка на бекенд (Flask)
+    try {
+      const response = await fetch("http://localhost:5000/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message })
+      });
+      const data = await response.json();
+
+      const aiDiv = document.createElement("div");
+      aiDiv.className = "ai-msg";
+      aiDiv.textContent = "AI: " + (data.reply || data.error || "No response");
+      chatBox.appendChild(aiDiv);
+      chatBox.scrollTop = chatBox.scrollHeight;
+
+    } catch (err) {
+      const errorDiv = document.createElement("div");
+      errorDiv.textContent = "⚠️ Error: Could not get response from AI.";
+      errorDiv.style.color = "red";
+      chatBox.appendChild(errorDiv);
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+  }
+
+  chatSend.addEventListener("click", sendMessage);
+  chatInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") sendMessage();
+  });
+});
+
