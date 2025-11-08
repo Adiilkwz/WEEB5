@@ -1,57 +1,127 @@
-/* =========================
-   Color Variables
-   ========================= */
 :root {
   --mustard: #D8A300;
   --dark-brown: #5C4033;
   --white: #FFFFFF;
   --light-mustard: rgba(255, 248, 225, 0.95);
 }
-
-
+/* Default (light mode) styles */
 body {
   background-color: #FFFFFF;  /* White background */
   color: #5C4033;             /* Dark brown text */
 }
+/* =========================
+   Dark Mode
+   ========================= */
 
-/* Dark mode styles */
+/* Основной фон и текст */
 body.dark-mode {
-  background-color: #2C2C2C;  /* Dark gray background */
-  color: #D8A300;             /* Light mustard text */
+  background-color: #2C2C2C; /* тёмный фон */
+  color: #D8A300;           /* светло-горчичный текст */
 }
 
-/* Containers (change color to dark brown and text to white in dark mode) */
-body.dark-mode .container, 
-body.dark-mode .section, 
-body.dark-mode .sidebar {
-  background-color: #5C4033;  /* Dark brown container background */
-  color: #FFFFFF;             /* White text */
+/* Navbar */
+body.dark-mode .navbar {
+  background-color: #5C4033 !important;
+}
+body.dark-mode .navbar .nav-link {
+  color: #D8A300 !important;
+}
+body.dark-mode .navbar .nav-link.active {
+  color: #FFD54F !important;
+}
+body.dark-mode .navbar .btn-mustard {
+  background-color: #D8A300 !important;
+  color: #5C4033 !important;
+}
+body.dark-mode .navbar .btn-mustard:hover {
+  background-color: #FFFFFF !important;
+  color: #5C4033 !important;
 }
 
-/* Sidebar specific background color in dark mode */
-body.dark-mode .container-fluid .sidebar .p-3.bg-light-mustard {
-  background-color: #5C4033;  /* Dark brown background for sidebar */
-  color: #FFFFFF;             /* White text */
+/* Sidebar */
+body.dark-mode aside .p-3.bg-light-mustard {
+  background-color: #5C4033 !important;
+  color: #FFFFFF !important;
+  border-color: rgba(255,255,255,0.2) !important;
+}
+body.dark-mode aside a {
+  color: #FFFFFF !important;
+}
+body.dark-mode aside a:hover {
+  color: #D8A300 !important;
 }
 
-/* Sidebar links in dark mode */
-body.dark-mode .container-fluid .sidebar a {
-  color: #FFFFFF;             /* White text for links in dark mode */
+/* Контентные блоки (секции, карточки) */
+body.dark-mode .bg-light-mustard {
+  background-color:  #5C4033 !important;
+  color: #FFFFFF !important;
+  border-color: rgba(255,255,255,0.2) !important;
+}
+body.dark-mode .stat-card {
+  background-color:  #5C4033 !important;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(255,255,255,0.2) !important;
+}
+body.dark-mode .stat-number, 
+body.dark-mode .stat-label {
+  color: #FFD54F !important;
 }
 
-body.dark-mode .container-fluid .sidebar a:hover {
-  color: #D8A300;             /* Light mustard color on hover */
+/* Форма */
+body.dark-mode form.bg-light-mustard {
+  background-color:  #5C4033 !important;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(255,255,255,0.2) !important;
+}
+body.dark-mode form.bg-light-mustard input.form-control {
+  background-color:  #5C4033 !important;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(255,255,255,0.3) !important;
+}
+body.dark-mode form.bg-light-mustard input.form-control::placeholder {
+  color: rgba(255,255,255,0.6) !important;
+}
+body.dark-mode form.bg-light-mustard .btn.btn-mustard {
+  background-color: #D8A300 !important;
+  color: #5C4033 !important;
+}
+body.dark-mode form.bg-light-mustard .btn.btn-mustard:hover {
+  background-color: #FFFFFF !important;
+  color: #5C4033 !important;
 }
 
-/* Buttons (to match dark mode color scheme) */
-button.dark-mode {
-  background-color: #5C4033;  /* Dark brown */
-  color: #D8A300;             /* Light mustard text */
+/* Кнопки общего назначения */
+body.dark-mode .btn-mustard {
+  background-color: #D8A300 !important;
+  color: #5C4033 !important;
+}
+body.dark-mode .btn-mustard:hover {
+  background-color: #FFFFFF !important;
+  color: #5C4033 !important;
 }
 
-button.light-mode {
-  background-color: #D8A300;  /* Mustard */
-  color: #5C4033;             /* Dark brown text */
+/* Toast */
+body.dark-mode .toast-notification {
+  background: linear-gradient(135deg, #D8A300, #5C4033);
+  color: #FFFFFF;
+}
+
+/* Footer */
+body.dark-mode footer {
+  background-color: #5C4033 !important;
+  color: #FFFFFF !important;
+  border-top: 1px solid rgba(255,255,255,0.2);
+}
+
+/* Scroll Progress Bar */
+body.dark-mode #scrollProgress {
+  background: linear-gradient(90deg, #FFD54F, #D8A300, #5C4033);
+}
+
+/* Чтение “Read More” */
+body.dark-mode #shortText,
+body.dark-mode #moreText {
+  color: #FFFFFF !important;
 }
 
 /* Logo */
