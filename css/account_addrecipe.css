@@ -50,6 +50,52 @@ button.light-mode {
   color: #5C4033;             /* Dark brown text */
 }
 
+/* Sidebar container (in both Account and Add Recipe pages) */
+body.dark-mode aside .p-3.bg-light-mustard,
+body.dark-mode .sidebar {
+  background-color: var(--dark-brown) !important;
+  color: #FFFFFF !important;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Sidebar links in dark mode */
+body.dark-mode aside a {
+  color: #FFFFFF !important;
+}
+body.dark-mode aside a:hover {
+  color: var(--mustard) !important;
+}
+
+/* Favorite Recipes cards */
+body.dark-mode .card {
+  background-color: var(--dark-brown) !important;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Inside the card (title + text) */
+body.dark-mode .card .card-title,
+body.dark-mode .card .card-text {
+  color: #FFFFFF !important;
+}
+
+/* Card body background fix */
+body.dark-mode .card-body {
+  background-color: var(--dark-brown) !important;
+  color: #FFFFFF !important;
+}
+
+/* Card buttons */
+body.dark-mode .card .btn-outline-dark-brown {
+  border-color: #FFFFFF !important;
+  color: #FFFFFF !important;
+}
+body.dark-mode .card .btn-outline-dark-brown:hover {
+  background-color: #FFFFFF !important;
+  color: var(--dark-brown) !important;
+}
+
+
 /* Logo */
 .logo {
   width: 55px;
@@ -422,30 +468,4 @@ button.loading::before {
 @keyframes spin {
   from { transform: translateY(-50%) rotate(0deg); }
   to { transform: translateY(-50%) rotate(360deg); }
-}
-/* ===== Task 7: Notification / Toast System ===== */
-#notification-container {
-  position: fixed;
-  top: 1rem;
-  right: 1rem;
-  z-index: 99999;
-  pointer-events: none;
-}
-
-.notification {
-  background: #2e8b57;
-  color: white;
-  padding: 12px 20px;
-  border-radius: 6px;
-  margin-bottom: 10px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-  opacity: 0;
-  transform: translateY(-10px);
-  transition: all 0.4s ease;
-  pointer-events: auto;
-}
-
-.notification.show {
-  opacity: 1;
-  transform: translateY(0);
 }
