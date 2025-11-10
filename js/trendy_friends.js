@@ -279,14 +279,12 @@ function sendFormData(data, callback) {
 
 // ===== Task 2: Switch Statement – Greeting Based on Time of Day =====
 document.addEventListener("DOMContentLoaded", () => {
-  const navbar = document.querySelector(".navbar");
+  const navbar = document.querySelector(".navbar .navbar-nav");
   if (!navbar) return;
 
-  // Create container on the right
-  const greeting = document.createElement("div");
-  greeting.className = "nav-item ms-3 text-mustard fw-bold"; // Bootstrap класс для выравнивания вправо
+  const greeting = document.createElement("li");
+  greeting.className = "nav-item ms-3 text-mustard fw-bold";
 
-  // Determine greeting
   const hour = new Date().getHours();
   let message = "";
 
@@ -297,11 +295,10 @@ document.addEventListener("DOMContentLoaded", () => {
     case hour < 18:
       message = "Good Afternoon ☀️";
       break;
-    case hour < 21:
-      message = "Good Evening 🌙";
-      break;
-    default:
+    case hour < 5:
       message = "Good Night 🌜";
+    default:
+      message = "Good Evening 🌙";
   }
 
   greeting.textContent = message;
