@@ -27,7 +27,7 @@ body.dark-mode .navbar .nav-link {
   color: #ffffff !important;
 }
 body.dark-mode .navbar .nav-link.active {
-  color: #ffffff !important;
+  color: #D8A300 !important;
 }
 body.dark-mode .navbar .btn-mustard {
   background-color: #D8A300 !important;
