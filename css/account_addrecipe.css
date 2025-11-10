@@ -497,3 +497,54 @@ body.dark-mode #chatInput {
     margin-top: 20px;
   }
 }
+/*
+ * 1. БАЗОВАЯ КОНФИГУРАЦИЯ ВЗРЫВА
+ * Это контейнер, который будет появляться при клике.
+ */
+.explosion-container {
+    position: fixed; /* Фиксируем на экране */
+    pointer-events: none; /* Игнорировать клики под ним */
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background-color: transparent;
+    opacity: 0;
+    z-index: 99999; /* Очень высокий Z-индекс, чтобы быть поверх всего */
+    transform: translate(-50%, -50%); /* Центрирование по точке клика */
+}
+
+/* 2. АНИМАЦИЯ ВЗРЫВА (Ключевые кадры) */
+@keyframes explode {
+    0% {
+        width: 10px;
+        height: 10px;
+        opacity: 1;
+        background-color: yellow; /* Вспышка */
+        box-shadow: 0 0 40px rgba(255, 255, 0, 0.8);
+    }
+    50% {
+        width: 250px; /* Быстрое расширение */
+        height: 250px;
+        opacity: 0.6;
+        background-color: orange;
+        box-shadow: 0 0 100px rgba(255, 165, 0, 0.6);
+    }
+    100% {
+        width: 600px;
+        height: 600px;
+        opacity: 0; /* Быстрое исчезновение */
+        background-color: red;
+        box-shadow: none;
+    }
+}
+
+/* 3. КЛАСС АКТИВАЦИИ */
+.active-explosion {
+    animation: explode 0.6s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+}
+
+/* 4. СТИЛЬ ДЛЯ КНОПОК (не обязательно, но улучшает вид) */
+.btn-mustard {
+    position: relative; /* Для правильной работы эффекта при наведении */
+    overflow: hidden; 
+}

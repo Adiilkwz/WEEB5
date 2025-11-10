@@ -89,7 +89,62 @@ body.dark-mode form.bg-light-mustard .btn.btn-mustard:hover {
   background-color: #FFFFFF !important;
   color: #5C4033 !important;
 }
+/*
+ * 1. Основные стили Dark Mode (применяются к родительскому контейнеру)
+ */
+.dark-mode {
+    /* Темный фон для всей страницы/контейнера формы */
+    background-color: #121212; 
+    /* Светлый цвет текста по умолчанию */
+    color: #e0e0e0; 
+    transition: all 0.3s ease; /* Плавный переход */
+}
 
+/* * 2. Стили для меток (Email, Password)
+ */
+.dark-mode .form-label {
+    /* Обеспечиваем, что текст метки ярко-светлый */
+    color: #f0f0f0; 
+}
+
+/* * 3. Стили для полей ввода (input)
+ */
+.dark-mode .form-control {
+    /* Очень темный фон поля ввода */
+    background-color: #2c2c2c; 
+    /* Светлый текст, который вводит пользователь */
+    color: #f0f0f0; 
+    /* Светлая рамка, чтобы поле было видно */
+    border-color: #555; 
+}
+
+/* * 4. Стили для плейсхолдеров (Placeholder Text)
+ */
+.dark-mode .form-control::placeholder {
+    /* Делаем текст плейсхолдера светлее, но заметным */
+    color: #aaaaaa;
+    opacity: 1; /* Обеспечивает видимость в некоторых браузерах */
+}
+
+/* * 5. Стили для сообщений об ошибках
+ */
+.dark-mode .error-message {
+    /* Оставляем красный, но, возможно, немного приглушенный */
+    color: #ff5555;
+}
+
+/* * 6. Стили для фокуса (когда пользователь нажимает на поле)
+ * (Важно для доступности)
+ */
+.dark-mode .form-control:focus {
+    /* Удаляем стандартный синий/голубой Bootstrap-фокус */
+    border-color: #888;
+    /* Добавляем светящийся эффект (shadow) */
+    box-shadow: 0 0 0 0.25rem rgba(180, 180, 180, 0.25); 
+    /* Сохраняем темный фон и светлый текст */
+    background-color: #2c2c2c;
+    color: #f0f0f0;
+}
 /* Кнопки общего назначения */
 body.dark-mode .btn-mustard {
   background-color: #D8A300 !important;
@@ -492,4 +547,97 @@ footer {
 .toast-notification.show {
   opacity: 1;
   transform: translateY(0);
+}
+/* --- 1. Стилизация контейнера секции (#whyjoin) --- */
+
+.dark-mode #whyjoin .bg-light-mustard {
+    /* Темный фон для всей секции */
+    background-color: #5C4033 !important; /* Темно-серый фон */
+    /* Светлая рамка, чтобы отделить секцию */
+    border: 1px solid #444 !important; 
+}
+
+.dark-mode #whyjoin .section-title {
+    /* Светлый цвет для основного заголовка */
+    color: #f0f0f0;
+}
+
+/* --- 2. Стилизация карточек преимуществ (.card) --- */
+
+.dark-mode #whyjoin .card {
+    /* Очень темный, почти черный фон для карточек */
+    background-color: #5C4033!important; 
+    /* Светлый цвет текста внутри карточек */
+    color: #e0e0e0;
+    
+    /* Улучшение видимости тени в темном режиме */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5) !important; 
+    
+    /* Сохраняем высоту h-100 для flexbox */
+    height: 100%; 
+}
+
+/* --- 3. Стилизация заголовков карточек (h4) --- */
+
+.dark-mode #whyjoin .card h4 {
+    /* Светлый цвет для заголовков карточек */
+    color: #ffffff; 
+}
+
+/* --- 4. Стилизация текста в карточках (p) --- */
+
+.dark-mode #whyjoin .card p {
+    /* Чуть более приглушенный светлый цвет для параграфов */
+    color: #cccccc; 
+}
+/*
+ * 1. БАЗОВАЯ КОНФИГУРАЦИЯ ВЗРЫВА
+ * Это контейнер, который будет появляться при клике.
+ */
+.explosion-container {
+    position: fixed; /* Фиксируем на экране */
+    pointer-events: none; /* Игнорировать клики под ним */
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background-color: transparent;
+    opacity: 0;
+    z-index: 99999; /* Очень высокий Z-индекс, чтобы быть поверх всего */
+    transform: translate(-50%, -50%); /* Центрирование по точке клика */
+}
+
+/* 2. АНИМАЦИЯ ВЗРЫВА (Ключевые кадры) */
+@keyframes explode {
+    0% {
+        width: 10px;
+        height: 10px;
+        opacity: 1;
+        background-color: yellow; /* Вспышка */
+        box-shadow: 0 0 40px rgba(255, 255, 0, 0.8);
+    }
+    50% {
+        width: 250px; /* Быстрое расширение */
+        height: 250px;
+        opacity: 0.6;
+        background-color: orange;
+        box-shadow: 0 0 100px rgba(255, 165, 0, 0.6);
+    }
+    100% {
+        width: 600px;
+        height: 600px;
+        opacity: 0; /* Быстрое исчезновение */
+        background-color: red;
+        box-shadow: none;
+    }
+}
+
+/* 3. КЛАСС АКТИВАЦИИ */
+.active-explosion {
+    animation: explode 0.6s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+}
+
+/* 4. СТИЛЬ ДЛЯ КНОПОК (не обязательно, но улучшает вид) */
+.btn-mustard {
+    position: relative; /* Для правильной работы эффекта при наведении */
+    overflow: hidden; 
 }

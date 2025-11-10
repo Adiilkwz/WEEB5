@@ -295,3 +295,96 @@ $(function () {
     $counts.each(function () { observer.observe(this); });
   }
 });
+ 
+  const loginForm = document.getElementById('loginForm');
+  const emailInput = document.getElementById('email');
+  const passwordInput = document.getElementById('password');
+  const emailError = document.getElementById('emailError');
+  const passwordError = document.getElementById('passwordError');
+  const toast = document.getElementById('toast');
+
+  function showToast(message) {
+    const toastMsg = document.getElementById('toastMessage');
+    toastMsg.textContent = message;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 3000);
+  }
+
+  loginForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    emailInput.classList.remove('invalid', 'valid');
+    passwordInput.classList.remove('invalid', 'valid');
+    emailError.textContent = '';
+    passwordError.textContent = '';
+
+    let valid = true;
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(emailInput.value)) {
+      emailError.textContent = 'Enter a valid email';
+      emailInput.classList.add('invalid');
+      valid = false;
+    } else emailInput.classList.add('valid');
+
+    if (passwordInput.value.trim() === '') {
+      passwordError.textContent = 'Password is required';
+      passwordInput.classList.add('invalid');
+      valid = false;
+    } else passwordInput.classList.add('valid');
+
+    if (!valid) return;
+
+    // Получаем пользователей из localStorage
+    let users = JSON.parse(localStorage.getItem('users')) || [];
+    const user = users.find(u => u.email === emailInput.value && u.password === passwordInput.value);
+
+    if (user) {
+      showToast('Login Successful!');
+      localStorage.setItem('currentUser', JSON.stringify(user));
+      setTimeout(() => {
+        window.location.href = 'account.html'; 
+      }, 1000);
+    } else {
+      showToast('Invalid email or password');
+      emailInput.classList.add('invalid');
+      passwordInput.classList.add('invalid');
+    }
+  });
+
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Создаем контейнер для взрыва
+    const explosionContainer = document.createElement('div');
+    explosionContainer.classList.add('explosion-container');
+    document.body.appendChild(explosionContainer);
+
+    // 2. Получаем все интерактивные кнопки, которым нужен эффект
+    const buttons = document.querySelectorAll('button, [type="submit"]');
+
+    buttons.forEach(button => {
+        // Проверяем, что это не кнопка закрытия попапа, чтобы не мешать UX
+        if (button.id === 'closePopup') return;
+
+        button.addEventListener('click', (event) => {
+            // Вычисляем точное место клика
+            const clickX = event.clientX;
+            const clickY = event.clientY;
+
+            // Перемещаем контейнер взрыва в точку клика
+            explosionContainer.style.left = `${clickX}px`;
+            explosionContainer.style.top = `${clickY}px`;
+            
+            // Сбрасываем текущую анимацию, чтобы ее можно было запустить снова
+            explosionContainer.classList.remove('active-explosion');
+            
+            // Запускаем анимацию
+            // Используем requestAnimationFrame или void offsetWidth для сброса анимации
+            void explosionContainer.offsetWidth; 
+            explosionContainer.classList.add('active-explosion');
+        });
+    });
+
+    // 3. Очистка класса после завершения анимации
+    explosionContainer.addEventListener('animationend', () => {
+        explosionContainer.classList.remove('active-explosion');
+    });
+});
