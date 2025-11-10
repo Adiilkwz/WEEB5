@@ -24,10 +24,10 @@ body.dark-mode .navbar {
   background-color: #5C4033 !important;
 }
 body.dark-mode .navbar .nav-link {
-  color: #D8A300 !important;
+  color: #ffffff !important;
 }
 body.dark-mode .navbar .nav-link.active {
-  color: #FFD54F !important;
+  color: #ffffff !important;
 }
 body.dark-mode .navbar .btn-mustard {
   background-color: #D8A300 !important;
