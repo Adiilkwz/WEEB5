@@ -221,7 +221,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     showToast("✅ Login successful!");
     setTimeout(() => {
-      window.location.href = "profile.html";
+      window.location.href = "account.html";
     }, 1000);
   });
 });
