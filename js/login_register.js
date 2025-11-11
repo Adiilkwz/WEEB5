@@ -168,7 +168,7 @@ document.addEventListener("DOMContentLoaded", () => {
   switch (true) {
     case hour < 12: message = "Good Morning 🌞"; break;
     case hour < 18: message = "Good Afternoon ☀️"; break;
-    case hour < 5: message = "Good Night 🌜"; break;
+    case hour < 5 && hour > 23: message = "Good Night 🌜"; break;
     default: message = "Good Evening 🌙";
   }
   greeting.textContent = message;
