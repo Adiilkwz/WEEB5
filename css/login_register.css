@@ -641,3 +641,52 @@ footer {
     position: relative; /* Для правильной работы эффекта при наведении */
     overflow: hidden; 
 }
+
+/* =========================
+   Form Validation & Toast Styles
+   ========================= */
+
+/* Поля валидации */
+.invalid {
+  border: 2px solid red !important;
+}
+
+.valid {
+  border: 2px solid green !important;
+}
+
+/* Сообщения об ошибках */
+.error-message {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 0.25rem;
+}
+
+/* ===== Toast Notification (Light Mode) ===== */
+.toast-notification {
+  visibility: hidden;
+  min-width: 250px;
+  background-color: var(--dark-brown);
+  color: var(--white);
+  text-align: center;
+  border-radius: 5px;
+  padding: 10px;
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  transition: visibility 0.3s, opacity 0.3s ease-in-out;
+  opacity: 0;
+}
+
+.toast-notification.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* ===== Toast Notification (Dark Mode) ===== */
+body.dark-mode .toast-notification {
+  background: linear-gradient(135deg, var(--mustard), var(--dark-brown));
+  color: var(--white);
+}
