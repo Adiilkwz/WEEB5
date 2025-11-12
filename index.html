@@ -1,209 +1,195 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home - Nyam-Nyam</title>
-
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="css/index_search.css">
-</head>
-<body>
-
-  <!-- ===== Navbar ===== -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark-brown px-3">
-    <a class="navbar-brand d-flex align-items-center" href="#">
-      <img src="images/logo.jpg" alt="Nyam-Nyam Logo" class="logo me-2">
-      <span class="fw-bold text-mustard">Nyam-Nyam</span>
-    </a>
-
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-      <ul class="navbar-nav align-items-center">
-        <li class="nav-item"><a class="nav-link active text-mustard" href="index.html">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="search.html">Search</a></li>
-        <li class="nav-item"><a class="nav-link" href="friends.html">Friends</a></li>
-        <li class="nav-item"><a class="nav-link" href="trendy.html">Trendy Recipes</a></li>
-        <li class="nav-item"><a class="nav-link" href="addrecipe.html">Add Recipe</a></li>
-        <li class="nav-item"><a class="nav-link" href="account.html">Profile</a></li>
-        <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
-        <li class="nav-item"><button id="openPopup" class="btn btn-mustard ms-2">Subscribe</li>
-        <li class="nav-item"><button id="toggleModeBtn" class="btn btn-mustard ms-2">Toogle Mode</button></li>
-        <li class="nav-item d-flex align-items-center ms-3"><span id="dateTimeDisplay" class="text-white small"></span></li>
-      </ul>
-    </div>
-  </nav>
-      <!-- Scroll Progress Bar -->
-    <div id="scrollProgressContainer">
-    <div id="scrollProgressBar"></div>
-    </div>
-
-  <!-- ===== Main Container ===== -->
-  <div class="container-fluid py-4 px-sm-2 px-md-4">
-    <div class="row">
-
-      <!-- Sidebar -->
-      <aside class="col-lg-3 mb-4" style="top: 20px;">
-        <div class="p-3 bg-light-mustard rounded">  
-          <h3 class="fw-bold mb-3">Home Sections</h3>
-          <ol class="list-unstyled">
-            <li><a href="#welcome" class="text-dark-brown text-decoration-none">Main</a></li>
-            <li><a href="#featured" class="text-dark-brown text-decoration-none">Featured Recipes</a></li>
-            <li><a href="#faq" class="text-dark-brown text-decoration-none">FAQ</a></li>
-            <li><a href="#contact" class="text-dark-brown text-decoration-none">Contact Us</a></li>
-          </ol>
-        </div>
-        <!-- AI Chat -->
-        <div class="p-3 bg-light-mustard rounded mt-4" id="aiChatContainer">
-          <h4 class="fw-bold mb-3">AI Chat</h4>
-
-          <!-- Окно сообщений -->
-          <div id="chatBox" class="chat-box"></div>
-
-          <!-- Input + Send -->
-          <div class="d-flex mt-2">
-            <input type="text" id="chatInput" class="form-control me-2" placeholder="Type a message...">
-            <button id="chatSend" class="btn btn-mustard">Send</button>
-          </div>
-        </div>
-      </aside>
-
-      <!-- Main Content -->
-      <main class="col-lg-9">
-
-        <!-- ===== Welcome Section ===== -->
-        <section id="welcome" class="mb-5 section">
-          <h2 class="section-title mb-3">Welcome to Nyam-Nyam</h2>
-          <p>
-            Discover, share, and enjoy recipes from around the world. Join our community to explore new tastes and inspire others with your cooking.
-          </p>
-        </section>
-
-        
-        
-        <!-- ===== Featured Recipes Section ===== -->
-        <section id="featured" class="mb-5 section">
-          <h2 class="section-title mb-3">Featured Recipes</h2>
-          <!-- Search Bar -->
-          <form class="p-3 rounded shadow-sm bg-light-mustard position-relative mb-5">
-            <div class="input-group">
-              <input type="text" id="featuredrecipes" class="form-control" placeholder="Search Featured Recipes...">
-              <button type="submit" class="btn btn-mustard">Search</button>
-            </div>
-          </form>
-          <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-
-            <div class="col">
-              <div class="card h-100 shadow-sm">
-                <img src="images/lasagna.jpg" class="card-img-top" alt="Classic Lasagna">
-                <div class="card-body">
-                  <h5 class="card-title">Classic Lasagna</h5>
-                  <p class="card-text">A delicious Italian dish with layers of pasta, meat, and cheese.</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="col">
-              <div class="card h-100 shadow-sm">
-                <img src="images/brownies.jpg" class="card-img-top" alt="Chocolate Brownies">
-                <div class="card-body">
-                  <h5 class="card-title">Chocolate Brownies</h5>
-                  <p class="card-text">Rich and fudgy brownies, perfect with a cup of coffee.</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="col">
-              <div class="card h-100 shadow-sm">
-                <img src="images/salad.jpg" class="card-img-top" alt="Fresh Salad">
-                <div class="card-body">
-                  <h5 class="card-title">Fresh Salad</h5>
-                  <p class="card-text">A healthy mix of greens, tomatoes, and cucumber with olive oil.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- ===== FAQ Section ===== -->
-        <section id="faq" class="section mb-5">
-          <h2 class="section-title mb-3">Frequently Asked Questions</h2>
-          <div class="faq-container p-3 rounded bg-light-mustard">
-            <div class="faq-item mb-3">
-              <h5 class="faq-question">What is Nyam-Nyam?</h5>
-              <p class="faq-answer">Nyam-Nyam is a platform where users can explore, share, and create recipes while connecting with a community of food lovers.</p>
-            </div>
-
-            <div class="faq-item mb-3">
-              <h5 class="faq-question">How do I create an account?</h5>
-              <p class="faq-answer">Simply click on the "Login" page and sign up using your email address or social media account.</p>
-            </div>
-
-            <div class="faq-item mb-3">
-              <h5 class="faq-question">Can I share my own recipes?</h5>
-              <p class="faq-answer">Yes! Go to the “Add Recipe” page to upload your ingredients, instructions, and a photo of your dish.</p>
-            </div>
-          </div>
-        </section>
-         <!-- Contact Form for Task 2 -->
-        <section id="contact" class="section mt-5">
-        <h2 class="section-title mb-3">Contact Us</h2>
-        <form id="contactForm" class="p-3 rounded">
-          <div class="mb-3">
-          <label for="name" class="form-label">Name:</label>
-          <input type="text" id="name" name="name" class="form-control" required />
-          </div>
-          <div class="mb-3">
-          <label for="email" class="form-label">Email:</label>
-          <input type="email" id="email" name="email" class="form-control" required />
-          </div>
-          <div class="mb-3">
-          <label for="message" class="form-label">Message:</label>
-          <textarea id="message" name="message" class="form-control" required></textarea>
-          </div>
-          <button type="submit" class="btn btn-mustard">Send</button>
-          </form>
-            <p id="contactStatus" class="mt-2"></p>
-        </section>
-      </main>
-    </div>
-  </div>
-
-  <!-- ===== Popup Form for Subscribe ===== -->
-  <div id="popupOverlay" class="popup-overlay">
-    <div class="popup-content bg-light-mustard p-4 rounded">
-      <button id="closePopup" class="close-btn">&times;</button>
-      <h4 class="mb-3 text-center text-dark-brown">Subscribe to Nyam-Nyam</h4>
-      <form id="popupForm">
-        <div class="mb-3">
-          <label for="popupName" class="form-label fw-bold">Name:</label>
-          <input type="text" id="popupName" class="form-control" placeholder="Enter your name">
-        </div>
-        <div class="mb-3">
-          <label for="popupEmail" class="form-label fw-bold">Email:</label>
-          <input type="email" id="popupEmail" class="form-control" placeholder="Enter your email">
-        </div>
-        <button type="submit" class="btn btn-mustard w-100">Subscribe</button>
-      </form>
-    </div>
-  </div>
-
-  <!-- ===== Footer ===== -->
-  <footer class="bg-dark-brown text-center text-white py-3 mt-4">
-    <p class="m-0">&copy; 2025 Nyam-Nyam. Adil, Yerassyl, Yesbol, Bekarys. All rights reserved.</p>
-  </footer>
   
-  <!-- jQuery -->
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
- 
-  <script src="js/index_search.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Nyam-Nyam</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/index_search.css">
+  </head>
+  
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark-brown px-3">
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <img src="images/logo.jpg" alt="Nyam-Nyam Logo" class="logo me-2">
+        <span class="fw-bold text-mustard">Nyam-Nyam</span>
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav align-items-center">
+          <li class="nav-item"><a class="nav-link active text-mustard" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="search.html">Search</a></li>
+          <li class="nav-item"><a class="nav-link" href="friends.html">Friends</a></li>
+          <li class="nav-item"><a class="nav-link" href="trendy.html">Trendy Recipes</a></li>
+          <li class="nav-item"><a class="nav-link" href="addrecipe.html">Add Recipe</a></li>
+          <li class="nav-item"><a class="nav-link" href="account.html">Profile</a></li>
+          <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
+          <li class="nav-item"><button id="openPopup" class="btn btn-mustard ms-2">Subscribe</li>
+          <li class="nav-item"><button id="toggleModeBtn" class="btn btn-mustard ms-2">Toogle Mode</button></li>
+          <li class="nav-item d-flex align-items-center ms-3"><span id="dateTimeDisplay" class="text-white small"></span></li>
+        </ul>
+      </div>
+    </nav>
+      
+    <div id="scrollProgressContainer">
+      <div id="scrollProgressBar"></div>
+    </div>
+
+    <div class="container-fluid py-4 px-sm-2 px-md-4">
+      <div class="row">
+
+        <aside class="col-lg-3 mb-4" style="top: 20px;">
+          <div class="p-3 bg-light-mustard rounded">  
+            <h3 class="fw-bold mb-3">Home Sections</h3>
+            <ol class="list-unstyled">
+              <li><a href="#welcome" class="text-dark-brown text-decoration-none">Main</a></li>
+              <li><a href="#featured" class="text-dark-brown text-decoration-none">Featured Recipes</a></li>
+              <li><a href="#faq" class="text-dark-brown text-decoration-none">FAQ</a></li>
+              <li><a href="#contact" class="text-dark-brown text-decoration-none">Contact Us</a></li>
+            </ol>
+          </div>
+          <div class="p-3 bg-light-mustard rounded mt-4" id="aiChatContainer">
+            <h4 class="fw-bold mb-3">AI Chat</h4>
+
+            <div id="chatBox" class="chat-box"></div>
+
+            <div class="d-flex mt-2">
+              <input type="text" id="chatInput" class="form-control me-2" placeholder="Type a message...">
+              <button id="chatSend" class="btn btn-mustard">Send</button>
+            </div>
+          </div>
+        </aside>
+
+        <main class="col-lg-9">
+
+          <section id="welcome" class="mb-5 section">
+            <h2 class="section-title mb-3">Welcome to Nyam-Nyam</h2>
+            <p>
+              Discover, share, and enjoy recipes from around the world. Join our community to explore new tastes and inspire others with your cooking.
+            </p>
+          </section>
+
+          <section id="featured" class="mb-5 section">
+            <h2 class="section-title mb-3">Featured Recipes</h2>
+            <form class="p-3 rounded shadow-sm bg-light-mustard position-relative mb-5">
+              <div class="input-group">
+                <input type="text" id="featuredrecipes" class="form-control" placeholder="Search Featured Recipes...">
+                <button type="submit" class="btn btn-mustard">Search</button>
+              </div>
+            </form>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+
+              <div class="col">
+                <div class="card h-100 shadow-sm">
+                  <img src="images/lasagna.jpg" class="card-img-top" alt="Classic Lasagna">
+                  <div class="card-body">
+                    <h5 class="card-title">Classic Lasagna</h5>
+                    <p class="card-text">A delicious Italian dish with layers of pasta, meat, and cheese.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col">
+                <div class="card h-100 shadow-sm">
+                  <img src="images/brownies.jpg" class="card-img-top" alt="Chocolate Brownies">
+                  <div class="card-body">
+                    <h5 class="card-title">Chocolate Brownies</h5>
+                    <p class="card-text">Rich and fudgy brownies, perfect with a cup of coffee.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col">
+                <div class="card h-100 shadow-sm">
+                  <img src="images/salad.jpg" class="card-img-top" alt="Fresh Salad">
+                  <div class="card-body">
+                    <h5 class="card-title">Fresh Salad</h5>
+                    <p class="card-text">A healthy mix of greens, tomatoes, and cucumber with olive oil.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section id="faq" class="section mb-5">
+            <h2 class="section-title mb-3">Frequently Asked Questions</h2>
+            <div class="faq-container p-3 rounded bg-light-mustard">
+              <div class="faq-item mb-3">
+                <h5 class="faq-question">What is Nyam-Nyam?</h5>
+                <p class="faq-answer">Nyam-Nyam is a platform where users can explore, share, and create recipes while connecting with a community of food lovers.</p>
+              </div>
+
+              <div class="faq-item mb-3">
+                <h5 class="faq-question">How do I create an account?</h5>
+                <p class="faq-answer">Simply click on the "Login" page and sign up using your email address or social media account.</p>
+              </div>
+
+              <div class="faq-item mb-3">
+                <h5 class="faq-question">Can I share my own recipes?</h5>
+                <p class="faq-answer">Yes! Go to the “Add Recipe” page to upload your ingredients, instructions, and a photo of your dish.</p>
+              </div>
+            </div>
+          </section>
+
+          <section id="contact" class="section mt-5">
+          <h2 class="section-title mb-3">Contact Us</h2>
+          <form id="contactForm" class="p-3 rounded">
+            <div class="mb-3">
+              <label for="name" class="form-label">Name:</label>
+              <input type="text" id="name" name="name" class="form-control" required />
+            </div>
+
+            <div class="mb-3">
+              <label for="email" class="form-label">Email:</label>
+              <input type="email" id="email" name="email" class="form-control" required />
+            </div>
+
+            <div class="mb-3">
+              <label for="message" class="form-label">Message:</label>
+              <textarea id="message" name="message" class="form-control" required></textarea>
+            </div>
+              
+            <button type="submit" class="btn btn-mustard">Send</button>
+            </form>
+              <p id="contactStatus" class="mt-2"></p>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <div id="popupOverlay" class="popup-overlay">
+      <div class="popup-content bg-light-mustard p-4 rounded">
+        <button id="closePopup" class="close-btn">&times;</button>
+        <h4 class="mb-3 text-center text-dark-brown">Subscribe to Nyam-Nyam</h4>
+        <form id="popupForm">
+          <div class="mb-3">
+            <label for="popupName" class="form-label fw-bold">Name:</label>
+            <input type="text" id="popupName" class="form-control" placeholder="Enter your name">
+          </div>
+          <div class="mb-3">
+            <label for="popupEmail" class="form-label fw-bold">Email:</label>
+            <input type="email" id="popupEmail" class="form-control" placeholder="Enter your email">
+          </div>
+          <button type="submit" class="btn btn-mustard w-100">Subscribe</button>
+        </form>
+      </div>
+    </div>
+
+    <footer class="bg-dark-brown text-center text-white py-3 mt-4">
+      <p class="m-0">&copy; 2025 Nyam-Nyam. Adil, Yerassyl, Yesbol, Bekarys. All rights reserved.</p>
+    </footer>
+    
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  
+    <script src="js/index_search.js"></script>
+  </body>
 </html>

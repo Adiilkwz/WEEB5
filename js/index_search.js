@@ -1,4 +1,3 @@
-// Centralized validation for Account (Edit Profile) and Add Recipe forms
 document.addEventListener('DOMContentLoaded', () => {
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
@@ -563,7 +562,7 @@ if (searchInput) {
     });
   }
 });
-
+//ai chat
 document.addEventListener("DOMContentLoaded", () => {
   const chatBox = document.getElementById("chatBox");
   const chatInput = document.getElementById("chatInput");
@@ -573,7 +572,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const message = chatInput.value.trim();
     if (!message) return;
 
-    // Сообщение пользователя
+    // User message
     const userDiv = document.createElement("div");
     userDiv.className = "user-msg";
     userDiv.textContent = "You: " + message;
@@ -581,7 +580,7 @@ document.addEventListener("DOMContentLoaded", () => {
     chatBox.scrollTop = chatBox.scrollHeight;
     chatInput.value = "";
 
-    // Отправка на бекенд (Flask)
+    // Sending to backend (Flask)
     try {
       const response = await fetch("http://localhost:5000/api/chat", {
         method: "POST",

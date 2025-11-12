@@ -6,48 +6,48 @@
 }
 /* Default (light mode) styles */
 body {
-  background-color: #FFFFFF;  /* White background */
-  color: #5C4033;             /* Dark brown text */
+  background-color: #FFFFFF;  
+  color: #5C4033;        
 }
 
 /* Dark mode styles */
 body.dark-mode {
-  background-color: #2C2C2C;  /* Dark gray background */
-  color: #D8A300;             /* Light mustard text */
+  background-color: #2C2C2C;  
+  color: #D8A300;             
 }
 
 /* Containers (change color to dark brown and text to white in dark mode) */
 body.dark-mode .container, 
 body.dark-mode .section, 
 body.dark-mode .sidebar {
-  background-color: #5C4033;  /* Dark brown container background */
-  color: #FFFFFF;             /* White text */
+  background-color: #5C4033;  
+  color: #FFFFFF;            
 }
 
 /* Sidebar specific background color in dark mode */
 body.dark-mode .container-fluid .sidebar .p-3.bg-light-mustard {
-  background-color: #5C4033;  /* Dark brown background for sidebar */
-  color: #FFFFFF;             /* White text */
+  background-color: #5C4033;  
+  color: #FFFFFF;             
 }
 
 /* Sidebar links in dark mode */
 body.dark-mode .container-fluid .sidebar a {
-  color: #FFFFFF;             /* White text for links in dark mode */
+  color: #FFFFFF;           
 }
 
 body.dark-mode .container-fluid .sidebar a:hover {
-  color: #D8A300;             /* Light mustard color on hover */
+  color: #D8A300;        
 }
 
 /* Buttons (to match dark mode color scheme) */
 button.dark-mode {
-  background-color: #5C4033;  /* Dark brown */
-  color: #D8A300;             /* Light mustard text */
+  background-color: #5C4033;  
+  color: #D8A300;      
 }
 
 button.light-mode {
-  background-color: #D8A300;  /* Mustard */
-  color: #5C4033;             /* Dark brown text */
+  background-color: #D8A300;  
+  color: #5C4033;       
 }
 
 /* Sidebar container (in both Account and Add Recipe pages) */
@@ -184,21 +184,21 @@ body.dark-mode form.bg-light-mustard .btn.btn-mustard:hover {
 
 /* Reset button: white background with dark-brown text */
 button[type="reset"].btn-outline-dark-brown {
-  background-color: #FFFFFF; /* White background */
-  color: #5C4033;            /* Dark brown text */
-  border: 2px solid #5C4033; /* Dark brown border */
+  background-color: #FFFFFF; 
+  color: #5C4033;            
+  border: 2px solid #5C4033; 
 }
 
 /* Hover effect: dark-brown background with white text */
 button[type="reset"].btn-outline-dark-brown:hover {
-  background-color: #5C4033; /* Dark brown background */
-  color: #FFFFFF;            /* White text */
+  background-color: #5C4033; 
+  color: #FFFFFF;            
 }
 
 /* Default (light mode) styles for the Read More button */
 button#readMoreBtn {
-  background-color: #D8A300;  /* Mustard background for light mode */
-  color: #5C4033;             /* Dark brown text */
+  background-color: #D8A300; 
+  color: #5C4033;            
   border: none;
   padding: 8px 16px;
   font-size: 1rem;
@@ -207,19 +207,19 @@ button#readMoreBtn {
 }
 
 button#readMoreBtn:hover {
-  background-color: #5C4033;  /* Dark brown background on hover */
-  color: #FFFFFF;             /* White text on hover */
+  background-color: #5C4033;  
+  color: #FFFFFF;          
 }
 
 /* Dark mode styles for the Read More button */
 body.dark-mode button#readMoreBtn {
-  background-color: #D8A300;  /* Mustard background in dark mode */
-  color: #5C4033;             /* Dark brown text in dark mode */
+  background-color: #D8A300; 
+  color: #5C4033;            
 }
 
 body.dark-mode button#readMoreBtn:hover {
-  background-color: #5C4033;  /* Dark brown background on hover */
-  color: #FFFFFF;             /* White text on hover */
+  background-color: #5C4033; 
+  color: #FFFFFF;           
 }
 /* ===== Sidebar ===== */
 .sidebar {
@@ -330,7 +330,7 @@ footer {
 }
 /* ===== Task 3: Popup Subscription Form ===== */
 .popup-overlay {
-  display: none; /* hidden by default */
+  display: none; 
   position: fixed;
   top: 0;
   left: 0;
@@ -377,11 +377,6 @@ footer {
 #changeBgBtn {
   transition: background-color 0.3s, color 0.3s;
 }
-
-/* =========================================================
-   Responsive Design
-   ========================================================= */
-
 /* ===== Small Devices (≤ 767px) ===== */
 @media (max-width: 767px) {
 
@@ -504,7 +499,7 @@ footer {
   left: 0;
   width: 100%;
   height: 8px;
-  background-color: #222; /* dark background for contrast */
+  background-color: #222; 
   z-index: 1000;
 }
 
@@ -535,7 +530,7 @@ footer {
   border: 1px solid var(--dark-brown);
   border-radius: 6px;
   padding: 8px;
-  background-color: #fffbea; /* светлая тема */
+  background-color: #fffbea; 
   font-size: 0.9rem;
 }
 
@@ -601,15 +596,15 @@ body.dark-mode #chatInput {
  * Это контейнер, который будет появляться при клике.
  */
 .explosion-container {
-    position: fixed; /* Фиксируем на экране */
-    pointer-events: none; /* Игнорировать клики под ним */
+    position: fixed; 
+    pointer-events: none;   
     width: 0;
     height: 0;
     border-radius: 50%;
     background-color: transparent;
     opacity: 0;
-    z-index: 99999; /* Очень высокий Z-индекс, чтобы быть поверх всего */
-    transform: translate(-50%, -50%); /* Центрирование по точке клика */
+    z-index: 99999; 
+    transform: translate(-50%, -50%); 
 }
 
 /* 2. АНИМАЦИЯ ВЗРЫВА (Ключевые кадры) */
@@ -618,11 +613,11 @@ body.dark-mode #chatInput {
         width: 10px;
         height: 10px;
         opacity: 1;
-        background-color: yellow; /* Вспышка */
+        background-color: yellow; 
         box-shadow: 0 0 40px rgba(255, 255, 0, 0.8);
     }
     50% {
-        width: 250px; /* Быстрое расширение */
+        width: 250px; 
         height: 250px;
         opacity: 0.6;
         background-color: orange;
@@ -631,7 +626,7 @@ body.dark-mode #chatInput {
     100% {
         width: 600px;
         height: 600px;
-        opacity: 0; /* Быстрое исчезновение */
+        opacity: 0; 
         background-color: red;
         box-shadow: none;
     }
@@ -644,6 +639,6 @@ body.dark-mode #chatInput {
 
 /* 4. СТИЛЬ ДЛЯ КНОПОК (не обязательно, но улучшает вид) */
 .btn-mustard {
-    position: relative; /* Для правильной работы эффекта при наведении */
+    position: relative; 
     overflow: hidden; 
 }
