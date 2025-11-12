@@ -591,54 +591,34 @@ body.dark-mode #chatInput {
     margin-top: 20px;
   }
 }
-/*
- * 1. БАЗОВАЯ КОНФИГУРАЦИЯ ВЗРЫВА
- * Это контейнер, который будет появляться при клике.
- */
-.explosion-container {
-    position: fixed; 
-    pointer-events: none;   
-    width: 0;
-    height: 0;
-    border-radius: 50%;
-    background-color: transparent;
+.name-animation-container {
+    position: fixed;
+    pointer-events: none; 
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--mustard); 
     opacity: 0;
-    z-index: 99999; 
-    transform: translate(-50%, -50%); 
+    z-index: 99999;
+    transform: translate(-50%, -50%) scale(0.5); 
+    text-shadow: 0 0 5px var(--dark-brown);
+    white-space: nowrap; 
 }
 
-/* 2. АНИМАЦИЯ ВЗРЫВА (Ключевые кадры) */
-@keyframes explode {
+@keyframes showName {
     0% {
-        width: 10px;
-        height: 10px;
-        opacity: 1;
-        background-color: yellow; 
-        box-shadow: 0 0 40px rgba(255, 255, 0, 0.8);
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.5) translateY(0);
     }
-    50% {
-        width: 250px; 
-        height: 250px;
-        opacity: 0.6;
-        background-color: orange;
-        box-shadow: 0 0 100px rgba(255, 165, 0, 0.6);
+    30% {
+        opacity: 1; 
+        transform: translate(-50%, -50%) scale(1.2) translateY(-10px); 
     }
     100% {
-        width: 600px;
-        height: 600px;
         opacity: 0; 
-        background-color: red;
-        box-shadow: none;
+        transform: translate(-50%, -50%) scale(0.8) translateY(-50px); 
     }
 }
 
-/* 3. КЛАСС АКТИВАЦИИ */
-.active-explosion {
-    animation: explode 0.6s cubic-bezier(0.19, 1, 0.22, 1) forwards;
-}
-
-/* 4. СТИЛЬ ДЛЯ КНОПОК (не обязательно, но улучшает вид) */
-.btn-mustard {
-    position: relative; 
-    overflow: hidden; 
+.active-name-animation {
+    animation: showName 0.7s ease-out forwards;
 }

@@ -458,3 +458,38 @@ document.addEventListener("DOMContentLoaded", () => {
 }
   });
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+  
+    const NAME_TO_SHOW = "ARUZHAN ALI"; 
+
+    const nameContainer = document.createElement('div');
+    nameContainer.classList.add('name-animation-container'); 
+    nameContainer.textContent = NAME_TO_SHOW; 
+    document.body.appendChild(nameContainer);
+
+    const buttons = document.querySelectorAll('button, [type="submit"], [role="button"]'); 
+
+    buttons.forEach(button => {
+
+        if (button.id === 'closePopup') return;
+
+        button.addEventListener('click', (event) => {
+
+            const clickX = event.clientX;
+            const clickY = event.clientY;
+
+            nameContainer.style.left = `${clickX}px`;
+            nameContainer.style.top = `${clickY}px`;
+            
+            nameContainer.classList.remove('active-name-animation');
+
+            void nameContainer.offsetWidth; 
+            nameContainer.classList.add('active-name-animation');
+        });
+    });
+
+    nameContainer.addEventListener('animationend', () => {
+        nameContainer.classList.remove('active-name-animation');
+    });
+});

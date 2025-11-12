@@ -428,40 +428,38 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-    // 1. Создаем контейнер для взрыва
-    const explosionContainer = document.createElement('div');
-    explosionContainer.classList.add('explosion-container');
-    document.body.appendChild(explosionContainer);
 
-    // 2. Получаем все интерактивные кнопки, которым нужен эффект
-    const buttons = document.querySelectorAll('button, [type="submit"]');
+document.addEventListener('DOMContentLoaded', () => {
+  
+    const NAME_TO_SHOW = "ARUZHAN ALI"; 
+
+    const nameContainer = document.createElement('div');
+    nameContainer.classList.add('name-animation-container'); 
+    nameContainer.textContent = NAME_TO_SHOW; 
+    document.body.appendChild(nameContainer);
+
+    const buttons = document.querySelectorAll('button, [type="submit"], [role="button"]'); 
 
     buttons.forEach(button => {
-        // Проверяем, что это не кнопка закрытия попапа, чтобы не мешать UX
+
         if (button.id === 'closePopup') return;
 
         button.addEventListener('click', (event) => {
-            // Вычисляем точное место клика
+
             const clickX = event.clientX;
             const clickY = event.clientY;
 
-            // Перемещаем контейнер взрыва в точку клика
-            explosionContainer.style.left = `${clickX}px`;
-            explosionContainer.style.top = `${clickY}px`;
+            nameContainer.style.left = `${clickX}px`;
+            nameContainer.style.top = `${clickY}px`;
             
-            // Сбрасываем текущую анимацию, чтобы ее можно было запустить снова
-            explosionContainer.classList.remove('active-explosion');
-            
-            // Запускаем анимацию
-            // Используем requestAnimationFrame или void offsetWidth для сброса анимации
-            void explosionContainer.offsetWidth; 
-            explosionContainer.classList.add('active-explosion');
+            nameContainer.classList.remove('active-name-animation');
+
+            void nameContainer.offsetWidth; 
+            nameContainer.classList.add('active-name-animation');
         });
     });
 
-    // 3. Очистка класса после завершения анимации
-    explosionContainer.addEventListener('animationend', () => {
-        explosionContainer.classList.remove('active-explosion');
+    nameContainer.addEventListener('animationend', () => {
+        nameContainer.classList.remove('active-name-animation');
     });
 });
