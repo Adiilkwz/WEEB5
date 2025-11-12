@@ -608,10 +608,10 @@ document.addEventListener("DOMContentLoaded", () => {
   chatInput.addEventListener("keydown", (e) => {
     if (e.key === "Enter") sendMessage();
   });
-});
-
-document.addEventListener('DOMContentLoaded', () => {
   
+});
+document.addEventListener('DOMContentLoaded', () => {
+
     const NAME_TO_SHOW = "ARUZHAN ALI"; 
 
     const nameContainer = document.createElement('div');
@@ -632,7 +632,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             nameContainer.style.left = `${clickX}px`;
             nameContainer.style.top = `${clickY}px`;
-            
+
             nameContainer.classList.remove('active-name-animation');
 
             void nameContainer.offsetWidth; 
